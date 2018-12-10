@@ -19,16 +19,16 @@
 |access token|string(255)||
 
 ### Association(users)
-- has_many :folloing_id, through: :relationships,  dependent: :destroy
-- has_many :follwer_id, through: relationships, dependent: :destroy
+- has_many :folloing_id, dependent: :destroy
+- has_many :follwer_id, dependent: :destroy
 - has_many :messages
-- has_many :transactions, dependent: :destroy
-- has_many :items, dependent: :destroy
+- has_many :transactions
+- has_many :items
 - has_many :comments_items, through: :comments, source: :items
 - has_many :liking_items, through: :likes, source: :items
 - has_many :address, dependent: :destroy
 - has_many :credit_cards, dependent: :destroy
-- has_many :points, dependent: :destroy
+- has_many :points
 - has_many :evaluation_transactions, through: :evaluations, source: :transactions
 
 ## Relationshipsテーブル
@@ -39,7 +39,8 @@
 |follower_id|references|foreign_key :true|
 
 ### Association(relationships)
-- belongs_to :users
+- belongs_to :folloing_id, class_name: "User"
+- belongs_to :follower_id, class_name: "User"
 
 
 ## Pointsテーブル
