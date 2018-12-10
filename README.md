@@ -80,7 +80,7 @@
 |cities|string|null:false|
 |address|string|null:false|
 |building_name|string||
-|phone_number|integer|null:false|
+|phone_number|integer||
 
 
 ### Association(addresses)
