@@ -156,6 +156,7 @@
 |user_id|references|null: false,foreign_key: true|
 |evaluation|integer|null: false check(1,2,3)|
 |date|date|null: false|
+
 ### Association
 - belongs_to :user
 - belongs_to :transaction
