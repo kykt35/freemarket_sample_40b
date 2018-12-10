@@ -23,4 +23,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
->>>>>>> e7b2d8239ff4af07bfe7c5d0e61705c6b821c795
+>>>>>>> kanchimatsumoto/master
