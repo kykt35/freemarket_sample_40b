@@ -24,11 +24,14 @@
 - has_many :messages
 - has_many :transactions
 - has_many :items
+- has_many :comments
 - has_many :comments_items, through: :comments, source: :items
+- has_many :likes
 - has_many :liked_items, through: :likes, source: :items
-- has_many :address, dependent: :destroy
+- has_many :address
 - has_many :credit_cards, dependent: :destroy
 - has_many :points
+- has_many :evaluations
 - has_many :evaluation_transactions, through: :evaluations, source: :transactions
 
 ## Relationshipsテーブル
@@ -129,8 +132,11 @@
 - belongs_to :leadtime
 - belongs_to :prefecture
 - has_many :item_images, dependent: :destroy
+- has_many :evaluations
 - has_many :evaluation_transactions, through: :evaluations, source: :users, dependent: :destroy
+- has_many :comments
 - has_many :comments_items, through: :comments, source: :users, dependent: :destroy
+- has_many :likes
 - has_many :liked_items, through: :likes, source: :users, dependent: :destroy
 
 ## Transactionsテーブル
