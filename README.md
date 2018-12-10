@@ -85,7 +85,7 @@
 
 ### Association(addresses)
 - belongs_to :users
-- has_one :prefecture dependent: :destroy
+- belongs_to :prefecture
 
 
 ## Prefecturesテーブル
