@@ -213,11 +213,11 @@
 |Column|Type|Options|
 |------|----|-------|
 |item_id|references|null:false, foreign_key:true|
-|item_image|references||
+|item_image|text||
 
 
 ### Association(item_images)
-- has_many :items
+- belongs_to :item
 
 
 ## Leadtimesテーブル
@@ -274,17 +274,19 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|category|string|null:false|
+|name|string|null:false|
+|parent_id|references|foregin_key:true|
 
 ### Association(categories)
 - has_many :items
-
+- has_many :children, class_name: "Category"
+- belongs_to :parent, class_name: "Category"
 
 ## Brandsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|brand|string|null:false|
+|name|string|null:false|
 
 ### Association(brands)
 - has_many :items
