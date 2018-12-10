@@ -5,12 +5,12 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|nickname|varchar(20)|null:false, unique: true|
+|nickname|string|null:false|
 |avater_image|text||
 |introduction|text||
 |birthday|date||
 |address_id|references|foreign_key: true|
-|e_mail|string|null:false, unique: true|
+|email|string|null:false, unique: true|
 |password|string|null:false, unique:true|
 |exhibit|string||
 |uid|string(255)|not null, indexed => [uid]|
@@ -35,8 +35,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|following_id|integer|foregin_key: true|
-|follower_id|integer|foreign_key :true|
+|following_id|references|foregin_key: true|
+|follower_id|references|foreign_key :true|
 
 ### Association(relationships)
 - belongs_to :users
@@ -48,25 +48,25 @@
 |------|----|-------|
 |amount|integer||
 |deadline|date||
-|user_id|integer|foregin_key :true|
+|user_id|references|foregin_key :true|
 
 ### Association(points)
 - belongs_to :user
 
 
-## Credit_Cardsテーブル
+## Credit_cardsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |number|varchar(20)|null:false, unique:true|
 |security_code|integer|null:false|
-|user_id|integer|foregin_key:true|
+|user_id|references|foregin_key:true|
 
 ### Association(credit_card)
 - belongs_to :user
 
 
-## Addressesテーブル
+## Addressテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -75,7 +75,7 @@
 |last_name_katakana|string|null:false|
 |first_name_katakana|string|null:false|
 |postal_code|integer|null:false|
-|prefectures_id|integer|foregin_key:true|
+|prefectures_id|references|foregin_key:true|
 |cities|string|null:false|
 |address|string|null:false|
 |building_name|string||
@@ -99,7 +99,7 @@
 - has_many :items
 
 
-## itemsテーブル
+## Itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |saler_id|references|null: false,foreign_key: true|
@@ -132,7 +132,7 @@
 - has_many :comments_items, through: :comments, source: :users, dependent: :destroy
 - has_many :liking_items, through: :likes, source: :users, dependent: :destroy
 
-## transactionsテーブル
+## Transactionsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |item_id|references|null: false,foreign_key: true|
@@ -149,12 +149,12 @@
 - has_many :messages
 
 
-## evaluationsテーブル
+## Evaluationsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |transaction_id|references|null: false,foreign_key: true|
 |user_id|references|null: false,foreign_key: true|
-|evaluation|integer|null: false check(1,2,3)|
+|evaluation|integer|null: false check(evaluation >= 0 and evaluation <= 2)|
 |date|date|null: false|
 
 ### Association
@@ -162,7 +162,7 @@
 - belongs_to :transaction
 
 
-## messagesテーブル
+## Messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |transaction_id|references|null: false,foreign_key: true|
@@ -178,8 +178,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null:false|
-|item_id|integer|null:false|
+|user_id|references|null:false|
+|item_id|references|null:false|
 
 
 ### Association(prefectures)
@@ -191,8 +191,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null:false|
-|item_id|integer|null:false|
+|user_id|references|null:false, foreign_key:true|
+|item_id|references|null:false, foreign_key:true|
 |text|text|null:false|
 
 
@@ -205,7 +205,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|item_id|integer|null:false|
+|item_id|references|null:false, foreign_key:true|
 |item_image|references||
 
 
