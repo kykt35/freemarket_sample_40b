@@ -113,8 +113,8 @@
 |leadtime|references|null: false,foreign_key: true|
 |name|string|null: false|
 |description|text|null: false|
-|status|integar|null: false|
-|amount|integar|null: false|
+|status|integer|null: false|
+|amount|integer|null: false|
 
 ### Association
 - has_one :transaction
