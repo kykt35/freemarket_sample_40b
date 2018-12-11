@@ -19,7 +19,9 @@
             %ul.pc-header-user-nav
               %li
                 =link_to "#", class: "pc-header-navbox-root" do
-                  =image_tag "member_photo_noimage_thumb.png",width: 32
+                  %figure
+                    %div
+                      =image_tag "member_photo_noimage_thumb.png",width: 32, height: 32
                   %div マイページ
               %li
                 =link_to "#", class: "pc-header-navbox-root" do
