@@ -1,13 +1,11 @@
-.l-right {
-  float: right;
-}
-.l-left {
-  float: left;
-}
+
 
 .pc-header {
   margin: 8px auto 0px;
   width: 1020px;
+  h1{
+    height:36px;
+  }
   h2 {
     font-size: 14px;
     font-weight: 400;
@@ -44,9 +42,6 @@
     a {
        color: #333;
     }
-
-
-
   }
   .header__bottom{
     li {
@@ -79,6 +74,10 @@
       height: 32px;
       margin: 0 auto;
       vertical-align: middle;
+
+    }
+    img {
+      border-radius: 50%;
     }
     div {
       display: inline-block;
