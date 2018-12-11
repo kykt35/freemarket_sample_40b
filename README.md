@@ -121,7 +121,7 @@
 |amount|integer|null: false|
 
 ### Association
-- has_one :transaction
+- has_many :transactions
 - belongs_to :user
 - belongs_to :brand
 - belongs_to :category
