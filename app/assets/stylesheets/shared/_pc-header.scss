@@ -1,7 +1,8 @@
 
 
 .pc-header {
-  margin: 8px auto 0px;
+  margin: 0 auto;
+  padding-top: 8px;
   width: 1020px;
   h1{
     height:36px;
@@ -34,16 +35,15 @@
       text-align: center;
     }
   }
-  .header__bottom {
-    margin: 8px 0 0 0;
-  }
 
   .pc-header-navbox {
     a {
+       display: block;
        color: #333;
     }
   }
   .header__bottom{
+    margin: 8px 0 0 0;
     li {
       float: left;
       padding: 0 0 0 16px;
@@ -59,7 +59,6 @@
   .pc-header-navbox-root{
     height: 38px;
     line-height: 32px;
-
   }
   .pc-header-user-nav{
     a {
@@ -86,5 +85,27 @@
       vertical-align: middle;
     }
   }
-
+  .pc-header-login-nav{
+    a {
+      display: block;
+    }
+    li {
+      padding: 0 0 0 10px;
+    }
+    .pc-header-btn {
+      padding: 0 10px;
+      line-height: 30px;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .header-signup{
+      border: 1px solid #0099e8;
+      color: #0099e8;
+    }
+    .btn-red {
+      background: #ea352d;
+      border: 1px solid #ea352d;
+      color: #fff;
+    }
+  }
 }
