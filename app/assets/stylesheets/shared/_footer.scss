@@ -1,0 +1,50 @@
+.global-footer {
+  padding: 60px 0px;
+  background: #212121;
+  color: #fff;
+  text-align: center;
+  a {
+    display: block;
+    color: #fff;
+
+  }
+  h2 {
+    font-weight: bold;
+  }
+
+  nav {
+    width: 1020px;
+    margin: 0 auto;
+
+  }
+  .footer-head {
+    color: #fff;
+    font-size: 16px;
+  }
+  .download-app {
+    display: none;
+  }
+  .footer-cell{
+    float: left;
+    display: inline-block;
+    width: 23%;
+    margin: 0 2% 0 0;
+    vertical-align: top;
+
+    li {
+      margin: 16px 0 0;
+      &:first-child {
+        margin: 24px 0 0;
+      }
+    }
+  }
+  .footer-nav-lang {
+    a{
+      opacity: .3;
+      &.activate{
+          opacity: 1.0;
+      }
+    }
+  }
+}
+
