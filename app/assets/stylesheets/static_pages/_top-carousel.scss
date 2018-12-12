@@ -1,9 +1,28 @@
 section.top-carousel {
   display: block;
   height: 390px;
-
+  .owl-stage-outer {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .owl-stage{
+    height: 100%;
+  }
+  .owl-dots {
+    margin: -30px;
+    text-align: center;
+    line-height: 0;
+  }
+  .owl-item {
+    height: 100%;
+    a{
+      height: 100%;
+    }
+  }
   .top-main-visual {
     background-size: cover;
+    height: 100%;
 
     .top-main-visual-wrap {
       width: 860px;
