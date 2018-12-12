@@ -1,14 +1,13 @@
 .app-banner {
   background-position: center;
-
-  .app-banner-pc {
+  &-pc {
       overflow: hidden;
       position: relative;
       width: 750px;
       height: 260px;
       margin: 0 auto;
       color: #fff;
-    .app-banner-pc-inner {
+      &-inner {
       position: absolute;
       top: 47px;
       left: 0;
@@ -23,7 +22,7 @@
         margin: 10px 0 0 0;
         font-size: 35px;
       }
-      .app-banner-icon {
+      &-icon {
         margin: 20px 0 0;
         figure {
           float: left;

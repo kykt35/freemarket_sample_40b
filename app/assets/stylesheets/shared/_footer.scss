@@ -1,4 +1,4 @@
-.global-footer {
+.footer {
   padding: 60px 0px;
   background: #212121;
   color: #fff;
@@ -14,14 +14,14 @@
     width: 1020px;
     margin: 0 auto;
   }
-  .footer-head {
+  &-head {
     color: #fff;
     font-size: 16px;
   }
   .download-app {
     display: none;
   }
-  .footer-cell{
+  &-cell{
     float: left;
     display: inline-block;
     width: 23%;
@@ -34,7 +34,7 @@
       }
     }
   }
-  .footer-nav-lang {
+  &-nav-lang {
     a{
       opacity: .3;
       &.activate{
