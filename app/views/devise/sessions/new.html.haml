@@ -1,54 +1,49 @@
 .login-containar
   %header.login-header
     %h1
-      %img{src: "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?819506670",alt: "mercari",height:200,width:200}
+      %img{src: "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?819506670",alt: "mercari",height:100,width:200}
 
   %main.main
     .login-center
-      .login-no-account
+      .login__no_account
         %p アカウントをお持ちではない方はこちら
         - if devise_mapping.registerable? && controller_name != 'registrations'
           = link_to "新規会員登録", new_registration_path(resource_name)
-      .login-form-innner
+      .login__form_innner
         %button#facebook-login.button-default.btn-sns.btn-facebook
           = fa_icon 'facebook-square', class: 'icon'
+          %p Facebookでログイン
         %button#google-login.button-default.btn-sns.btn-google
-          = fa_icon 'google-plus-square', class: 'icon'
-
-
-
-
-
+          = fa_icon 'google-plus', class: 'icon'
+          %p Googleでログイン
 
       %form
-        .login-form-inner
+        .login__form_inner
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-            .form-group
+            .form__group
               = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: 'メールアドレス'
-            .form-group
+            .form__group
               = f.password_field :password, autocomplete: "current-password",placeholder: 'パスワード'
-            .form-group
+            .form__group
               .g-recaptcha{"data-callback": "clearcall", "data-sitekey": "6LdrEYAUAAAAALRAUuH0ifiAxMKih7ajkhe-g0Gj"}
                 %div{:style => "width: 300px; height: 100px;"}
                   %iframe{src: "https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc&co=aHR0cHM6Ly93d3cubWVyY2FyaS5jb206NDQz&hl=ja&v=v1543818755456&size=normal&cb=zgnd9kt1nsne",width: 300,height: 80,role: "presentation",name: "a-abrwyw7sr3ee",frameborder: 0,scrolling: "no",sandbox: "allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"}
             %button.btn-default.btn-red
               = f.submit "ログイン"
-= render "devise/shared/links"
+            %a.forgotpass{href:""}パスワードをお忘れの方
+
+  %footer.single__footer
+    %nav
+      %ul.clearfix
+        %li
+          %a{href: ""}プライバシーポリシー
+        %li
+          %a{href: ""}メルカリ利用規約
+        %li
+          %a{href: ""}特定商取引に関する表記
 
 
-
-
-
-
-
-/ - if devise_mapping.registerable? && controller_name != 'registrations'
-/   = link_to "新規会員登録", new_registration_path(resource_name)
-/   %br/
-/ = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-/   .field
-/     = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: 'メールアドレス'
-/   .field
-/     = f.password_field :password, autocomplete: "current-password",placeholder: 'パスワード'
-/   .actions
-/     = f.submit "Log in"
-/ = render "devise/shared/links"
+    %a.single__footer_logo{href: ""}
+      %img{src: "https://www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?819506670",alt: "grey-mercari",height:80,width:80}
+    %p
+      %small© 2018 Mercari
