@@ -14,8 +14,13 @@
 
           =image_tag "main_content_pc.png", alt: ""
     .stage-item
-      =link_to "#", class: "top-banner banner-kusanagi-xmas",style: {"background-image": image_url('main_bg_pc.jpg')}
+      =link_to "#", class: "top-banner banner-kusanagi-xmas" do
+        =image_tag 'top-banner-kusanagi-xmas.jpg'
     .stage-item
-      =link_to "#", class: "top-banner banner-welcome"
+      =link_to "", class: "top-banner banner-welcome" do
+        =image_tag 'top-banner-welcome.png'
     .stage-item
-      =link_to "#", class: "top-banner banner-new-register"
+      =link_to "", class: "top-banner banner-new-register" do
+        =image_tag 'top-banner-new-register.png'
+
+
