@@ -4,5 +4,8 @@ class UsersController < ApplicationController
 
 	def card
 	end
-	
+
+	def add
+	end
+
 end

@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   get 'mypage' => 'users#index'
   get 'mypage/card' => 'users#card'
+  get 'mypage/card/add' => 'users#add'
 end
