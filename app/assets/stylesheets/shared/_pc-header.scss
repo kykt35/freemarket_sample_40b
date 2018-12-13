@@ -14,6 +14,13 @@
        display: block;
        color: #333;
     }
+    li {
+      float: left;
+      padding: 0 0 0 16px;
+      &:first-child{
+        padding:0;
+      }
+    }
   }
   &-navbox-root{
     height: 38px;
@@ -23,7 +30,8 @@
     a {
       height: 38px;
       line-height: 32px;
-      display: inline-block;
+      display: block;
+      color: #333;
     }
     figure{
       display: inline-block;
@@ -43,12 +51,19 @@
       font-size: 14px;
       vertical-align: middle;
     }
+    li {
+      position: relative;
+      display: inline-block;
+      padding: 0 0 0 16px;
+      vertical-align: middle;
+    }
   }
   &-login-nav{
     a {
       display: block;
     }
     li {
+      display: inline-block;
       padding: 0 0 0 10px;
     }
     .pc-header-btn {
@@ -67,18 +82,9 @@
       color: #fff;
     }
   }
-  .header-bottom{
+  .header__bottom{
     margin: 8px 0 0 0;
-    li {
-      float: left;
-      padding: 0 0 0 16px;
-      &:first-child{
-        padding:0;
-      }
-    }
-    a {
-       color: #333;
-    }
+
   }
   .header__top__form{
     position: relative;
