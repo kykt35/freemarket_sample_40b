@@ -1,4 +1,4 @@
-.global-footer {
+.footer {
   padding: 60px 0px;
   background: #212121;
   color: #fff;
@@ -6,31 +6,27 @@
   a {
     display: block;
     color: #fff;
-
   }
   h2 {
     font-weight: bold;
   }
-
   nav {
     width: 1020px;
     margin: 0 auto;
-
   }
-  .footer-head {
+  &-head {
     color: #fff;
     font-size: 16px;
   }
   .download-app {
     display: none;
   }
-  .footer-cell{
+  &-cell{
     float: left;
     display: inline-block;
     width: 23%;
     margin: 0 2% 0 0;
     vertical-align: top;
-
     li {
       margin: 16px 0 0;
       &:first-child {
@@ -38,7 +34,7 @@
       }
     }
   }
-  .footer-nav-lang {
+  &-nav-lang {
     a{
       opacity: .3;
       &.activate{
