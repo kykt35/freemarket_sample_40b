@@ -1,12 +1,12 @@
-%footer.footer
+%footer.global-footer
   %nav.clearfix
     %ul
       %li.download-app
         =link_to "http://app.adjust.io/xio2ii?campaign=iOS&adgroup=common.footer" do
           =image_tag 'mercari_icon.png', width: "35px"
           今すぐ無料ダウンロード！
-      %li.footer-cell
-        %h2.footer-head メルカリについて
+      %li.global-footer-cell
+        %h2.global-footer-head メルカリについて
         %ul
           %li
             =link_to "会社概要（運営会社)","#"
@@ -30,8 +30,8 @@
             =link_to "法令順守と犯罪抑止のために", "#"
           %li
             =link_to "採用情報"
-      %li.footer-cell
-        %h2.footer-head メルカリを見る
+      %li.global-footer-cell
+        %h2.global-footer-head メルカリを見る
         %ul
           %li
             =link_to "カテゴリー一覧", "#"
@@ -45,8 +45,8 @@
             =link_to "公式Twitter", "#"
           %li
             =link_to "公式Facebook","#"
-      %li.footer-cell
-        %h2.footer-head ヘルプ＆ガイド
+      %li.global-footer-cell
+        %h2.global-footer-head ヘルプ＆ガイド
         %ul
           %li
             =link_to "メルカリガイド", "#"
@@ -70,9 +70,9 @@
             =link_to "偽ブランド品撲滅への取り組み", "#"
           %li
             =link_to "メルカリボックス", "#"
-      %li.footer-cell
-        %h2.footer-head 国
-        %ul.footer-nav-lang
+      %li.global-footer-cell
+        %h2.global-footer-head 国
+        %ul.global-footer-nav-lang
           %li
             =link_to "#" do
               =image_tag "flag_us.png", width: "22"
@@ -85,7 +85,7 @@
             =link_to root_path, class: "activate" do
               =image_tag "flag_jp.png", width: "22"
               日本
-  =link_to root_path do
+  =link_to root_path, class: "global-footer-logo" do
     =image_tag "logo-white.svg",alt: "mercari", height: 33, width: 124
-  %p.footer-copyright
+  %p.global-footer-copyright
     %small © 2018 Mercari

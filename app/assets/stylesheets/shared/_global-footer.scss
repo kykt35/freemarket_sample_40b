@@ -1,4 +1,4 @@
-.footer {
+.global-footer {
   padding: 60px 0px;
   background: #212121;
   color: #fff;
@@ -41,6 +41,15 @@
           opacity: 1.0;
       }
     }
+  }
+  &-logo {
+    display: block;
+    margin: 40px 0 0 0;
+    text-align:  center;
+  }
+  &-copyright {
+    margin: 8px 0 0;
+    text-align: center;
   }
 }
 
