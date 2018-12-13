@@ -1,5 +1,5 @@
 .single-container
-  / =render "single-header"
+  =render "shared/single-header"
   %main.single-main
     %section.single-container-section
       #sell-item-container
@@ -8,22 +8,27 @@
           %form.sell-form
             .sell-upload-box
               %h3.sell-upload-head
-                商品画像
+                出品画像
                 %span.form-require 必須
-              %p 最大１０枚までアップロードできます
+              %p 最大10枚までアップロードできます
               .sell-upload-dropbox.clearfix
+                %input{type: "file", class: "sell-upload-drop-file", multiple:"", name: "image1", style: "display: none;"}
+                %pre
+                  ドラッグアンドドロップ
+                  またはクリックしてファイルをアップロード
             .sell-content
               .form-group
                 %label
                   商品名
                   %span.form-require 必須
-                %input.input-default{placeholder: "商品名（必須 40文字まで)"}
-            .sell-content
+                %div
+                  %input.input-default{placeholder: "商品名（必須 40文字まで)"}
               .form-group
                 %label
                   商品の説明
                   %span.form-require 必須
-                %textarea.textarea-default{rows: 5, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
+                %div
+                  %textarea.textarea-default{rows: 5, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"}
             .sell-content.clearfix
               %h3.sell-sub-head 商品詳細
               .sell-form-box
@@ -68,7 +73,7 @@
               .sell-form-box
                 .form-group
                   %label
-                    送料の負担
+                    配送料の負担
                     %span.form-require 必須
                   .select-wrap
                     %select.select-default
@@ -162,29 +167,29 @@
                       販売手数料 (10%)
                     .l-right.salse-commission-value -
 
-                  %li.clearfix.salse-profit.bold
+                  %li.clearfix.salse-profit
                     .l-left.salse-profit-text
                       販売利益
                     .l-right.salse-profit-value -
-      .sell-btn-box.sell-content
-        .sell-btn-box-precaution
-          %p
-            =link_to "禁止されている出品", "#"
-            、
-            =link_to "行為", "#"
-            を必ずご確認ください。
-          %p
-            またブランド品でシリアルナンバー等がある場合はご記載ください。
-            =link_to "偽ブランド", "#"
-            の販売は犯罪であり処罰される可能性があります。
-          %p
-            また、出品をもちまして
-            =link_to "加盟店規約","#"
-            に同意したことになります。
-        %button.btn-default.btn-red{type: "submit"}
-          出品する
-        =link_to "もどる", "#", class:"btn-default btn-red"
+            .sell-btn-box.sell-content
+              .sell-btn-box-precaution
+                %p
+                  =link_to "禁止されている出品", "#"
+                  、
+                  =link_to "行為", "#"
+                  を必ずご確認ください。
+                %p
+                  またブランド品でシリアルナンバー等がある場合はご記載ください。
+                  =link_to "偽ブランド", "#"
+                  の販売は犯罪であり処罰される可能性があります。
+                %p
+                  また、出品をもちまして
+                  =link_to "加盟店規約","#"
+                  に同意したことになります。
+              %button.sell-btn-box-btn.btn-default.btn-red{type: "submit"}
+                出品する
+              =link_to "もどる", "#", class:"return-btn btn-default btn-gray"
 
 
 
-/ =render "single-footer"
+=render "shared/single-footer"
