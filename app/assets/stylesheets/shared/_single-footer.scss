@@ -1,0 +1,27 @@
+.single__footer{
+  text-align:center;
+  margin-top: 20px;
+  padding-bottom: 50px;
+  & ul{
+  text-align:center;
+  }
+  & li{
+  display:inline-block;
+  margin-left:10px;
+  font-size: 12px;
+  }
+  & a {
+  color:#333;
+  }
+  & small{
+  font-size: 10px;
+  }
+  &_logo img {
+    padding-top:40px;
+  }
+}
+
+a:hover {
+    text-decoration: underline;
+    opacity: .7;
+}
