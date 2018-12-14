@@ -1,0 +1,18 @@
+%section.top-carousel
+  .top-main-visual{style: "background-image: url(#{image_path 'main_bg_pc.jpg'})"}
+    .top-main-visual-wrap
+      .top-main-visual-content
+        %h2 スマホでかんたん<br>フリマアプリ
+        %pメルカリはスマホカメラからすぐに出品できる<br>購入時も安心な独自システムのアプリです
+        .top-main-visual-store.clearfix
+          =link_to "https://itunes.apple.com/jp/app/id667861049?l=ja&amp;mt=8", class: "pull-left", target: "_blank" do
+            =image_tag "app-store.svg", alt: ""
+          =link_to "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&amp;hl=ja", class: "pull-left", target: "_blank" do
+            =image_tag "google-play.svg", alt: ""
+      =image_tag "main_content_pc.png", alt: ""
+
+/カルーセル実装用
+/ %a.top-banner.banner-kusanagi-xmas{href: "1", style: "background-image: url(#{image_path 'top-banner-kusanagi-xmas.jpg'})"}
+/ %a.top-banner.banner-welcome{href: "2", style: "background-image: url(#{image_path 'top-banner-welcome.png'})"}
+/ %a.top-banner.banner-new-register{href: "3", style: "background-image: url(#{image_path 'top-banner-new-register.png'})"}
+
