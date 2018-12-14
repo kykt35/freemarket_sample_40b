@@ -1,213 +1,212 @@
 .login-containar {
   background-color:#f5f5f5;
-}
-.single-header {
-  text-align: center;
-  padding:20px 0px;
-}
-.login-center {
-  text-align: center;
-  background-color:#fff;
-  width:450px;
-  margin:0 auto;
-}
 
-.login__no_account {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #eee;
-  margin-bottom:30px;
-  & p {
-  letter-spacing:-0.1em;
-  font-size: 14px;
-  margin:0 0 5px 0;
-  font-family: "Source Sans Pro", Helvetica, Arial;
+  .single-header {
+    text-align: center;
+    padding:20px 0px;
   }
-  & a {
-  display: block;
-  text-decoration: none;
-  line-height: 40px;
-  background-color:#0099e8;
-  color:#fff;
-  width:320px;
-  margin:0 auto;
+  .login-center {
+    text-align: center;
+    background-color:#fff;
+    width:450px;
+    margin:0 auto;
   }
-  & h1 {
+
+  .login__no_account {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #eee;
+    margin-bottom:30px;
+    & p {
+    letter-spacing:-0.1em;
+    font-size: 14px;
+    margin:0 0 5px 0;
+    font-family: "Source Sans Pro", Helvetica, Arial;
+    }
+    & a {
+    display: block;
+    text-decoration: none;
+    line-height: 40px;
+    background-color:#0099e8;
+    color:#fff;
+    width:320px;
+    margin:0 auto;
+    }
+    & h1 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  #facebook-login{
+    width:320px;
+    height:50px;
+    margin:0 auto;
+    margin-top: 20px;
+    background-color:#385185;
+    text-align: left;
+    color:#fff;
     font-size: 20px;
-    font-weight: bold;
+    position:relative;
+    border: 1px solid transparent;
+    display:block;
+    & p {
+    font-size: 13px;
+    display:inline-block;
+    line-height:50px;
+    margin-left: 100px;
+    }
+  }
+
+  .fa-facebook-square {
+    position:absolute;
+    top:14px;
+    left:16px;
+  }
+
+  #google-login {
+    width:320px;
+    height:50px;
+    margin:0 auto;
+    margin-top: 20px;
+    background-color:#dc4e41;
+    text-align: left;
+    color:#fff;
+    font-size: 20px;
+    position:relative;
+    border: 1px solid transparent;
+    display:block;
+    & p {
+    font-size: 13px;
+    display:inline-block;
+    line-height:50px;
+    margin-left: 110px;
+    }
+  }
+
+  .fa-google-plus {
+    position:absolute;
+    top:14px;
+    left:16px;
+  }
+
+  #user_email {
+    width:320px;
+    height:50px;
+    margin-top: 60px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #ccc;
+    text-indent:20px;
+    &::placeholder {
+      padding-left: 20px;
+    }
+  }
+
+
+  #user_password {
+    width:320px;
+    height:50px;
+    margin-top: 20px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #ccc;
+    text-indent:20px;
+    &::placeholder {
+      padding-left: 20px;
+    }
+  }
+
+  .g-recaptcha {
+    display: block;
+    margin:20px 0 0 70px;
+  }
+
+  .btn-default {
+    background-color:#ea352d;
+    width:320px;
+    height:50px;
+    border: 1px solid #ea352d;
+    margin: 0 auto;
+    & input{
+    background-color:#ea352d;
+    border: 1px solid #ea352d;
+    color:#fff;
+    }
+  }
+
+  .forgotpass {
+    display:block;
+    margin:40px 0 40px -160px;
+    padding-bottom: 30px;
+  }
+
+  .single__footer{
+    text-align:center;
+    margin-top: 20px;
+    padding-bottom: 50px;
+    & ul{
+    text-align:center;
+    }
+    & li{
+    display:inline-block;
+    margin-left:10px;
+    font-size: 12px;
+    }
+    & a {
+    color:#333;
+    }
+    & small{
+    font-size: 10px;
+    }
+    &_logo img {
+      padding-top:20px;
+    }
+  }
+
+  a:hover {
+      text-decoration: underline;
+      opacity: .7;
+  }
+
+
+  .new_account h1{
+    font-weight:bold;
+    font-size: 23px;
+    padding-top:35px;
+    padding-bottom:35px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 70px;
+  }
+
+  .account-center {
+    width:700px;
+    margin:0 auto;
+    text-align: center;
+    background-color:#fff;
+    margin-bottom:60px;
+  }
+
+  .account__form_innner {
+    padding-bottom: 70px;
+  }
+
+
+  .account__form_group a{
+    background-color:#eee;
+    color:#000;
+    padding:15px 90px 15px 90px;
+    line-height:40px;
+    position:relative;
+    left:9px;
+    margin-bottom: 20px;
+  }
+
+  .fa-envelope {
+    position:relative;
+    right:300px;
+    font-size: 20px;
+    color:#fff;
   }
 }
-
-#facebook-login{
-  width:320px;
-  height:50px;
-  margin:0 auto;
-  margin-top: 20px;
-  background-color:#385185;
-  text-align: left;
-  color:#fff;
-  font-size: 20px;
-  position:relative;
-  border: 1px solid transparent;
-  display:block;
-  & p {
-  font-size: 13px;
-  display:inline-block;
-  line-height:50px;
-  margin-left: 100px;
-  }
-}
-
-.fa-facebook-square {
-  position:absolute;
-  top:14px;
-  left:16px;
-}
-
-#google-login {
-  width:320px;
-  height:50px;
-  margin:0 auto;
-  margin-top: 20px;
-  background-color:#dc4e41;
-  text-align: left;
-  color:#fff;
-  font-size: 20px;
-  position:relative;
-  border: 1px solid transparent;
-  display:block;
-  & p {
-  font-size: 13px;
-  display:inline-block;
-  line-height:50px;
-  margin-left: 110px;
-  }
-}
-
-.fa-google-plus {
-  position:absolute;
-  top:14px;
-  left:16px;
-}
-
-#user_email {
-  width:320px;
-  height:50px;
-  margin-top: 60px;
-  border-radius: 5px 5px 5px 5px;
-  border: 1px solid #ccc;
-  text-indent:20px;
-  &::placeholder {
-    padding-left: 20px;
-  }
-}
-
-
-#user_password {
-  width:320px;
-  height:50px;
-  margin-top: 20px;
-  border-radius: 5px 5px 5px 5px;
-  border: 1px solid #ccc;
-  text-indent:20px;
-  &::placeholder {
-    padding-left: 20px;
-  }
-}
-
-.g-recaptcha {
-  display: block;
-  margin:20px 0 0 70px;
-}
-
-
-
-.btn-default {
-  background-color:#ea352d;
-  width:320px;
-  height:50px;
-  border: 1px solid #ea352d;
-  & input{
-  background-color:#ea352d;
-  border: 1px solid #ea352d;
-  color:#fff;
-  }
-}
-
-.forgotpass {
-  display:block;
-  margin:40px 0 40px -160px;
-  padding-bottom: 30px;
-}
-
-.single__footer{
-  text-align:center;
-  margin-top: 20px;
-  padding-bottom: 50px;
-  & ul{
-  text-align:center;
-  }
-  & li{
-  display:inline-block;
-  margin-left:10px;
-  font-size: 12px;
-  }
-  & a {
-  color:#333;
-  }
-  & small{
-  font-size: 10px;
-  }
-  &_logo img {
-    padding-top:20px;
-  }
-}
-
-a:hover {
-    text-decoration: underline;
-    opacity: .7;
-}
-
-
-.new_account h1{
-  font-weight:bold;
-  font-size: 23px;
-  padding-top:35px;
-  padding-bottom:35px;
-  border-bottom: 1px solid #eee;
-  margin-bottom: 70px;
-}
-
-.account-center {
-  width:700px;
-  margin:0 auto;
-  text-align: center;
-  background-color:#fff;
-  margin-bottom:60px;
-}
-
-.account__form_innner {
-  padding-bottom: 70px;
-}
-
-
-.account__form_group a{
-  background-color:#eee;
-  color:#000;
-  padding:15px 90px 15px 90px;
-  line-height:40px;
-  position:relative;
-  left:9px;
-  margin-bottom: 20px;
-}
-
-.fa-envelope {
-  position:relative;
-  right:300px;
-  font-size: 20px;
-  color:#fff;
-}
-
 
 
 
