@@ -1,9 +1,16 @@
+$all-back-color: #f5f5f5;
+$siro:#fff;
+$header-arrow:#888;
+$usually-arrow:#ccc;
+$action-arrow:#000;
+$logout-btn:#333;
+
 
 .bread-crumbs {
   position: relative;
   border-top: 1px solid #eee;
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
-  background: #fff;
+  background: $siro;
   height:50px;
   a:last-child {font-weight: bold}
   & ul {
@@ -18,20 +25,20 @@
   line-height: 1.2;
   }
   & a {
-  color: #333;
+  color: $logout-btn;
   margin-right:6px;
   }
   .fa {
   letter-spacing: 6px;
   font-size: 15px;
   font-weight:bold;
-  color: #888;
+  color: $header-arrow;
   }
 }
 
 /*ここまでがheader部分のCSS*/
 .default-container {
-  background-color: #f5f5f5;
+  background-color: $all-back-color;
   width:1440px;
   .l-container {
   margin: 40px 210px 0 210px;
@@ -45,14 +52,14 @@
   height:50px;
   width:550px;
   padding: 64px;
-  background-color: #fff;
+  background-color: $siro;
   }
   .l-single-content {
   max-width: 320px;
   margin: 0 auto;
   }
   .btn-default {
-  color:#fff;
+  color:$siro;
   cursor: pointer;
   font-size: 13px;
   }
@@ -80,8 +87,8 @@
   min-height: 15px;
   width:250px;
   padding: 16px;
-  background: #fff;
-  color: #000;
+  background: $siro;
+  color: $action_arrow;
   line-height:10px;
   border-bottom: 1px solid #eee;
   &:hover {
@@ -93,13 +100,13 @@
   margin-top: -40px;
   margin-right:20px;
   font-size:25px;
-  color:#ccc;
+  color:$usually-arrow;
     }
   }
   #active {
   background: #eee;
   font-weight: 600;
-  color:#000;
+  color:$action_arrow;
     }
   }
 }
