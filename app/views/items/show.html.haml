@@ -2,9 +2,11 @@
   =render "shared/pc-header"
   /=render "shared/bread-crumbs"
   %section.item-box-container.single-container-section
-    %h1.item-name ピアス
+    %h1.item-name キリンのソフィー
     .item-main-content.clearfix
       .item-photo
+        =image_tag 'kirin-soffie.jpg',width: 300
+        //"background-image: url(#{image_path 'kirin-soffie.jpg'}); object-fit: cover;"}
       %table.item-detail-table
         %tbody
           %tr
@@ -12,14 +14,14 @@
             %td
               =link_to "Haamam", "#"
               %div
-                .item-user-ratings
-                  %i.icon-good
+                .item-user-ratings.l-left
+                  %i.fas.fa-laugh.icon-good
                   %span 48
-                .item-user-ratings
-                  %i.icon-normal
+                .item-user-ratings.l-left
+                  %i.fas.fa-meh.icon-normal
                   %span 0
-                .item-user-ratings
-                  %i.icon-bad
+                .item-user-ratings.l-left
+                  %i.fas.fa-frown.icon-bad
                   %span 0
           %tr
             %th カテゴリー
@@ -28,11 +30,11 @@
                 %div おもちゃ・ホビー・グッズ
               =link_to "#" do
                 .item-detail-table-sub-category
-                  %i.icon-arrow-right
+                  %i.fa.fa-chevron-right
                   おもちゃ
               =link_to "#" do
                 .item-detail-table-sub-sub-category
-                  %i.icon-arrow-right
+                  %i.fa.fa-chevron-right
                   キャラクターグッズ
           %tr
             %th ブランド
@@ -76,7 +78,6 @@
           %i.icon-like
           %span いいね！
           %span 1
-
         =link_to "#", class: "item-button item-button-report clearfix" do
           %i.icon-flag
           %span 不適切な商品の報告
@@ -106,14 +107,17 @@
     .text-center
     %ul.social-media-box
       %li
-        =link_to "#", target: "_blank",class: "share-btn" do
-          %i.icon-facebook
+        =link_to "#", target: "_blank",class: "share-btn share-btn-facebook" do
+          %i.fab.fa-facebook.fa-2x
       %li
-        =link_to "#", target: "_blank",class: "share-btn"  do
-          %i.icon-twitter
+        =link_to "#", target: "_blank",class: "share-btn  share-btn-twitter"  do
+          %i.fab.fa-twitter.fa-2x
       %li
-        =link_to "#", target: "_blank",class: "share-btn"  do
-          %i.icon-pinterest
+        =link_to "#", target: "_blank",class: "share-btn  share-btn-line"  do
+          %i.fab.fa-line.fa-2x
+      %li
+        =link_to "#", target: "_blank",class: "share-btn  share-btn-printerest"  do
+          %i.fab.fa-pinterest.fa-2x
   .items-in-user-profile
 
 
