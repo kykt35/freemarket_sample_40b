@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   get 'mypage' => 'users#mypage'
   get 'mypage/card' => 'users#card'
   get 'mypage/card/add' => 'users#add'
-  resources :items, only: [:new]
+  resources :items, only: [:new, :show]
   resources :transaction, only: [:new]
 end
