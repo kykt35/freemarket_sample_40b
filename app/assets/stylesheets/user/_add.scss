@@ -1,9 +1,3 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 .card__content{
   float:right;
   margin: 0;
@@ -216,11 +210,11 @@ html, body {
           }/*label*/
 
 
-            input[type="number"]::-webkit-outer-spin-button,
-            input[type="number"]::-webkit-inner-spin-button {
-              -webkit-appearance: none;
-              margin: 0;
-            }
+            // input[type="number"]::-webkit-outer-spin-button,
+            // input[type="number"]::-webkit-inner-spin-button {
+            //   -webkit-appearance: none;
+            //   margin: 0;
+            // }
 
             input#payment_card_security_code{
               width: 100%;
