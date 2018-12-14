@@ -6,7 +6,6 @@
     .item-main-content.clearfix
       .item-photo
         =image_tag 'kirin-soffie.jpg',width: 300
-        //"background-image: url(#{image_path 'kirin-soffie.jpg'}); object-fit: cover;"}
       %table.item-detail-table
         %tbody
           %tr
@@ -75,15 +74,15 @@
     .item-button-container.clearfix
       .item-button-left
         %buttom.item-button.item-button-like
-          %i.icon-like
+          %i.far.fa-heart
           %span いいね！
           %span 1
         =link_to "#", class: "item-button item-button-report clearfix" do
-          %i.icon-flag
+          %i.far.fa-flag
           %span 不適切な商品の報告
       .item-button-right
         =link_to "#" do
-          %i.icon-lock
+          %i.fas.fa-lock
           %span あんしん・あんぜんの取り組み
   .item-detail-comment
     .item-detail-comment-container
@@ -97,27 +96,27 @@
   %ul.nav-item-link-prev-next.clearfix
     %li.nav-item-link.nav-item-link-prev.l-left
       =link_to "#" do
-        %i.fa.fa-chevron-left
+        %i.fa.fa-angle-left.icon-angle.icon-angle-left
         極美品 OAKLEY オークリー パーカーセットアップ 上下 ネイビー
     %li.nav-item-link.nav-item-link-next.l-right
       =link_to "#" do
-        %i.fa.fa-chevron-right
+        %i.fa.fa-angle-right.icon-angle.icon-angle-right
         samurai様専用bodyboss2.0 未使用 開封のみ
   .item-social-media-box
     .text-center
     %ul.social-media-box
       %li
         =link_to "#", target: "_blank",class: "share-btn share-btn-facebook" do
-          %i.fab.fa-facebook.fa-2x
+          %i.fab.fa-facebook.fa-2x.icon-sns
       %li
         =link_to "#", target: "_blank",class: "share-btn  share-btn-twitter"  do
-          %i.fab.fa-twitter.fa-2x
+          %i.fab.fa-twitter.fa-2x.icon-sns
       %li
         =link_to "#", target: "_blank",class: "share-btn  share-btn-line"  do
-          %i.fab.fa-line.fa-2x
+          %i.fab.fa-line.fa-2x.icon-sns
       %li
         =link_to "#", target: "_blank",class: "share-btn  share-btn-printerest"  do
-          %i.fab.fa-pinterest.fa-2x
+          %i.fab.fa-pinterest.fa-2x.icon-sns
   .items-in-user-profile
 
 
