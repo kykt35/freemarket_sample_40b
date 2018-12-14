@@ -18,7 +18,6 @@
     min-width: 300px;
     max-width: 300px;
     min-height: 375px;
-    //background-color: gray;
   }
   .item-detail-table {
     float: right;
@@ -27,35 +26,37 @@
     height: 375px;
     margin: 0 auto;
     border-collapse: collapse;
-    border: 1px solid #f5f5f5;
+    border: 1px solid Whitesmoke;
     border-spacing: 0;
     th {
       width: 39%;
       text-align: left;
       font-weight: 400;
-      background: #fafafa;
+      background: $whiteGray;
     }
     th, td {
       border-collapse: collapse;
-      border: 1px solid #f5f5f5;
+      border: 1px solid Whitesmoke;
       padding: 8px;
     }
-    .icon-good {
-      color: #ef5185;
-    }
-    .icon-normal {
-      color: #fba933;
-    }
-    .icon-bad {
-      color: #6ab5d8;
-    }
+    .icon {
+      &-good {
+        color: $goodRaitingColor;
+      }
+      &-normal {
+        color: $normalRaitingColor;
+      }
+      &-bad {
+        color: $badRaitingColor;
+      }
+    } //.icon
     .item-user-ratings {
       margin:8px 0 0 16px;
       &:first-child {
         margin-left: 0;
       }
     }
-  }
+  } //.item-detail-table
   .item-price-box {
     margin: 24px 0 0;
     text-align: center;
@@ -77,50 +78,49 @@
     margin: 16px 0 0;
     font-size: 24px;
     font-weight: bold;
+  }
+  .item-description {
+    margin: 24px 0 0;
+    padding: 32px 0 0;
+    font-size: 18px;
+    line-height: 1.5;
+    &-inner {
+       white-space: pre-wrap;
     }
-    .item-description {
-      margin: 24px 0 0;
-      padding: 32px 0 0;
-      font-size: 18px;
-      line-height: 1.5;
-      &-inner {
-         white-space: pre-wrap;
-      }
-    }
-    .item-button-container {
+  }
+  .item-button {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 40px;
+    transition: all ease-out .3s;
+    &-container {
       margin: 16px 0 0;
     }
-    .item-button-left {
+    &-left {
       float: left;
     }
-    .item-button-right {
+    &-right {
       float: right;
       margin: 8px 0 0;
     }
-    .item-button {
-      display: inline-block;
-      padding: 8px 16px;
-      border-radius: 40px;
-      transition: all ease-out .3s;
-    }
-    .item-button-like {
+    &-like {
       color: #333;
-      border: 1px solid #f5f5f5;
-      background: #f5f5f5;
+      border: 1px solid Whitesmoke;
+      background: Whitesmoke;
     }
-    .item-button-report {
+    &-report {
       color: #333;
-      border: 1px solid #f5f5f5;
-      background: #f5f5f5;
+      border: 1px solid Whitesmoke;
+      background: Whitesmoke;
       text-decoration: none;
     }
-
+  }
 } //.item-box-container
 
 .item-detail-comment {
     width: 700px;
     margin: 8px auto;
-    background-color: #fff;
+    background-color: white;
   &-content {
     padding: 24px;
   }
@@ -136,36 +136,33 @@
   }
 } //.item-detal-comment
 
-
-ul.nav-item-link-prev-next {
+.nav-item-link-prev-next {
     margin: 24px auto 0;
     width: 700px;
   .nav-item-link {
     width: 45%;
     word-wrap: break-word;
+    &-prev {
+      position: relative;
+      padding: 0 0 0 14px;
+      text-align: left;
+    }
+    &-next {
+      position: relative;
+      padding: 0 14px 0 0;
+      text-align: right;
+    }
   }
-  .nav-item-link-prev {
-    position: relative;
-    padding: 0 0 0 14px;
-    text-align: left;
-  }
-  .nav-item-link-next {
-    position: relative;
-    padding: 0 14px 0 0;
-    text-align: right;
-  }
-  .fa-chevron-left {
+  .icon-angle{
     position: absolute;
-    left: 0;
     top: 50%;
     transform: translate(0, -50%);
-
-  }
-  .fa-chevron-right {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translate(0, -50%);
+    &-left {
+      left: 0;
+    }
+    &-right {
+      right: 0;
+    }
   }
 }
 
@@ -196,24 +193,23 @@ ul.nav-item-link-prev-next {
       color: #fff;
       box-sizing: border-box;
       &-facebook {
-        background: #385185;
+        background: $facebookColor;
       }
       &-twitter {
-        background: #5d9dc9;
+        background: $twitterColor;
       }
       &-line {
-        background: #00c137
+        background: $lineColor;
       }
       &-printerest {
-        background: #aa262a;
+        background: $printerestColor;
       }
-      .fa-2x {
+      .icon-sns {
         display: block;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        // vertical-align: middle;
       }
     }
   }
