@@ -6,31 +6,27 @@
   a {
     display: block;
     color: #fff;
-
   }
   h2 {
     font-weight: bold;
   }
-
   nav {
     width: 1020px;
     margin: 0 auto;
-
   }
-  .footer-head {
+  &-head {
     color: #fff;
     font-size: 16px;
   }
   .download-app {
     display: none;
   }
-  .footer-cell{
+  &-cell{
     float: left;
     display: inline-block;
     width: 23%;
     margin: 0 2% 0 0;
     vertical-align: top;
-
     li {
       margin: 16px 0 0;
       &:first-child {
@@ -38,13 +34,22 @@
       }
     }
   }
-  .footer-nav-lang {
+  &-nav-lang {
     a{
       opacity: .3;
       &.activate{
           opacity: 1.0;
       }
     }
+  }
+  &-logo {
+    display: block;
+    margin: 40px 0 0 0;
+    text-align:  center;
+  }
+  &-copyright {
+    margin: 8px 0 0;
+    text-align: center;
   }
 }
 
