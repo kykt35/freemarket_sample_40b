@@ -1,0 +1,23 @@
+@mixin box_style(){
+  border-color: #f5f5f5;
+  border-bottom-style: solid;
+  border-width: 1px;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 25%;
+  padding-right: 25%;
+  box-sizing: border-box;
+}
+@mixin main_contents_same(){
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+@mixin bold_large_font(){
+  font-size: $largeWordSize;
+  font-weight: 600;
+}
+@mixin bold_small_font(){
+  font-size: $smallWordSize;
+  font-weight: 600;
+}
