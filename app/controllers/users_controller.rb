@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
 	def mypage
 	end
 
@@ -7,5 +8,12 @@ class UsersController < ApplicationController
 
 	def add
 	end
+  
+  def logout
+  end
 
+
+	def profile
+	end
+	
 end
