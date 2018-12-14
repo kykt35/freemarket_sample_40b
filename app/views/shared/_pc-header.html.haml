@@ -1,41 +1,42 @@
 %header
   .pc-header
-    .header__top.clearfix
-      %h1.logo.l-left
-        %a= image_tag 'logo.svg', alt:"mercari",width: "134", height: "36"
-      %form.header__top__form.l-right{action: "/", method: "post"}
-        %input.input-default{name: "keyword", type: :search,placeholder: "キーワードから探す"}
-        %i.fa.fa-search
-    .header__bottom
-      .header__bavbox.clearfix
-        %nav.l-reft
-          %ul.pc-header-navbox
-            %li
-              %h2=link_to "カテゴリーから探す", "#", class: "pc-header-navbox-root"
-            %li
-              %h2=link_to "ブランドから探す", "#", class: "pc-header-navbox-root"
-        .l-right
-          -# if user_signed_in?
-          -if false
-            %ul.pc-header-user-nav
+    .pc-header-inner
+      .header__top.clearfix
+        %h1.logo.l-left
+          %a= image_tag 'logo.svg', alt:"mercari",width: "134", height: "36"
+        %form.header__top__form.l-right{action: "/", method: "post"}
+          %input.input-default{name: "keyword", type: :search,placeholder: "キーワードから探す"}
+          %i.fa.fa-search
+      .header__bottom
+        .header__bavbox.clearfix
+          %nav.l-reft
+            %ul.pc-header-navbox
               %li
-                =link_to "#", class: "pc-header-navbox-root" do
-                  %figure
-                    %div
-                      =image_tag "member_photo_noimage_thumb.png",width: 32, height: 32
-                  %div マイページ
+                %h2=link_to "カテゴリーから探す", "#", class: "pc-header-navbox-root"
               %li
-                =link_to "#", class: "pc-header-navbox-root" do
-                  %i.fa.fa-bell
-                  お知らせ
-              %li
-                =link_to "#", class: "pc-header-navbox-root" do
-                  %i.fa.fa-check
-                  やることリスト
-          -else
-            %ul.pc-header-login-nav
-              %li
-                =link_to "ログイン", "#", class: "pc-header-btn btn btn-red"
+                %h2=link_to "ブランドから探す", "#", class: "pc-header-navbox-root"
+          .l-right
+            -# if user_signed_in?
+            -if true
+              %ul.pc-header-user-nav
+                %li
+                  =link_to "#", class: "pc-header-navbox-root" do
+                    %figure
+                      %div
+                        =image_tag "member_photo_noimage_thumb.png",width: 32, height: 32
+                    %div マイページ
+                %li
+                  =link_to "#", class: "pc-header-navbox-root" do
+                    %i.fa.fa-bell
+                    お知らせ
+                %li
+                  =link_to "#", class: "pc-header-navbox-root" do
+                    %i.fa.fa-check
+                    やることリスト
+            -else
+              %ul.pc-header-login-nav
+                %li
+                  =link_to "ログイン", "#", class: "pc-header-btn btn btn-red"
 
-              %li
-                =link_to "新規会員登録", "#", class: "pc-header-btn btn header-signup"
+                %li
+                  =link_to "新規会員登録", "#", class: "pc-header-btn btn header-signup"

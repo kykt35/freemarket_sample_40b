@@ -1,0 +1,77 @@
+.credit-container{
+  width: 700px;
+  height: 356px;
+  margin: 0px;
+  padding: 0px;
+
+    &__top{
+      font-weight: bold;
+      font-size: 24px;
+      text-align: center;
+      padding: 12px;
+      border-bottom: 2px solid #f5f5f5;
+    } /*__top*/
+
+     &__inner{
+      padding: 64px;
+      margin: 0px;
+      display: block;
+
+      &__single-content{
+        max-width: 320px;
+        margin: 0 auto;
+        display: block;
+
+        &__sub-head{
+          margin: 40px 0px 0px; 
+          font-size: 16px;
+          margin: 0px;
+          padding: 0px;
+          display: block;
+          font-weight: bold;
+        }/*__sub-head*/
+      }/*__single-content*/
+
+
+      &__add-card{
+        padding: 24px 0px;
+        border-bottom: 2px solid #f5f5f5;
+        margin: 0px;
+
+        &__single-content{
+          max-width: 320px;
+          margin: 0 auto;
+          display: block;
+
+          .btn-default{
+            margin: 0;
+            margin-bottom: 8px !important;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #ea352d;
+            border:1px solid #ea352d;
+            color: #fff;
+            display: block;
+          }/*btn-default*/
+        }/*__single-content*/
+      }/*__add-card*/
+
+      &__settings-not-regist{
+        margin: 0px;
+        padding: 0px;
+        display: block;
+        font-size: 15px;
+
+        .link{
+          display: block;
+          margin: 40px 0px 0px;
+          text-align: right;
+          text-decoration: none;
+        }/*link*/
+      }/*__setting-not-regist*/
+    } /*__inner*/
+
+} /*credit-container*/
