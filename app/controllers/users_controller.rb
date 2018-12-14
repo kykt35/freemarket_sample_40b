@@ -8,4 +8,7 @@ class UsersController < ApplicationController
 	def add
 	end
 
+	def profile
+	end
+	
 end

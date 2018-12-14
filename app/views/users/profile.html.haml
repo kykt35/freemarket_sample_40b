@@ -1,0 +1,17 @@
+%html{lang:"ja"}
+  %head
+    %meta{charset:"utf-8"}
+  %header
+  %body
+    %section.l-chapter-container
+      %h2.l-chapter-head プロフィール
+      = form_tag( 'https://www.mercari.com/jp/mypage/profile/', method: :post, class: 'form-profile' ) do
+        = hidden_field_tag :__cdrf_value, value: '4c687d5bc6e3ce120f5185adbb9091cf26749d56664d774dc55be4cdacb548bfdaf98b8b06719cc5826f5a4097c4882108c0645fab72fa4e1c244af167d441131'
+        .setting-profile-icon{clearfix: ""}
+          %figure.circle-photo-box
+            %img{alt: "写真1", src: "//static-mercari-jp-imgtr2.akamaized.net/thumb/members/882383930.jpg?1413809784", class: "circle-image"}
+          = text_field_tag :nickname, '',  placeholder: '例)AYA☆セール中', class: 'input-default'
+        .setting-profile-content
+          = text_area :introduction, '', placeholder: '例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪', class: 'textarea-default'
+          = hidden_field_tag :after_save_callback, value: 'https://www.mercari.com/jp/mypage/profile/'
+          = submit_tag '変更する', class: 'btn-default btn-red'
