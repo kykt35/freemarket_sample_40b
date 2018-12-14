@@ -1,0 +1,114 @@
+.confirmation-header{
+  width: 100vw;
+}
+.confirmation-main{
+  width: 100%;
+  .main-contents{
+    width: 60%;
+    margin: 0 auto;
+    background-color: #fff;
+    &__item-header{
+      @include box_style();
+      padding: 5%;
+      font-size: 2vw;
+      font-weight: 600;
+      text-align: center;
+    }
+    &__item-info{
+      @include box_style();
+      @include main_contents_same();
+      .item-header{
+        .item-image{
+          height: 40%;
+          width: 40%;
+        }
+        .image-title{
+          @include bold_small_font();
+          padding-top: 3%;
+        }
+      }
+      .item-pay-form{
+        &__price{
+          @include main_contents_same;
+          .item-price{
+            @include bold_large_font;
+            display: inline-block;
+          }
+          .delivery-price{
+            display: inline-block;
+            font-size: $smallWordSize;
+          }
+        }
+        &__point{
+          @include main_contents_same;
+          .none{
+            padding: 5%;
+            font-size: $smallWordSize;
+            border-color: #c0c0c0;
+            border-style: solid;
+            border-width: 1px;
+          }
+        }
+        &__sum{
+          @include main_contents_same;
+          height: 2vw;
+          .sum-headword{
+            @include bold_large_font;
+            float: left;
+          }
+          .sum-price{
+            @include bold_large_font;
+            float: right;
+          }
+        }
+        input#submit-pay{
+          @include main_contents_same;
+          @include bold_small_font;
+          padding: 5%;
+          width: 100%;
+          border-style: none;
+          background-color: #e62017;
+          color: #f5f5f5;
+          margin-top: 5%;
+          margin-bottom: 5%;
+        }
+      }
+    }
+    &__delivery-info{
+      @include box_style;
+      font-size: $smallWordSize;
+      line-height: 18px;
+      .header-address{
+        @include bold_small_font;
+        padding-bottom: 2%;
+      }
+      .contents-adress{
+        height: 4vw;
+      }
+    }
+    &__pay-info{
+      @include box_style;
+      font-size: $smallWordSize;
+      line-height: 15px;
+      .header-card{
+        @include bold_small_font;
+        padding-bottom: 2%;
+      }
+      .contents-card{
+        height: 6vw;
+        .card-img{
+          height: 15px;
+          width: 15px;
+        }
+      }
+    }
+    .contents-change{
+      float: right;
+    }
+  }
+}
+.confirmation-footer{
+  width: 100vw;
+}
+
+
