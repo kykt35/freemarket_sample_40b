@@ -9,6 +9,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     %header.confirmation-header
+      =render partial: "shared/single-header"
     %main.confirmation-main
       .main-contents
         %section.main-contents__item-header
@@ -51,3 +52,5 @@
           .clearfix
 
     %footer.confirmation-footer
+      =render partial: "shared/single-footer"
+
