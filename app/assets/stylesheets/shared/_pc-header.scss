@@ -1,7 +1,11 @@
 .pc-header {
-  margin: 0 auto;
-  padding-top: 8px;
-  width: 1020px;
+   background-color: #fff;
+  &-inner {
+    margin: 0 auto;
+    padding-top: 8px;
+    width: 1020px;
+    background-color: #fff;
+  }
   h1{
     height:36px;
   }
@@ -110,4 +114,5 @@
       text-align: center;
     }
   }
+
 }
