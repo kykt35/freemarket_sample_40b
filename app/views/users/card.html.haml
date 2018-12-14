@@ -1,0 +1,24 @@
+%html{lang:"ja"}
+  %head
+    %meta{charset:"utf-8"}
+  %header
+  %body
+    %section.credit-container
+      %h2.credit-container__top 支払い方法
+      .credit-container__inner
+        %section
+          .credit-container__inner__single-content
+            %h3.credit-container__inner__single-content__sub-head クレジットカード一覧
+        %section.credit-container__inner__add-card
+          .credit-container__inner__add-card__single-content
+            %a{ href: "https://www.mercari.com/jp/mypage/card/create/", class: "btn-default btn-red submit_button" }
+              %i.fa.fa-credit-card{style: "padding-right: 10px"}
+              クレジットカードを追加する
+        .credit-container__inner__settings-not-regist
+          %a{ href: "/jp/help_center/category/6/", class: "link"}
+            %span 支払い方法について
+            %i.fa.fa-angle-right{style:"font-size: 15px; font-weight: bold;"}
+
+
+
+            

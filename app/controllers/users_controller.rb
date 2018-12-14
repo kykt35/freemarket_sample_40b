@@ -1,5 +1,16 @@
 class UsersController < ApplicationController
 
-def logout
-end
+	def mypage
+	end
+
+	def card
+	end
+
+	def add
+	end
+  
+  def logout
+  end
+
+
 end
