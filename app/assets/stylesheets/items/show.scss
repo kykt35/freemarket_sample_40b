@@ -18,7 +18,38 @@
     min-width: 300px;
     max-width: 300px;
     min-height: 375px;
+    background-color: $whiteGray;
+    .slick-dots {
+      bottom: 0;
+      li {
+        margin: 0;
+        display: inline-block;
+        width: 75px;
+        height: 75px;
+        opacity: 0.7;
+      }
+      .slick-active{
+        opacity: 1;
+      }
+      img {
+        width: 75px;
+        height: 75px;
+        object-fit: cover;
+      }
+
+    }
+    .slick-list{
+      height: 300px;
+      img {
+        width: 300px;
+        height: 300px;
+        object-fit: contain;
+      }
+    }
+
   }
+
+
   .item-detail-table {
     float: right;
     width: 100%;
