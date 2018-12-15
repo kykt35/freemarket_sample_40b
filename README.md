@@ -13,10 +13,8 @@
 |email|string|null:false, unique: true|
 |password|string|null:false, unique:true|
 |exhibit|string||
-|uid|string(255)|not null, indexed => [uid]|
-|provider|string(255)|not null, indexed => [provider]|
-|refresh token|string(255)||
-|access token|string(255)||
+|sns_credential_id|references|foreign_key: true|
+
 
 ### Association(users)
 - has_many :folloing_id, dependent: :destroy
@@ -33,6 +31,20 @@
 - has_many :points
 - has_many :evaluations
 - has_many :evaluation_transactions, through: :evaluations, source: :transactions
+- belongs_to :sns_credential_id
+
+
+## Sns_credentialsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|uid|string(255)|not null, indexed => [uid]|
+|provider|string(255)|not null, indexed => [provider]|
+|refresh token|string(255)||
+|access token|string(255)||
+
+### Association(sns_credentials)
+- has_many :users
 
 ## Relationshipsテーブル
 
