@@ -36,78 +36,12 @@ $logout-btn:#333;
   }
 }
 
-/*ここまでがheader部分のCSS*/
-.default-container {
-  background-color: $all-back-color;
-  width:1440px;
-  .l-container {
-  margin: 40px 210px 0 210px;
-  height:1252px;
-  width: 1080px;
-  .l-content {
-  float: right;
-  padding-right: 80px;
-  }
-  .l-single-inner {
-  height:50px;
-  width:550px;
-  padding: 64px;
-  background-color: $siro;
-  }
-  .l-single-content {
-  max-width: 320px;
-  margin: 0 auto;
-  }
-  .btn-default {
-  color:$siro;
-  cursor: pointer;
-  font-size: 13px;
-  }
-}
-/*ここまでが右側*/
-.l-side {
-  float: left;
-  height:1252px;
-  width: 280px;
-  margin: 0 30px 0 0;
-  .mypage-nav {
-  width:280px;
-  height:1252px;
-  margin:0;
-  padding:0;
-  .mypage-nav-head  {
-  font-size:16px;
-  font-weight: bold;
-  margin-top:40px;
-  margin-bottom: 5px;
-  }
-  &-list-item {
-  text-decoration: none;
-  display: block;
-  min-height: 15px;
-  width:250px;
-  padding: 16px;
-  background: $siro;
-  color: $action_arrow;
-  line-height:10px;
-  border-bottom: 1px solid #eee;
-  &:hover {
-  opacity: 1;
-    }
-  }
-  .fa-angle-right{
-  float:right;
-  margin-top: -40px;
-  margin-right:20px;
-  font-size:25px;
-  color:$usually-arrow;
-    }
-  }
-  #active {
-  background: #eee;
-  font-weight: 600;
-  color:$action_arrow;
-    }
-  }
-}
+
+
+
+
+
+
+
+
 

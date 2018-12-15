@@ -1,0 +1,36 @@
+$all-back-color: #f5f5f5;
+$siro:#fff;
+$header-arrow:#888;
+$usually-arrow:#ccc;
+$action-arrow:#000;
+$logout-btn:#333;
+
+
+.default-container {
+  background-color: $all-back-color;
+  width:1440px;
+  .l-container {
+    margin: 40px 210px 0 210px;
+    height:1252px;
+    width: 1080px;
+    .l-content {
+      float: right;
+      padding-right: 80px;
+    }
+    .l-single-inner {
+      height:50px;
+      width:550px;
+      padding: 64px;
+      background-color: $siro;
+    }
+    .l-single-content {
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .btn-default {
+      color:$siro;
+      cursor: pointer;
+      font-size: 13px;
+    }
+  }
+}
