@@ -1,8 +1,7 @@
-%html{lang:"ja"}
-  %head
-    %meta{charset:"utf-8"}
-  %header
-  %body
+= render partial:"shared/pc-header"
+= render partial:"shared/bread-crumbs"
+.l-container
+  .l-content
     %section.credit-container
       %h2.credit-container__top 支払い方法
       .credit-container__inner
@@ -18,7 +17,10 @@
           %a{ href: "/jp/help_center/category/6/", class: "link"}
             %span 支払い方法について
             %i.fa.fa-angle-right{style:"font-size: 15px; font-weight: bold;"}
-
+  = render partial:"users/side-bar"
+= render partial:"shared/footer-sell-btn"
+= render partial:"shared/app-banner"
+= render partial:"shared/global-footer"
 
 
             
