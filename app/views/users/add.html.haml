@@ -1,7 +1,7 @@
-%html{lang:"ja"}
-  %head
-    %meta{charset: "utf-8"}/
-  %body
+= render partial:"shared/pc-header"
+= render partial:"shared/bread-crumbs"
+.l-container
+  .l-content
     .card__content
       %section.card__content__container
         %h2.card__content__container__head クレジットカード情報入力
@@ -86,3 +86,8 @@
             %button#submit-button.btn-default.btn-red{type: "button"} 追加する
           %script{async: "", src: "https://p01.mul-pay.jp/ext/js/token.js"}
           %script{async: "", src: "//www-mercari-jp.akamaized.net/assets/js/get_gmopg_card_token.js?560393726"}
+
+  = render partial:"users/side-bar"
+= render partial:"shared/footer-sell-btn"
+= render partial:"shared/app-banner"
+= render partial:"shared/global-footer"
