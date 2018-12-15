@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get 'mypage/card' => 'users#card'
   get 'mypage/card/add' => 'users#add'
   get 'mypage/profile' => 'users#profile'
-  resources :items, only: [:new]
+  resources :items, only: [:new, :show]
   resources :transaction, only: [:new]
   get 'users/logout', to: 'users#logout'
+  get 'mypage/identification', to: 'users#identification'
 end
