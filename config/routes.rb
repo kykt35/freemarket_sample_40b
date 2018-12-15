@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :items, only: [:new]
   resources :transaction, only: [:new]
   get 'users/logout', to: 'users#logout'
+  get 'mypage/identification', to: 'users#identification'
 end

@@ -151,3 +151,23 @@ i.fa-angle-down {
   margin: 0 auto;
   background-color: #fff;
 }
+.l-container {
+  margin: 40px 210px 0 210px;
+  height:1252px;
+  width: 1080px;
+}
+.form-group {
+  margin: 40px 0 0;
+  width: 100%;
+  label {
+    display: inline-block;
+    font-weight: 600;
+  }
+  &:first-child {
+    margin: 0;
+  }
+  .select-wrap{
+    position: relative;
+    margin: 8px 0 0;
+  }
+}
