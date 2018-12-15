@@ -1,0 +1,39 @@
+.contents-right
+  .content-user
+    .content-user__header
+      .content-user__header__icons
+        =link_to root_path,method: :get do
+          .none
+            =image_tag("member_photo_noimage_thumb.png")
+          %p.user-name メルカリ太郎
+        .under-content
+          %span.counter-label 評価
+          %span.counter 0
+        .under-content
+          %span.counter-label 出品数
+          %span.counter 0
+    .content-user__tab
+      %input#tab-info{type: "radio",name: "tab_btn1",checked: true}
+      %label.tab_btn1{for: "tab-info"}お知らせ
+      %input#tab-todo{type: "radio",name: "tab_btn1"}
+      %label.tab_btn1{for: "tab-todo"}やることリスト
+      .tab_pages#info-contents
+        .none-content
+          %p 現在、お知らせはありません
+      .tab_pages#todo-contents
+        .none-content
+          %p 現在、やることリストはありません
+  .content-buy-items
+    .content-buy-items__header
+      %p 購入した商品
+    .content-buy-items__tab
+      %input#tab-transaction{type: "radio",name: "tab_btn2",checked: true}
+      %label.tab_btn2{for: "tab-transaction"}取引中
+      %input#tab-past-transaction{type: "radio",name: "tab_btn2"}
+      %label.tab_btn2{for: "tab-past-transaction"}過去の取引
+      .tab_pages#transaction-contents
+        .none-content
+          %p 取引中の商品がありません
+      .tab_pages#past-transaction-contents
+        .none-content
+          %p 過去に取引した商品がありません
