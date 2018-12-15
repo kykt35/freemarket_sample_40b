@@ -1,0 +1,131 @@
+.default-container
+  =render "shared/pc-header"
+  =render "shared/bread-crumbs"
+  %section.item-box-container.single-container-section
+    %h1.item-name キリンのソフィー
+    %p.item-wording
+      『キリンのソフィー』は、48回の取引実績を持つ
+      =link_to "Haamam", ""
+      さんから出品されました。
+      =link_to "キャラクターグッズ/おもちゃ・ホビー・グッズ", "#"
+      の商品で、宮城県から4~7日で発送されます。
+    .item-main-content.clearfix
+      .item-photo
+        =image_tag 'soffie01.jpg',width: 300
+        =image_tag 'soffie01.jpg',width: 300
+        =image_tag 'soffie01.jpg',width: 300
+        =image_tag 'soffie01.jpg',width: 300
+      %table.item-detail-table
+        %tbody
+          %tr
+            %th 出品者
+            %td
+              =link_to "Haamam", "#"
+              %div
+                .item-user-ratings.l-left
+                  %i.fas.fa-laugh.icon-good
+                  %span 48
+                .item-user-ratings.l-left
+                  %i.fas.fa-meh.icon-normal
+                  %span 0
+                .item-user-ratings.l-left
+                  %i.fas.fa-frown.icon-bad
+                  %span 0
+          %tr
+            %th カテゴリー
+            %td
+              =link_to "#" do
+                %div おもちゃ・ホビー・グッズ
+              =link_to "#" do
+                .item-detail-table-sub-category
+                  %i.fa.fa-chevron-right
+                  おもちゃ
+              =link_to "#" do
+                .item-detail-table-sub-sub-category
+                  %i.fa.fa-chevron-right
+                  キャラクターグッズ
+          %tr
+            %th ブランド
+            %td
+          %tr
+            %th 商品の状態
+            %td 目立った傷や汚れなし
+          %tr
+            %th 配送料の負担
+            %td 送料込み(出品者負担)
+          %tr
+            %th 配送の方法
+            %td らくらくメルカリ便
+          %tr
+            %th 配送元地域
+            %td=link_to "宮城県", "#"
+          %tr
+            %th 発送日の目安
+            %td 4~7日で発送
+    .item-price-box
+      %span.item-price-box-price ¥ 1,500
+      %span.item-price-box-tax (税込)
+      %span.item-price-box-shipping-fee 送料込み
+    =link_to "購入画面に進む", "", class: "item-buy-btn btn-default btn-red"
+    .item-description
+      %p.item-description-inner
+        お値下げです☆
+        子供にあまりハマらず自宅保管してました。
+        数ヶ月おもちゃ箱にいれていたので手にとったりしてます、
+        全体的に汚れもあります、
+        後ろには緑のクレヨンの様な汚れがあります4枚目ですが写真よりもう少し濃いです
+        %br
+        付属品はなにもありません。
+        %br
+        こちらのみ袋に入れて配送致します。
+        %br
+        子供の使った中古品ですので、気になるかたはご遠慮下さいませ。ご理解のほど宜しくお願い致します☆
+    .item-button-container.clearfix
+      .item-button-left
+        %buttom.item-button.item-button-like
+          %i.far.fa-heart
+          %span いいね！
+          %span 1
+        =link_to "#", class: "item-button item-button-report clearfix" do
+          %i.far.fa-flag
+          %span 不適切な商品の報告
+      .item-button-right
+        =link_to "#" do
+          %i.fas.fa-lock
+          %span あんしん・あんぜんの取り組み
+  .item-detail-comment
+    .item-detail-comment-container
+      .item-detail-comment-content
+        %form.item-detail-comment-form
+          %p
+            相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          %textarea.textarea-default
+          %button.comment-submit.btn-default.btn-gray
+            %span コメントする
+  %ul.nav-item-link-prev-next.clearfix
+    %li.nav-item-link.nav-item-link-prev.l-left
+      =link_to "#" do
+        %i.fa.fa-angle-left.icon-angle.icon-angle-left
+        極美品 OAKLEY オークリー パーカーセットアップ 上下 ネイビー
+    %li.nav-item-link.nav-item-link-next.l-right
+      =link_to "#" do
+        %i.fa.fa-angle-right.icon-angle.icon-angle-right
+        samurai様専用bodyboss2.0 未使用 開封のみ
+  .item-social-media-box
+    .text-center
+    %ul.social-media-box
+      %li
+        =link_to "#", target: "_blank",class: "share-btn share-btn-facebook" do
+          %i.fab.fa-facebook.fa-2x.icon-sns
+      %li
+        =link_to "#", target: "_blank",class: "share-btn  share-btn-twitter"  do
+          %i.fab.fa-twitter.fa-2x.icon-sns
+      %li
+        =link_to "#", target: "_blank",class: "share-btn  share-btn-line"  do
+          %i.fab.fa-line.fa-2x.icon-sns
+      %li
+        =link_to "#", target: "_blank",class: "share-btn  share-btn-printerest"  do
+          %i.fab.fa-pinterest.fa-2x.icon-sns
+  .items-in-user-profile
+  =render partial: "shared/app-banner"
+  =render partial: "shared/global-footer"

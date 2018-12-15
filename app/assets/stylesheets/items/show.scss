@@ -1,0 +1,253 @@
+.item-box-container {
+  padding: 24px 40px 40px;
+  margin: 40px auto 0;
+  background-color: #fff;
+  box-sizing: border-box;
+  .item-name {
+    font-size: 24px;
+    text-align: center;
+    word-wrap: break-word;
+    line-height: 1.4;
+    font-weight: bold;
+  }
+  .item-wording {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: $itemWordingColor;
+    line-height: 1.5;
+    a {
+      color: $itemWordingColor;
+    }
+  }
+  .item-main-content {
+    margin: 16px 0 0;
+  }
+  .item-photo {
+    float: left;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 375px;
+    background-color: $whiteGray;
+    .slick-dots {
+      bottom: 0;
+      li {
+        margin: 0;
+        display: inline-block;
+        width: 75px;
+        height: 75px;
+        opacity: 0.7;
+      }
+      .slick-active{
+        opacity: 1;
+      }
+      img {
+        width: 75px;
+        height: 75px;
+        object-fit: cover;
+      }
+    }
+    .slick-list{
+      height: 300px;
+      img {
+        width: 300px;
+        height: 300px;
+        object-fit: contain;
+      }
+    }
+  }
+  .item-detail-table {
+    float: right;
+    width: 100%;
+    max-width: 300px;
+    height: 375px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid Whitesmoke;
+    border-spacing: 0;
+    th {
+      width: 39%;
+      text-align: left;
+      font-weight: 400;
+      background: $whiteGray;
+    }
+    th, td {
+      border-collapse: collapse;
+      border: 1px solid Whitesmoke;
+      padding: 8px;
+    }
+    .icon {
+      &-good {
+        color: $goodRaitingColor;
+      }
+      &-normal {
+        color: $normalRaitingColor;
+      }
+      &-bad {
+        color: $badRaitingColor;
+      }
+    } //.icon
+    .item-user-ratings {
+      margin:8px 0 0 16px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  } //.item-detail-table
+  .item-price-box {
+    margin: 24px 0 0;
+    text-align: center;
+    &-price {
+      margin: 0 16px 0 0;
+      font-size: 50px;
+      font-weight: bold;
+    }
+    &-tax {
+      font-size: 10px;
+    }
+    &-shipping-fee {
+      font-size: 16px;
+    }
+  }
+  .item-buy-btn {
+    height: 60px;
+    line-height: 60px;
+    margin: 16px 0 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .item-description {
+    margin: 24px 0 0;
+    padding: 32px 0 0;
+    font-size: 18px;
+    line-height: 1.5;
+    &-inner {
+       white-space: pre-wrap;
+    }
+  }
+  .item-button {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 40px;
+    transition: all ease-out .3s;
+    &-container {
+      margin: 16px 0 0;
+    }
+    &-left {
+      float: left;
+    }
+    &-right {
+      float: right;
+      margin: 8px 0 0;
+    }
+    &-like {
+      color: #333;
+      border: 1px solid Whitesmoke;
+      background: Whitesmoke;
+    }
+    &-report {
+      color: #333;
+      border: 1px solid Whitesmoke;
+      background: Whitesmoke;
+      text-decoration: none;
+    }
+  }
+} //.item-box-container
+
+.item-detail-comment {
+    width: 700px;
+    margin: 8px auto;
+    background-color: white;
+  &-content {
+    padding: 24px;
+  }
+  &-form {
+    >p {
+      padding: 8px;
+      font-size: 14px;
+      background: #fff6de;
+    }
+    .comment-submit {
+      margin: 8px 0 0;
+    }
+  }
+} //.item-detal-comment
+
+.nav-item-link-prev-next {
+    margin: 24px auto 0;
+    width: 700px;
+  .nav-item-link {
+    width: 45%;
+    word-wrap: break-word;
+    &-prev {
+      position: relative;
+      padding: 0 0 0 14px;
+      text-align: left;
+    }
+    &-next {
+      position: relative;
+      padding: 0 14px 0 0;
+      text-align: right;
+    }
+  }
+  .icon-angle{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    &-left {
+      left: 0;
+    }
+    &-right {
+      right: 0;
+    }
+  }
+}
+
+.item-social-media-box {
+  margin: 24px auto;
+  padding: 32px 0 24px;
+  width: 700px;
+  background-color: #fff;
+  .text-center {
+    padding: 14px 0 0;
+  }
+  .social-media-box {
+    margin: 16px 0 0;
+    text-align: center;
+    li {
+      display: inline-block;
+      margin: 0 8px 8px 0;
+      vertical-align: middle;
+      text-align: center;
+    }
+    .share-btn {
+      display: block;
+      position: relative;
+      width: 44px;
+      height: 44px;
+      border-radius: 4px;
+      line-height: 44px;
+      color: #fff;
+      box-sizing: border-box;
+      &-facebook {
+        background: $facebookColor;
+      }
+      &-twitter {
+        background: $twitterColor;
+      }
+      &-line {
+        background: $lineColor;
+      }
+      &-printerest {
+        background: $printerestColor;
+      }
+      .icon-sns {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
+
