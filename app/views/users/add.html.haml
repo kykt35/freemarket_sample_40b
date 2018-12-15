@@ -5,7 +5,7 @@
     .card__content
       %section.card__content__container
         %h2.card__content__container__head クレジットカード情報入力
-
+        
         %form#add-card-form.card__content__container__card-form{action: "https://www.mercari.com/jp/mypage/card/add/", "data-adyen-id": "card-form", method: "POST", novalidate: "novalidate"}
 
           %input{name: "__csrf_value", type: "hidden", value: ""}/
