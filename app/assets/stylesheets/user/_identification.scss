@@ -1,0 +1,52 @@
+$siro:#fff;
+
+.l-container.clearfix {
+  height:1360px;
+  .l-content {
+    background-color:$siro;
+    width:700px;
+    margin-right: 60px;
+  }
+  .l-chapter-head {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 13px 0;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: center;
+  }
+  .text-center{
+    border-bottom: 1px solid #f5f5f5;
+    text-align: center;
+  }
+  .l-single-inner {
+    padding:64px;
+  }
+  .form-arbitrary {
+    background: #ccc;
+    color:$siro;
+  }
+  .birthday-select-wrap {
+    display: inline-block;
+    letter-spacing: 8px;
+  }
+  .birthday-select-wrap .select-wrap {
+    width: 140px;
+    display: inline-block;
+  }
+  .l-single-inner p {
+    margin: 8px 0 0;
+    line-height: 1.5;
+    color: #888;
+  }
+  .mypage-identification button[type="submit"] {
+    margin: 40px 0 0 0;
+  }
+  .text-right {
+    text-align: right;
+    .fa-angle-right {
+    font-weight:bold;
+    font-size:20px;
+    color:#0099e8;
+    }
+  }
+}

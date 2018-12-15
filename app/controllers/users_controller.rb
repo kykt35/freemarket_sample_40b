@@ -8,8 +8,12 @@ class UsersController < ApplicationController
 
 	def add
 	end
-  
+
   def logout
+  end
+
+  def identification
+
   end
 
 
