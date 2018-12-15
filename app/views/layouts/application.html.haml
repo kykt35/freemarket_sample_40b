@@ -7,5 +7,11 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    //font-awesome cdn
+    %link{crossorigin: "anonymous", href: "https://use.fontawesome.com/releases/v5.6.1/css/all.css", integrity: "sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP", rel:  "stylesheet"}/
+    //slick cdn
+    %link{href: "http://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css", rel: "stylesheet", type: "text/css"}/
+    %link{href: "http://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css", rel: "stylesheet", type: "text/css"}/
+    %script{src: "http://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js", type: "text/javascript"}
   %body
     = yield
