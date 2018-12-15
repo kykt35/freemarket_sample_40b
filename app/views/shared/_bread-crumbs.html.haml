@@ -1,0 +1,13 @@
+%nav.bread-crumbs
+  %ul
+    %li{itemscope: true,itemtype: ""}
+      =link_to root_path, itemprop: "url" do
+        %span{itemprop: "title"}メルカリ
+      = fa_icon 'angle-right', class: 'icon'
+    %li{itemscope: true,itemtype: ""}
+      =link_to root_path, itemprop: "url" do
+        %span{itemprop: "title"}マイページ
+      = fa_icon 'angle-right', class: 'icon'
+    %li{itemscope: true,itemtype: ""}
+      =link_to root_path, itemprop: "url" do
+        %span{itemprop: "title"}ログアウト

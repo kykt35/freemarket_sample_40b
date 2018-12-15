@@ -21,3 +21,48 @@
   font-size: $smallWordSize;
   font-weight: 600;
 }
+@mixin tab_style($btn_class,$btn_name){
+  background-color: #fff;
+  #{$btn_class} {
+    width: calc(100%/2);
+    height: 80px;
+    background-color: #eee;
+    line-height: 80px;
+    font-size: 16px;
+    text-align: center;
+    color: #333;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    }
+  #{btn_class}:hover {
+    opacity: 0.75;
+  }
+  input[name= #{$btn_name}] {
+    display: none;
+  }
+  input:checked + #{$btn_class} {
+    background-color: #fff;
+    color: #333;
+    border-top: 2px solid #ea352d;
+  }
+  .tab_pages {
+    display: none;
+    min-height: 15vw;
+    padding: 3%;
+    clear: both;
+    overflow: hidden;
+    .none-content{
+      padding: 160px 0 60px;
+      background: url(/assets/logo-gray-icon.svg);
+      background-repeat: no-repeat;
+      background-position: center 40px;
+      background-size: 78px 85px;
+      text-align: center;
+      font-size: 16px;
+      color: #ccc;
+    }
+  }
+}
