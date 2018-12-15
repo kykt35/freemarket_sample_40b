@@ -11,13 +11,13 @@
     font-weight: bold;
   }
   .item-wording {
-      margin: 8px 0 0;
-      font-size: 14px;
-      color: $item-wordingColor;
-      line-height: 1.5;
-      a {
-        color: $item-wordingColor;
-      }
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: $itemWordingColor;
+    line-height: 1.5;
+    a {
+      color: $itemWordingColor;
+    }
   }
   .item-main-content {
     margin: 16px 0 0;
