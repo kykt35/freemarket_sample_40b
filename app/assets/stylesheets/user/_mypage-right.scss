@@ -1,73 +1,70 @@
-.contents-right{
-  padding: 3%;
-  .content-user{
-    $btn_class:'.tab_btn1';
-    $btn_name: 'tab_btn1';
-    margin: 0 auto;
-    margin-bottom: 50px;
-    height: 100%;
-    width: 80%;
-    &__header{
-      padding: 7%;
-      background-image: url(/assets/user-bg.jpg);
-      background-size: cover;
-      &__icons{
-        text-align: center;
-        line-height: 25px;
-        a{
-          color: #333;
-        }
-        img{
-          height: 50px;
-          width: 50px;
-          border-radius:  50%;
-        }
-        .user-name{
-          font-weight: 600;
-        }
-        .under-content{
-          display: inline-block;
-          width: 60px;
-        }
-        .counter-label{
-          font-size: 14px;
-        }
-        .counter{
-          font-weight: 600;
-        }
+.content-user{
+  $btn_class:'.tab_btn1';
+  $btn_name: 'tab_btn1';
+  margin: 0 auto;
+  margin-bottom: 50px;
+  height: 100%;
+  width: 80%;
+  &__header{
+    padding: 7%;
+    background-image: url(/assets/user-bg.jpg);
+    background-size: cover;
+    &__icons{
+      text-align: center;
+      line-height: 25px;
+      a{
+        color: #333;
       }
-    }
-    &__tab {
-      @include tab_style($btn_class,$btn_name);
-      #tab-info:checked~#info-contents,
-      #tab-todo:checked~#todo-contents {
-        display: block;
-        float:auto;
+      img{
+        height: 50px;
+        width: 50px;
+        border-radius:  50%;
+      }
+      .user-name{
+        font-weight: 600;
+      }
+      .under-content{
+        display: inline-block;
+        width: 60px;
+      }
+      .counter-label{
+        font-size: 14px;
+      }
+      .counter{
+        font-weight: 600;
       }
     }
   }
-  .content-buy-items{
-    $btn_class: '.tab_btn2';
-    $btn_name: 'tab_btn2';
-    margin: 0 auto;
-    margin-bottom: 50px;
-    height: 100%;
-    width: 80%;
-    &__header{
-      height: 80px;
-      line-height: 80px;
-      font-size: 16px;
-      font-weight: 900;
-      background-color: #fafafa;
-      padding-left: 15px;
+  &__tab {
+    @include tab_style($btn_class,$btn_name);
+    #tab-info:checked~#info-contents,
+    #tab-todo:checked~#todo-contents {
+      display: block;
+      float:auto;
     }
-    &__tab{
-      @include tab_style($btn_class,$btn_name);
-      #tab-transaction:checked~#transaction-contents,
-      #tab-past-transaction:checked~#past-transaction-contents{
-        display: block;
-        float: auto;
-      }
+  }
+}
+.content-buy-items{
+  $btn_class: '.tab_btn2';
+  $btn_name: 'tab_btn2';
+  margin: 0 auto;
+  margin-bottom: 50px;
+  height: 100%;
+  width: 80%;
+  &__header{
+    height: 80px;
+    line-height: 80px;
+    font-size: 16px;
+    font-weight: 900;
+    background-color: #fafafa;
+    padding-left: 15px;
+  }
+  &__tab{
+    @include tab_style($btn_class,$btn_name);
+    #tab-transaction:checked~#transaction-contents,
+    #tab-past-transaction:checked~#past-transaction-contents{
+      display: block;
+      float: auto;
     }
   }
 }
