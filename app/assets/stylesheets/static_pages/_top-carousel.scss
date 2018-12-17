@@ -2,6 +2,61 @@ section.top-carousel {
   display: block;
   height: 390px;
 
+  .slick-track {
+    background-color: #D9F7FF;
+  .img1 {
+    width:100%;
+    height:auto;
+  }
+
+  .img2,.img3 {
+    width:100%;
+    height:411px;
+  }
+  .img4 {
+    width:100%;
+    height:100%;
+    margin-top:70px;
+  }
+}
+
+  .slide{
+    position: relative;
+  a {
+    text-decoration: none;
+    }
+  .top-main-visual-content{
+    position: absolute;
+    top:10%;
+    left:20%;
+    }
+  .small-photo {
+    height:390px;
+    width:440px;
+    position:absolute;
+    top:-39px;
+    left:80%;
+      }
+    }
+
+  .next-arrow {
+    position:absolute;
+    top:40%;
+    right:5%;
+  }
+  .prev-arrow {
+    position:absolute;
+    top:40%;
+    left:5%;
+    z-index: 200;
+  }
+
+
+.slick-dots li button:before {
+  top:-30px;
+  font-size:15px;
+}
+
   .owl-stage{
     height: 100%;
     &-outer {
@@ -32,7 +87,6 @@ section.top-carousel {
     background-size: cover;
     height: 100%;
     &-wrap {
-      width: 860px;
       height: 100%;
       margin: 0 auto;
       position: relative;
@@ -52,11 +106,14 @@ section.top-carousel {
         font-size: 60px;
         line-height: 1.2;
         font-weight: bold;
+        color:#333;
+
       }
       p {
         font-size: 18px;
         margin: 16px 0 0 0;
         line-height: 1.77778;
+        color:#333;
       }
     }
     &-store {
