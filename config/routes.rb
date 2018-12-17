@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'mypage/profile' => 'users#profile'
   resources :items, only: [:new, :show]
   resources :transaction, only: [:new]
+  get 'users/signup', to: 'users#signup'
   get 'users/logout', to: 'users#logout'
   get 'mypage/identification', to: 'users#identification'
 end
