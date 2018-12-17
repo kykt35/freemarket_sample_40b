@@ -1,0 +1,10 @@
+.card-registration-content{
+  background-color: #fff;
+  .card__content{
+    margin: 0 auto;
+    float: none;
+    &__container__head{
+      padding: 30px 0 30px;
+    }
+  }
+}
