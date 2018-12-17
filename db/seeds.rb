@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# coding: utf-8
 require "csv"
 
 #category table initial data
@@ -24,4 +25,10 @@ CSV.foreach('db/categories.csv') do |row|
     grandson.save
   end
 end
+
+["新品、未使用", "未使用に近い","目立った傷や汚れなし","やや傷や汚れあり","傷や汚れあり","全体的に状態が悪い"].each do |condition|
+  item_condition = ItemCondition.where(name: condition).first_or_initialize(name: condition)
+  item_condition.save
+end
+
 
