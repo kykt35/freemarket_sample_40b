@@ -45,4 +45,20 @@ child_size.each do |size|
   size.save
 end
 
+#Shippings table
+shippings = %w(未定 らくらくメルカリ便 ゆうメール レターパック 普通郵便(定形、定形外) クロネコヤマト ゆうパック クリックポスト ゆうパケット)
+shippings.each do |ship|
+  shipping = Shipping.where(name: ship).first_or_initialize(name: ship)
+  shipping.save
+end
+
+#postage_selests table
+postage_selests table = %w(着払い(購入者負担) 送料込み(出品者負担))
+postage_selests.each do |post|
+  postage = Postage_selest.where(name: post).first_or_initialize(name: post)
+  postage.save
+end
+
+
+
 

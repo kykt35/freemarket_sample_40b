@@ -1,0 +1,2 @@
+class PostageSelect < ApplicationRecord
+end
