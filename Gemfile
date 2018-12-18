@@ -49,7 +49,7 @@ group :development, :test do
   gem 'pry-remote'
   gem 'pry-nav'
   gem 'rspec-rails'
-  gem 'factory_girl_rails', "~> 4.4.1"
+  gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'faker'
 end
