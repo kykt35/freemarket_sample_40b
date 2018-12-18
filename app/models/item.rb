@@ -9,4 +9,6 @@ class Item < ApplicationRecord
   belongs_to :postage_select
   belongs_to :leadtime
   belongs_to :prefecture
+  validates :name, :description, :category_id, :item_condition_id, :postage_select_id, :shipping_id, :prefecture_id, :leadtime_id, :price, :seller_id, presence: true
+  validates :price, only_integer: true
 end
