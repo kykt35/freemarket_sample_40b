@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   get 'mypage/card' => 'users#card'
   get 'mypage/card/add' => 'users#add'
   get 'mypage/profile' => 'users#profile'
+  get 'users/registration_card' => 'users#registration_card'
   resources :items, only: [:new, :show, :create]
   resources :transaction, only: [:new]
+  get 'users/signup', to: 'users#signup'
   get 'users/logout', to: 'users#logout'
   get 'mypage/identification', to: 'users#identification'
 end

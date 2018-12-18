@@ -1,4 +1,4 @@
-%div.l-side
+.l-side
   %nav.mypage-nav
     %ul.mypage-nav-list
       %li
@@ -53,23 +53,23 @@
       %h3.mypage-nav-head 設定
       %ul.mypage-nav-list
         %li
-          =link_to "プロフィール",root_path,class: "mypage-nav-list-item "
+          =link_to "プロフィール","/mypage/profile",class: "mypage-nav-list-item "
           = fa_icon 'angle-right', class: 'icon'
         %li
           =link_to "住所変更",root_path,class: "mypage-nav-list-item "
           = fa_icon 'angle-right', class: 'icon'
         %li
-          =link_to "支払方法",root_path,class: "mypage-nav-list-item "
+          =link_to "支払方法","/mypage/card",class: "mypage-nav-list-item "
           = fa_icon 'angle-right', class: 'icon'
         %li
           =link_to "メール/パスワード",root_path,class: "mypage-nav-list-item "
           = fa_icon 'angle-right', class: 'icon'
         %li
-          =link_to "本人情報",root_path,class: "mypage-nav-list-item "
+          =link_to "本人情報","/mypage/identification",class: "mypage-nav-list-item "
           = fa_icon 'angle-right', class: 'icon'
         %li
           =link_to "電話番号の確認",root_path,class: "mypage-nav-list-item "
           = fa_icon 'angle-right', class: 'icon'
         %li
-          =link_to "ログアウト",root_path,class: "mypage-nav-list-item", id: "active"
+          =link_to "ログアウト","/users/logout",class: "mypage-nav-list-item", id: "active"
           = fa_icon 'angle-right', class: 'icon', id: "active"

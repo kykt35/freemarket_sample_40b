@@ -1,5 +1,6 @@
 = render partial:"shared/pc-header"
-=render partial:"shared/bread-crumbs"
+- breadcrumb :logout
+= render partial:"shared/bread-crumbs"
 
 .logout-container
   %main.l-container.clearfix
@@ -10,7 +11,7 @@
             %button.btn-default.btn-red{type:"submit"}ログアウト
             %input{type:"hidden",value:"",name:"__csrf_value"}
 
-    =render partial:"users/side-bar"
+    = render partial:"users/side-bar"
     = render partial:"shared/footer-sell-btn"
   = render partial:"shared/app-banner"
   = render partial:"shared/global-footer"
