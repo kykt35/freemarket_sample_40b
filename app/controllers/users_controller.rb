@@ -18,5 +18,8 @@ class UsersController < ApplicationController
 
 	def profile
 	end
+
+  def registration_card
+  end
 	
 end
