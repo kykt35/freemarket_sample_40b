@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'users/registration_card' => 'users#registration_card'
   resources :items, only: [:new, :show]
   resources :transaction, only: [:new]
+  get 'users/signup', to: 'users#signup'
   get 'users/logout', to: 'users#logout'
   get 'mypage/identification', to: 'users#identification'
 end
