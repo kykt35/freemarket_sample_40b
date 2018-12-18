@@ -236,7 +236,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|leadtime|string|null:false|
+|text|string|null:false|
 
 ### Association(leadtimes)
 - has_many :items
@@ -246,7 +246,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|postage_select|string|null:false|
+|text|string|null:false|
 
 ### Association(postage_selects)
 - has_many :items
@@ -256,7 +256,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null:false|
+|text|string|null:false|
 
 ### Association(shippongs)
 - has_many :items
@@ -266,7 +266,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null:false|
+|text|string|null:false|
 
 ### Association(item_conditions)
 - has_many :items

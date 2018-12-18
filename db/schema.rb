@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_18_021709) do
+ActiveRecord::Schema.define(version: 2018_12_18_025724) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2018_12_18_021709) do
   end
 
   create_table "item_conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,13 +60,13 @@ ActiveRecord::Schema.define(version: 2018_12_18_021709) do
   end
 
   create_table "leadtimes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "leadtime", null: false
+    t.string "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "postage_selects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2018_12_18_021709) do
   end
 
   create_table "shippings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
