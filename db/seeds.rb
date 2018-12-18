@@ -69,6 +69,7 @@ prefectures.each do |pref|
   prefecture = Prefecture.where(name: pref).first_or_initialize(name: pref)
   prefecture.save
 end
+ Prefecture.where(id: 99, name: "未定").first_or_initialize(id: 99, name: "未定")
 
 #Leadtime table
 ["1~2日で発送", "2~3日で発送", "4~7日で発送"].each do |ltime|
