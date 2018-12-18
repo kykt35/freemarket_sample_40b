@@ -1,0 +1,55 @@
+.registration-header{
+  width: 700px;
+  margin: 0 auto;
+  .header-logo{
+    float: left;
+  }
+  .process-bar{
+    width: 505px;
+    height: 85px;
+    font-size: 0px;
+    float: right;
+    padding-right: 15px;
+    margin-top: 30px;
+    &__label{
+      text-align: right;
+      .label{
+        display: inline-block;
+        text-align: center;
+        line-height: 25px;
+        width: 20%;
+        font-size: $smallWordSize;
+        color: $header-arrow;
+      }
+      .red{
+        @include bold_small_font;
+        color: $red;
+      }
+      #process5{
+        text-align: right;
+        width: 12%;
+      }
+    }
+    &__line{
+      padding-right: 5px;
+      text-align: right;
+      .radius{
+        display: inline-block;
+        height: 13px;
+        width: 13px;
+        border-radius: 50%;
+        background-color: $usually-arrow;
+      }
+      .line{
+        display: inline-block;
+        height: 2px;
+        width: calc(20% - 13px);
+        margin-bottom:6px;
+        background-color: $usually-arrow;
+      }
+      .red{
+        background-color: $red;
+      }
+    }
+  }
+}
