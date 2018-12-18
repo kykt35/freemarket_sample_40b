@@ -82,3 +82,4 @@ gem 'mini_magick'
 gem 'fog-aws'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
+gem "gretel"

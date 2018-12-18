@@ -1,10 +1,11 @@
 = render partial:"shared/pc-header"
+- breadcrumb :profile
 = render partial:"shared/bread-crumbs"
 .l-container
   .l-content.clearfix
     %section
       %h2.l-chapter-head プロフィール
-      = form_tag('https://www.mercari.com/jp/mypage/profile/', class: 'form-profile', method: :post) do 
+      = form_tag('/mypage', class: 'form-profile', method: :post) do 
         = hidden_field_tag :__cdrf_value, value: '4c687d5bc6e3ce120f5185adbb9091cf26749d56664d774dc55be4cdacb548bfdaf98b8b06719cc5826f5a4097c4882108c0645fab72fa4e1c244af167d441131'
         .setting-profile-icon{clearfix: ""}
           %figure.circle-photo-box

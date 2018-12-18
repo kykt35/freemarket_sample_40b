@@ -5,7 +5,8 @@
         =link_to root_path,method: :get do
           .none
             =image_tag("member_photo_noimage_thumb.png")
-          %p.user-name メルカリ太郎
+          %p.user-name 
+            = link_to "メルカリ太郎", "#"
         .under-content
           %span.counter-label 評価
           %span.counter 0

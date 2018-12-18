@@ -20,7 +20,7 @@
             -if true
               %ul.pc-header-user-nav
                 %li
-                  =link_to "#", class: "pc-header-navbox-root" do
+                  =link_to "mypage", class: "pc-header-navbox-root" do
                     %figure
                       %div
                         =image_tag "member_photo_noimage_thumb.png",width: 32, height: 32
@@ -36,7 +36,7 @@
             -else
               %ul.pc-header-login-nav
                 %li
-                  =link_to "ログイン", "#", class: "pc-header-btn btn btn-red"
+                  =link_to "ログイン", "/users/sign_in", class: "pc-header-btn btn btn-red"
 
                 %li
-                  =link_to "新規会員登録", "#", class: "pc-header-btn btn header-signup"
+                  =link_to "新規会員登録", "/users/sign_up", class: "pc-header-btn btn header-signup"
