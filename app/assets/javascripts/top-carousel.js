@@ -1,17 +1,21 @@
 $(document).ready(function(){
   $(".slider").slick({
     autoplay:true,
-    autoplaySpeed:60000,
+    autoplaySpeed:5000,
     dots:true,
     pauseOnDotsHover:true,
-    focusOnSelect:false,
-    prevArrow: '<img src="../assets/carousel-prev.png" class="slide-arrow prev-arrow">',
-    nextArrow: '<img src = "../assets/carousel-next.png" class="slide-arrow next-arrow">'
+    focusOnSelect:true,
+    arrows: false,
+    appendArrows: $('#arrows')
   });
   $('.slick-dots li').on({'mouseenter' : function(){
     var i = $(this).index();
-    console.log("dot");
     $('.slider').slick('slickGoTo', i, false);}
   });
+  $('.slick-next').on('click', function () {
+     $('.slider').slick('slickNext');
+  });
+  $('.slick-prev').on('click', function () {
+    $('.slider').slick('slickPrev');
+    });
 });
-

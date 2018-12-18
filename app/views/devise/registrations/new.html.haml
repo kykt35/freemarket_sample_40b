@@ -1,20 +1,33 @@
-.login-containar
-  = render partial:"shared/single-header"
+.default-container
+  %header.registration-header
+    =render partial: "shared/form-header"
+    .clearfix
+  .sign-up-contents.single-container-section
+    .single-head.head-form 会員情報入力
+    .formarea
+      = form_for(resource, as: resource_name, url: registration_path(resource_name) ) do |f|
+        = devise_error_messages!
+        .field
+          = f.label :nickname,"ニックネーム",class: "label"
+          = f.label :nickname,"必須",class: "form-require"
+          = f.text_field :nickname, autofocus: true, maxlength: "20",placeholder:"例）メルカリ太郎",class: "input-default"
+        .field
+          = f.label :email,"メールアドレス",class: "label"
+          = f.label :nickname,"必須",class: "form-require"
+          = f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"PC・携帯どちらでも可",class: "input-default"
+        .field
+          = f.label :password, "パスワード",class: "label"
+          = f.label :nickname,"必須",class: "form-require"
+          = f.password_field :password, autocomplete: "new-password",placeholder:"６文字以上",class: "input-default"
+        .field
+          = f.label :password_confirmation, "パスワード（確認）",class: "label"
+          = f.label :nickname,"必須",class: "form-require"
+          = f.password_field :password_confirmation, autocomplete: "new-password",placeholder:"６文字以上",class: "input-default"
+        .field
+          .g-recaptcha{"data-callback": "clearcall", "data-sitekey": "6LdrEYAUAAAAALRAUuH0ifiAxMKih7ajkhe-g0Gj"}
+            %iframe{src: "https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc&co=aHR0cHM6Ly93d3cubWVyY2FyaS5jb206NDQz&hl=ja&v=v1543818755456&size=normal&cb=zgnd9kt1nsne",width: 305,height: 80,role: "presentation",name: "a-abrwyw7sr3ee",frameborder: 0,scrolling: "no",sandbox: "allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"}
+        .actions.field
+          = f.submit "次へ進む",:class=>"submit btn-default btn-red "
 
-  %main.main
-    .account-center
-      .new_account
-        %h1 新規会員登録
-      .account__form_innner
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          .account__form_group
-            = link_to "メールアドレスで登録", new_registration_path(resource_name)
-            = fa_icon 'envelope', class: 'icon'
-        %button#facebook-login.button-default.btn-sns.btn-facebook
-          %i.fab.fa-facebook-square.icon
-          %p Facebookで登録
-        %button#google-login.button-default.btn-sns.btn-google
-          %i.fab.fa-google-plus-g.icon
-          %p Googleで登録
-  %footer.single__footer
-    = render partial:"shared/single-footer"
+  %footer.sign-up-footer
+    =render partial: "shared/single-footer"

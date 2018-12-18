@@ -2,8 +2,6 @@ section.top-carousel {
   display: block;
   height: 390px;
 
-  .slick-track {
-    background-color: $mizuiro;
   .img1 {
     width:100%;
     height:auto;
@@ -16,9 +14,10 @@ section.top-carousel {
   .img4 {
     width:100%;
     height:100%;
-    margin-top:70px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    background-color: $mizuiro;
   }
-}
 
   .slide{
     position: relative;
@@ -39,23 +38,38 @@ section.top-carousel {
       }
     }
 
-  .next-arrow {
+  .slick-next{
     position:absolute;
-    top:40%;
+    top:50%;
     right:5%;
+    background-image: url("carousel-next.png");
+    height:40px;
+    width: 30px;
+  &:before {
+    display:none;
+    }
   }
-  .prev-arrow {
+  .slick-prev {
     position:absolute;
-    top:40%;
+    top:50%;
     left:5%;
     z-index: 200;
+    background-image: url("carousel-prev.png");
+    height:40px;
+    width: 30px;
+    &:before {
+    display:none;
+    }
   }
 
+  .slick-dots {
+    bottom: 15px;
+  }
 
-.slick-dots li button:before {
-  top:-30px;
-  font-size:15px;
-}
+  .slick-dots li button:before {
+    font-size:15px;
+  }
+
 
   .owl-stage{
     height: 100%;
