@@ -15,7 +15,9 @@ module FreemarketSample40b
       g.javascripts false
       g.helper false
       g.test_framework false
-      config.i18n.default_locale = :ja
+      if Rails.env != "test"
+        config.i18n.default_locale = :ja
+      end
     end
     config.generators do |g|
       # 色々な記述があるので、一番下に追記する
