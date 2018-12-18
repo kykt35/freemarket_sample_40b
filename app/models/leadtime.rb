@@ -1,0 +1,2 @@
+class Leadtime < ApplicationRecord
+end
