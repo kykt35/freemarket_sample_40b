@@ -23,3 +23,7 @@ module FreemarketSample40b
     # the framework and any gems in your application.
   end
 end
+
+   if Rails.env != “test”
+       config.i18n.default_locale = :ja
+     end
