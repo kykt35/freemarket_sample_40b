@@ -5,7 +5,7 @@
       #sell-item-container
         .sell-item-container-inner
           %h2.single-head 商品の情報を入力
-          =form_with model: @item, class: "sell-form" do |f|
+          =form_with model: @item, local: true, class: "sell-form" do |f|
             .sell-upload-box
               %h3.sell-upload-head
                 出品画像
@@ -38,7 +38,13 @@
                     カテゴリ
                     %span.form-require 必須
                   .select-wrap
-                    = f.collection_select :l_category_id, Category.where(ancestry: nil), :id, :name, {prompt: "---"}, {class: 'select-default'}
+                    = f.collection_select :l_category_id, Category.where(id: 1), :id, :name, {prompt: "---"}, {class: 'select-default'}
+                    %i.fa.fa-angle-down
+                  .select-wrap
+                    = f.collection_select :m_category_id, Category.where(id: 2), :id, :name, {prompt: "---"}, {class: 'select-default'}
+                    %i.fa.fa-angle-down
+                  .select-wrap
+                    = f.collection_select :category_id, Category.where(id: 3), :id, :name, {prompt: "---"}, {class: 'select-default'}
                     %i.fa.fa-angle-down
                 .form-group
                   =f.label :item_condition_id do
@@ -59,6 +65,13 @@
                     =f.collection_select :postage_select_id, PostageSelect.all, :id, :text, {prompt: "---"}, {class: 'select-default'}
                     %i.fa.fa-angle-down
                 .form-group
+                  =f.label :shipping_id do
+                    配送方法
+                    %span.form-require 必須
+                  .select-wrap
+                    =f.collection_select :shipping_id, Shipping.all, :id, :text, {prompt: "---"}, {class: 'select-default'}
+                    %i.fa.fa-angle-down
+                .form-group
                   =f.label :prefecture_id do
                     発送元の地域
                     %span.form-require 必須
@@ -66,11 +79,11 @@
                     =f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "---"}, {class: 'select-default'}
                     %i.fa.fa-angle-down
                 .form-group
-                  =f.label :shipping_id do
+                  =f.label :leadtime_id do
                     発送までの日数
                     %span.form-require 必須
                   .select-wrap
-                    =f.collection_select :shipping_id, Shipping.all, :id, :text, {prompt: "---"}, {class: 'select-default'}
+                    =f.collection_select :leadtime_id, Leadtime.all, :id, :text, {prompt: "---"}, {class: 'select-default'}
                     %i.fa.fa-angle-down
             .sell-content.clearfix
               %h3.sell-sub-head 販売価格(300〜9,999,999)
