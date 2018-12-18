@@ -42,7 +42,6 @@ section.top-carousel {
     position:absolute;
     top:50%;
     right:5%;
-    background-image: url("carousel-next.png");
     height:40px;
     width: 30px;
   &:before {
@@ -54,7 +53,6 @@ section.top-carousel {
     top:50%;
     left:5%;
     z-index: 200;
-    background-image: url("carousel-prev.png");
     height:40px;
     width: 30px;
     &:before {
