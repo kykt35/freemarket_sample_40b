@@ -121,7 +121,7 @@
 |saler_id|references|null: false,foreign_key: true|
 |brand_id|references|foreign_key: true|
 |category_id|references|null: false,foreign_key: true|
-|size_id|references|null: false,foreign_key: true|
+|size_id|references|foreign_key: true|
 |item_condition_id|references|null: false,foreign_key: true|
 |shipping_id|references|null: false,foreign_key: true|
 |postage_select_id|references|null: false,foreign_key: true|

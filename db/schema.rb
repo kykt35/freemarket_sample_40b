@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_18_015322) do
+ActiveRecord::Schema.define(version: 2018_12_18_021709) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -39,6 +39,24 @@ ActiveRecord::Schema.define(version: 2018_12_18_015322) do
     t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "seller_id"
+    t.bigint "category_id", null: false
+    t.bigint "brand_id"
+    t.bigint "size_id"
+    t.bigint "item_condition_id", null: false
+    t.bigint "shipping_id", null: false
+    t.bigint "postage_select_id", null: false
+    t.bigint "prefecture_id", null: false
+    t.bigint "leadtime_id", null: false
+    t.index ["brand_id"], name: "index_items_on_brand_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["item_condition_id"], name: "index_items_on_item_condition_id"
+    t.index ["leadtime_id"], name: "index_items_on_leadtime_id"
+    t.index ["postage_select_id"], name: "index_items_on_postage_select_id"
+    t.index ["prefecture_id"], name: "index_items_on_prefecture_id"
+    t.index ["seller_id"], name: "index_items_on_seller_id"
+    t.index ["shipping_id"], name: "index_items_on_shipping_id"
+    t.index ["size_id"], name: "index_items_on_size_id"
   end
 
   create_table "leadtimes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -90,4 +108,13 @@ ActiveRecord::Schema.define(version: 2018_12_18_015322) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "items", "brands"
+  add_foreign_key "items", "categories"
+  add_foreign_key "items", "item_conditions"
+  add_foreign_key "items", "leadtimes"
+  add_foreign_key "items", "postage_selects"
+  add_foreign_key "items", "prefectures"
+  add_foreign_key "items", "shippings"
+  add_foreign_key "items", "sizes"
+  add_foreign_key "items", "users", column: "seller_id"
 end
