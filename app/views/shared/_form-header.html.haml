@@ -1,19 +1,20 @@
-.header-logo
-  = render partial:"shared/single-header"
-%nav.process-bar
-  .process-bar__label
-    .label.red 会員情報
-    .label 電話番号認証
-    .label 住所入力
-    .label 支払い情報
-    .label.end 完了
-  .process-bar__line
-    .radius.red
-    .line
-    .radius
-    .line
-    .radius
-    .line
-    .radius
-    .line
-    .radius
+.registration-header
+  .header-logo
+    = render partial:"shared/single-header"
+  %nav.process-bar
+    .process-bar__label
+      .label#process1.red 会員情報
+      .label#process2 電話番号認証
+      .label#process3 住所入力
+      .label#process4 支払い情報
+      .label#process5 完了
+    .process-bar__line
+      .radius.process1.red
+      .line.process2
+      .radius.process2
+      .line.process3
+      .radius.process3
+      .line.process4
+      .radius.process4
+      .line.process5
+      .radius.process5
