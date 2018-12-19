@@ -13,7 +13,6 @@
 |email|string|null:false, unique: true|
 |password|string|null:false, unique:true|
 |exhibit|string||
-|sns_credential_id|references|foreign_key: true|
 
 
 ### Association(users)
@@ -31,7 +30,7 @@
 - has_many :points
 - has_many :evaluations
 - has_many :evaluation_transactions, through: :evaluations, source: :transactions
-- belongs_to :sns_credential_id
+- has_many :sns_credentials
 
 
 ## Sns_credentialsテーブル
@@ -42,9 +41,10 @@
 |provider|string(255)|not null, indexed => [provider]|
 |refresh token|string(255)||
 |access token|string(255)||
+|user_id|references|foregin_key: true|
 
 ### Association(sns_credentials)
-- has_many :users
+- belongs_to: user
 
 ## Relationshipsテーブル
 
