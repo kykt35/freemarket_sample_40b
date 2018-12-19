@@ -4,8 +4,8 @@ class ItemsController < ApplicationController
     #商品登録
   end
   def create
-    @item = Item.create(item_params)
-    if @item.valid?
+    @item = Item.new(item_params)
+    if @item.save
       respond_to do |format|
         format.html
         format.json
