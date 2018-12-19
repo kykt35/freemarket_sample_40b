@@ -16,8 +16,7 @@
               %li
                 %h2=link_to "ブランドから探す", "#", class: "pc-header-navbox-root"
           .l-right
-            -# if user_signed_in?
-            -if true
+            -if user_signed_in?
               %ul.pc-header-user-nav
                 %li
                   =link_to "mypage", class: "pc-header-navbox-root" do
