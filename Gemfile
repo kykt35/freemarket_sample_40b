@@ -52,9 +52,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'faker'
-  gem 'omniauth'
-  gem 'omniauth-facebook'
-  gem 'omniauth-google-oauth2'
 end
 
 group :development do
@@ -91,3 +88,6 @@ gem 'jquery-rails'
 gem 'mechanize'
 gem 'ancestry'
 gem "gretel"
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
