@@ -2,13 +2,13 @@
   =render "shared/pc-header"
   =render "shared/bread-crumbs"
   %section.item-box-container.single-container-section
-    %h1.item-name キリンのソフィー
+    %h1.item-name #{@item.name}
     %p.item-wording
-      『キリンのソフィー』は、48回の取引実績を持つ
-      =link_to "Haamam", ""
+      #{@item.name}は、48回の取引実績を持つ
+      =link_to "#{@item.seller.nickname}"
       さんから出品されました。
-      =link_to "キャラクターグッズ/おもちゃ・ホビー・グッズ", "#"
-      の商品で、宮城県から4~7日で発送されます。
+      =link_to "#{@item.category.name}"
+      の商品で、#{@item.prefecture.name}から#{@item.leadtime.text}で発送されます。
     .item-main-content.clearfix
       .item-photo
         =image_tag 'soffie01.jpg',width: 300
@@ -20,7 +20,7 @@
           %tr
             %th 出品者
             %td
-              =link_to "Haamam", "#"
+              =link_to "#{@item.seller.nickname}"
               %div
                 .item-user-ratings.l-left
                   %i.fas.fa-laugh.icon-good
@@ -35,51 +35,43 @@
             %th カテゴリー
             %td
               =link_to "#" do
-                %div おもちゃ・ホビー・グッズ
+                %div #{@item.category.name}
               =link_to "#" do
                 .item-detail-table-sub-category
                   %i.fa.fa-chevron-right
-                  おもちゃ
+                  #{@item.category.parent.name}
               =link_to "#" do
                 .item-detail-table-sub-sub-category
                   %i.fa.fa-chevron-right
-                  キャラクターグッズ
+                  #{@item.category.parent.parent.name}
           %tr
             %th ブランド
             %td
+              - if "#{@item.brand_id}".present?
+                #{@item.brand.name}
           %tr
             %th 商品の状態
-            %td 目立った傷や汚れなし
+            %td #{@item.item_condition.text}
           %tr
             %th 配送料の負担
-            %td 送料込み(出品者負担)
+            %td #{@item.postage_select.text}
           %tr
             %th 配送の方法
-            %td らくらくメルカリ便
+            %td #{@item.shipping.text}
           %tr
             %th 配送元地域
-            %td=link_to "宮城県", "#"
+            %td=link_to "#{@item.prefecture.name}"
           %tr
             %th 発送日の目安
-            %td 4~7日で発送
+            %td #{@item.leadtime.text}
     .item-price-box
-      %span.item-price-box-price ¥ 1,500
+      %span.item-price-box-price ¥#{@item.price}
       %span.item-price-box-tax (税込)
       %span.item-price-box-shipping-fee 送料込み
     =link_to "購入画面に進む", "", class: "item-buy-btn btn-default btn-red"
     .item-description
       %p.item-description-inner
-        お値下げです☆
-        子供にあまりハマらず自宅保管してました。
-        数ヶ月おもちゃ箱にいれていたので手にとったりしてます、
-        全体的に汚れもあります、
-        後ろには緑のクレヨンの様な汚れがあります4枚目ですが写真よりもう少し濃いです
-        %br
-        付属品はなにもありません。
-        %br
-        こちらのみ袋に入れて配送致します。
-        %br
-        子供の使った中古品ですので、気になるかたはご遠慮下さいませ。ご理解のほど宜しくお願い致します☆
+        #{@item.description}
     .item-button-container.clearfix
       .item-button-left
         %buttom.item-button.item-button-like
