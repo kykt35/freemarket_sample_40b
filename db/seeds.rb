@@ -21,7 +21,7 @@ end
 #item_condition table data
 item_conditions = %w(新品、未使用 未使用に近い 目立った傷や汚れなし やや傷や汚れあり 傷や汚れあり 全体的に状態が悪い)
 item_conditions.each do |condition|
-  item_condition = ItemCondition.where(name: condition).first_or_initialize(name: condition)
+  item_condition = ItemCondition.where(text: condition).first_or_initialize(text: condition)
   item_condition.save
 end
 
@@ -48,14 +48,14 @@ end
 #Shippings table
 shippings = %w(未定 らくらくメルカリ便 ゆうメール レターパック 普通郵便(定形、定形外) クロネコヤマト ゆうパック クリックポスト ゆうパケット)
 shippings.each do |ship|
-  shipping = Shipping.where(name: ship).first_or_initialize(name: ship)
+  shipping = Shipping.where(text: ship).first_or_initialize(text: ship)
   shipping.save
 end
 
 #postage_selests table
 postage_selests = ["着払い(購入者負担)", "送料込み(出品者負担)"]
 postage_selests.each do |post|
-  postage = PostageSelect.where(name: post).first_or_initialize(name: post)
+  postage = PostageSelect.where(text: post).first_or_initialize(text: post)
   postage.save
 end
 
@@ -73,6 +73,6 @@ end
 
 #Leadtime table
 ["1~2日で発送", "2~3日で発送", "4~7日で発送"].each do |ltime|
-  leadtime = Leadtime.where(leadtime: ltime).first_or_initialize(leadtime: ltime)
+  leadtime = Leadtime.where(text: ltime).first_or_initialize(text: ltime)
   leadtime.save
 end
