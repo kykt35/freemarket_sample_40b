@@ -13,7 +13,6 @@
 |email|string|null:false, unique: true|
 |password|string|null:false, unique:true|
 |exhibit|string||
-|sns_credential_id|references|foreign_key: true|
 
 
 ### Association(users)
@@ -31,7 +30,7 @@
 - has_many :points
 - has_many :evaluations
 - has_many :evaluation_transactions, through: :evaluations, source: :transactions
-- belongs_to :sns_credential_id
+- has_many :sns_credentials
 
 
 ## Sns_credentialsテーブル
@@ -42,9 +41,10 @@
 |provider|string(255)|not null, indexed => [provider]|
 |refresh token|string(255)||
 |access token|string(255)||
+|user_id|references|foregin_key: true|
 
 ### Association(sns_credentials)
-- has_many :users
+- belongs_to: user
 
 ## Relationshipsテーブル
 
@@ -107,7 +107,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|prefecture_name|string|null:false|
+|name|string|null:false|
 
 
 ### Association(prefectures)
@@ -121,16 +121,16 @@
 |saler_id|references|null: false,foreign_key: true|
 |brand_id|references|foreign_key: true|
 |category_id|references|null: false,foreign_key: true|
-|size_id|references|null: false,foreign_key: true|
+|size_id|references|foreign_key: true|
 |item_condition_id|references|null: false,foreign_key: true|
-|delivery_id|references|null: false,foreign_key: true|
+|shipping_id|references|null: false,foreign_key: true|
 |postage_select_id|references|null: false,foreign_key: true|
-|post_prefecture|references|null: false,foreign_key: true|
+|prefecture|references|null: false,foreign_key: true|
 |leadtime|references|null: false,foreign_key: true|
 |name|string|null: false|
 |description|text|null: false|
 |status|integer|null: false|
-|amount|integer|null: false|
+|price|integer|null: false|
 
 ### Association
 - has_many :transactions
@@ -139,7 +139,7 @@
 - belongs_to :category
 - belongs_to :size
 - belongs_to :item_condition
-- belongs_to :delivery
+- belongs_to :shipping
 - belongs_to :postage_select
 - belongs_to :leadtime
 - belongs_to :prefecture
@@ -236,7 +236,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|leadtime|string|null:false|
+|text|string|null:false|
 
 ### Association(leadtimes)
 - has_many :items
@@ -246,19 +246,19 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|postage_select|string|null:false|
+|text|string|null:false|
 
 ### Association(postage_selects)
 - has_many :items
 
 
-## Deliveriesテーブル
+## Shippingsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|deliveries_method|string|null:false|
+|text|string|null:false|
 
-### Association(deliveries)
+### Association(shippongs)
 - has_many :items
 
 
@@ -266,7 +266,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|item_condition|string|null:false|
+|text|string|null:false|
 
 ### Association(item_conditions)
 - has_many :items
@@ -276,7 +276,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|size|string|null:false|
+|name|string|null:false|
 
 ### Association(sizes)
 - has_many :items
@@ -302,7 +302,25 @@
 
 ### Association(brands)
 - has_many :items
+- has many :brand_group, through:brands_brandGroup
+- has_many :brand_brandGroup
 
+## BrandGroup
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null:false|
+- has_many :brands, through:brands_brandGroup
+- has_many :brands_brandGroup
 
+## Brand_BrandGroupテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|brand_id|references|null:false, foreign_key:true|
+|brand_group_id|references|null:false, foreign_key:true|
+
+### Association(brands)
+- belongs_to :brand
+- belongs_to :brandGroup
 
 
