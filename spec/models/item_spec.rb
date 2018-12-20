@@ -5,11 +5,9 @@ describe Item do
   describe '#create' do
 
     context 'can save' do
-      it "is valid with valid parameter" do
-
+      it "is valid with parameter" do
         item = build(:item, seller_id: seller.id)
         expect(item).to be_valid
-
       end
       it "is valid with brand nil" do
         item = build(:item, brand_id: nil, seller_id: seller.id)
@@ -17,6 +15,14 @@ describe Item do
       end
       it "is valid with size nil" do
         item = build(:item, size_id: nil, seller_id: seller.id)
+        expect(item).to be_valid
+      end
+      it 'is valid with a name that has less than 40 char'do
+        item = build(:item, name: Faker::String.random(40), seller_id: seller.id)
+        expect(item).to be_valid
+      end
+      it 'is valid with a description that has less than 1000 char'do
+        item = build(:item, description: Faker::String.random(1000), seller_id: seller.id)
         expect(item).to be_valid
       end
     end
@@ -27,10 +33,20 @@ describe Item do
         item.valid?
         expect(item.errors[:name]).to include("can't be blank")
       end
+      it "is invalid with a name that has more than 40 char" do
+        item = build(:item, name: Faker::String.random(41), seller_id: seller.id)
+        item.valid?
+        expect(item.errors[:name][0]).to include("is too long")
+      end
       it "is invalid with description nil" do
         item = build(:item, description: nil, seller_id: seller.id)
         item.valid?
         expect(item.errors[:description]).to include("can't be blank")
+      end
+      it "is invalid with a description that has more than 1000 char" do
+        item = build(:item, description: Faker::String.random(1001), seller_id: seller.id)
+        item.valid?
+        expect(item.errors[:description][0]).to include("is too long")
       end
       it "is invalid with price nil" do
         item = build(:item, price: nil, seller_id: seller.id)
