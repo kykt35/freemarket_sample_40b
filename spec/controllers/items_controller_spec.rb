@@ -70,4 +70,25 @@ describe ItemsController, type: :controller do
   end
 
 
+  describe '#show' do
+      context 'viewが正常か'  do
+        it 'showの画面が表示できているか' do
+          item = create(:item,seller_id: user.id,name: "タイトル")
+          get :show, params: {id: item.id}
+          expect(response).to render_template :show
+        end
+        it 'タイトルを取得できるか' do
+          item = create(:item,seller_id: user.id,name: "タイトル")
+          get :show, params: {id: item.id}
+          expect(assigns(:item)).to eq item
+        end
+      end
+    end
 end
+
+
+
+
+
+
+
