@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
   $('.item-photo').slick({
     dots: true,
     infinite: false,
@@ -15,4 +15,3 @@ $(document).ready(function(){
     $('.item-photo').slick('slickGoTo', i, false);}
   });
 });
-
