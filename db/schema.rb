@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2018_12_18_065539) do
+ActiveRecord::Schema.define(version: 2018_12_20_085148) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -70,10 +69,14 @@ ActiveRecord::Schema.define(version: 2018_12_18_065539) do
     t.bigint "postage_select_id", null: false
     t.bigint "prefecture_id", null: false
     t.bigint "leadtime_id", null: false
+    t.bigint "l_category_id"
+    t.bigint "m_category_id"
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["item_condition_id"], name: "index_items_on_item_condition_id"
+    t.index ["l_category_id"], name: "index_items_on_l_category_id"
     t.index ["leadtime_id"], name: "index_items_on_leadtime_id"
+    t.index ["m_category_id"], name: "index_items_on_m_category_id"
     t.index ["postage_select_id"], name: "index_items_on_postage_select_id"
     t.index ["prefecture_id"], name: "index_items_on_prefecture_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
@@ -136,6 +139,8 @@ ActiveRecord::Schema.define(version: 2018_12_18_065539) do
 
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
+  add_foreign_key "items", "categories", column: "l_category_id"
+  add_foreign_key "items", "categories", column: "m_category_id"
   add_foreign_key "items", "item_conditions"
   add_foreign_key "items", "leadtimes"
   add_foreign_key "items", "postage_selects"
