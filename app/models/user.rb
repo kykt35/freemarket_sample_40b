@@ -12,7 +12,8 @@ class User < ApplicationRecord
     data = auth.info
     user = User.where(email: data['email']).first
     unless user.present?
-      user = User.create(nickname: data['name'],
+      nickname = auth.info.name.split(" ")[0]
+      user = User.create(nickname: nickname,
          email: data['email'],
          password: Devise.friendly_token[0,20]
       )
