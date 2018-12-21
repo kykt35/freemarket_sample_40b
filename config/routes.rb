@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   get 'users/logout', to: 'users#logout'
   get 'mypage/identification', to: 'users#identification'
   resources :categories, only: [:index]
+  resources :postage_selects, only: [:index]
+  get 'categories/size_brand', to: 'categories#size_brand'
 end
