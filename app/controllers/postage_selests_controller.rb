@@ -1,0 +1,2 @@
+class PostageSelestsController < ApplicationController
+end
