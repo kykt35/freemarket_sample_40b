@@ -250,7 +250,19 @@
 
 ### Association(postage_selects)
 - has_many :items
+- has_many :postage_selects_shippings, dependent :destroy
+- has_many :shippings, through: :postage_selects_shippings
 
+## PostageSelects_Shippingsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|postage_select_id|reference|null:false, foreign_key:true|
+|shipping_id|reference|null:false, foreign_key:true|
+
+### Association(Postage_selects_Shippings)
+- belongs_to :postage_selects
+- belongs_to :shippings
 
 ## Shippingsテーブル
 
@@ -259,8 +271,9 @@
 |text|string|null:false|
 
 ### Association(shippongs)
-- has_many :items
-
+- has_many :items,
+- has_many :postage_selects_shippings, dependent :destroy
+- has_many :postage_select, through: :postage_selects_shippings
 
 ## Item_conditionsテーブル
 
