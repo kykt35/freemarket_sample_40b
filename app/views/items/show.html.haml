@@ -89,7 +89,7 @@
     .item-button-stop
       =link_to "出品を一旦停止する"
     .item-button-stop
-      =link_to "この商品を削除する" ,method: "DELETE"
+      =link_to "この商品を削除する",item_path(@item),method: "delete"
 - else
   .item-button-container.clearfix
     .item-button-left
