@@ -53,26 +53,18 @@
                   .select-wrap
                     = f.collection_select :l_category_id, Category.where(ancestry: nil), :id, :name, {prompt: "---"}, {class: 'select-default'}
                     %i.fa.fa-angle-down
-                  -if @item.errors[:l_category_id]
-                    %ul.has-error-text
-                      -@item.errors.full_messages_for(:l_category_id).each do |error|
-                        %li=error
                   -if @item[:m_category_id]
                     .select-wrap
                       = f.collection_select :m_category_id, Category.where(id: 2), :id, :name, {prompt: "---"}, {class: 'select-default'}
                       %i.fa.fa-angle-down
-                    -if @item.errors[:m_category_id]
-                      %ul.has-error-text
-                        -@item.errors.full_messages_for(:m_category_id).each do |error|
-                          %li=error
                   -if @item[:category_id]
                     .select-wrap
                       = f.collection_select :category_id, Category.where(id: 3), :id, :name, {prompt: "---"}, {class: 'select-default'}
                       %i.fa.fa-angle-down
-                    -if @item.errors[:category_id]
-                      %ul.has-error-text
-                        -@item.errors.full_messages_for(:category_id).each do |error|
-                          %li=error
+                  -if @item.errors[:category_id]
+                    %ul.has-error-text
+                      -@item.errors.full_messages_for(:category_id).each do |error|
+                        %li=error
                 .form-group
                   =f.label :item_condition_id do
                     商品状態
