@@ -13,7 +13,7 @@
     .item-main-content.clearfix
       .item-photo
         -@item.images.each do |image|
-          =image_tag image
+          =image_tag image,width: 300,hight:300
       %table.item-detail-table
         %tbody
           %tr
