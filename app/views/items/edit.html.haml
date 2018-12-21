@@ -1,0 +1,114 @@
+.single-container
+  =render "shared/single-header"
+  %main.single-main
+    %section.single-container-section
+      #sell-item-container
+        .sell-item-container-inner
+          %h2.single-head 商品の情報を入力
+          =form_with model: @item, local: true, class: "sell-form" do |f|
+            .sell-upload-box
+              %h3.sell-upload-head
+                出品画像
+                %span.form-require 必須
+              %p 最大10枚までアップロードできます
+              =label :images, ""
+              .sell-upload-dropbox.clearfix
+                =f.file_field :images, class: "sell-upload-drop-file", multiple: true
+                %pre
+                  ドラッグアンドドロップ
+                  またはクリックしてファイルをアップロード
+            .sell-content
+              .form-group
+                =f.label :name do
+                  商品名
+                  %span.form-require 必須
+                %div
+                  =f.text_field :name, class: "input-default", placeholder: "商品名（必須 40文字まで)"
+              .form-group
+                =f.label :description do
+                  商品の説明
+                  %span.form-require 必須
+                %div
+                  =f.text_area :description, class: "textarea-default",rows: 5, placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。"
+            .sell-content.clearfix
+              %h3.sell-sub-head 商品詳細
+              .sell-form-box
+                .form-group
+                  =f.label :l_category_id do
+                    カテゴリ
+                    %span.form-require 必須
+                  .select-wrap
+                    = f.collection_select :l_category_id, Category.where(id: 1), :id, :name, {prompt: "---"}, {class: 'select-default'}
+                    %i.fa.fa-angle-down
+                  .select-wrap
+                    = f.collection_select :m_category_id, Category.where(id: 2), :id, :name, {prompt: "---"}, {class: 'select-default'}
+                    %i.fa.fa-angle-down
+                  .select-wrap
+                    = f.collection_select :category_id, Category.where(id: 3), :id, :name, {prompt: "---"}, {class: 'select-default'}
+                    %i.fa.fa-angle-down
+                .form-group
+                  =f.label :item_condition_id do
+                    商品状態
+                    %span.form-require 必須
+                  .select-wrap
+                    =f.collection_select :item_condition_id, ItemCondition.all, :id, :text, {prompt: "---"}, {class: 'select-default'}
+                    %i.fa.fa-angle-down
+            .sell-content.clearfix
+              %h3.sell-sub-head 配送について
+              =link_to "?", "https://www.mercari.com/jp/help_center/article/68/", class: "form-question"
+              .sell-form-box
+                .form-group
+                  =f.label :postage_select_id do
+                    配送料の負担
+                    %span.form-require 必須
+                  .select-wrap
+                    =f.collection_select :postage_select_id, PostageSelect.all, :id, :text, {prompt: "---"}, {class: 'select-default'}
+                    %i.fa.fa-angle-down
+                .form-group
+                  =f.label :shipping_id do
+                    配送方法
+                    %span.form-require 必須
+                  .select-wrap
+                    =f.collection_select :shipping_id, Shipping.all, :id, :text, {prompt: "---"}, {class: 'select-default'}
+                    %i.fa.fa-angle-down
+                .form-group
+                  =f.label :prefecture_id do
+                    発送元の地域
+                    %span.form-require 必須
+                  .select-wrap
+                    =f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "---"}, {class: 'select-default'}
+                    %i.fa.fa-angle-down
+                .form-group
+                  =f.label :leadtime_id do
+                    発送までの日数
+                    %span.form-require 必須
+                  .select-wrap
+                    =f.collection_select :leadtime_id, Leadtime.all, :id, :text, {prompt: "---"}, {class: 'select-default'}
+                    %i.fa.fa-angle-down
+            .sell-content.clearfix
+              %h3.sell-sub-head 販売価格(300〜9,999,999)
+              =link_to "?", "https://www.mercari.com/jp/help_center/article/64/", class: "form-question"
+              .sell-form-box
+                %ul.sell-price
+                  %li.form-group
+                    .clearfix
+                      =f.label :price, class: "l-left" do
+                        価格
+                        %span.form-require 必須
+                      .sell-price-input.l-right
+                        ¥
+                        %div
+                          =f.text_field :price, class: "input-default",placeholder: "例）300"
+                  %li.clearfix.salse-commission
+                    .l-left.salse-commission-text
+                      販売手数料 (10%)
+                    .l-right.salse-commission-value -
+
+                  %li.clearfix.salse-profit
+                    .l-left.salse-profit-text
+                      販売利益
+                    .l-right.salse-profit-value -
+            .sell-btn-box.sell-content
+              = f.submit '変更する' , class: "sell-btn-box-btn btn-default btn-red"
+              =link_to "もどる", item_path, class:"return-btn btn-default btn-gray"
+=render "shared/single-footer"
