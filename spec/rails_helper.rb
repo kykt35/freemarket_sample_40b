@@ -69,3 +69,7 @@ RSpec.configure do |config|
    require Rails.root.join("db","seeds")
   end
 end
+
+
+
+
