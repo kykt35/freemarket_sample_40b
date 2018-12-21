@@ -88,3 +88,4 @@ gem 'jquery-rails'
 gem 'mechanize'
 gem 'ancestry'
 gem "gretel"
+gem "aws-sdk-s3", require: false
