@@ -1,6 +1,7 @@
 .default-container
   =render "shared/pc-header"
   =render "shared/bread-crumbs"
+
   %section.item-box-container.single-container-section
     %h1.item-name 
       =@item.name
@@ -72,23 +73,37 @@
       %span.item-price-box-price ¥#{@item.price}
       %span.item-price-box-tax (税込)
       %span.item-price-box-shipping-fee 送料込み
-    =link_to "購入画面に進む", "", class: "item-buy-btn btn-default btn-red"
+      - if user_signed_in? && current_user.id == @item.seller_id
+        =link_to "購入画面に進む", "", class: "item-buy-btn btn-default btn-red",style: "visibility:hidden;"
+      - else
+        =link_to "購入画面に進む", "", class: "item-buy-btn btn-default btn-red"
     .item-description
       %p.item-description-inner
         =@item.description
-    .item-button-container.clearfix
-      .item-button-left
-        %buttom.item-button.item-button-like
-          %i.far.fa-heart
-          %span いいね！
-          %span 1
-        =link_to "#", class: "item-button item-button-report clearfix" do
-          %i.far.fa-flag
-          %span 不適切な商品の報告
-      .item-button-right
-        =link_to "#" do
-          %i.fas.fa-lock
-          %span あんしん・あんぜんの取り組み
+- if user_signed_in? && current_user.id == @item.seller_id
+  .item-button-edit-delete
+    .item-button-edit
+      =link_to "商品を編集する"
+    .item-button-or
+      %span or
+    .item-button-stop
+      =link_to "出品を一旦停止する"
+    .item-button-stop
+      =link_to "この商品を削除する" ,method: "DELETE"
+- else
+  .item-button-container.clearfix
+    .item-button-left
+      %buttom.item-button.item-button-like
+        %i.far.fa-heart
+        %span いいね！
+        %span 1
+      =link_to "#", class: "item-button item-button-report clearfix" do
+        %i.far.fa-flag
+        %span 不適切な商品の報告
+    .item-button-right
+      =link_to "#" do
+        %i.fas.fa-lock
+        %span あんしん・あんぜんの取り組み
   .item-detail-comment
     .item-detail-comment-container
       .item-detail-comment-content
