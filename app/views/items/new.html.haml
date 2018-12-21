@@ -92,17 +92,6 @@
                       -@item.errors.full_messages_for(:postage_select_id).each do |error|
                         %li=error
                 .form-group
-                  =f.label :shipping_id do
-                    配送方法
-                    %span.form-require 必須
-                  .select-wrap
-                    =f.collection_select :shipping_id, Shipping.all, :id, :text, {prompt: "---"}, {class: 'select-default'}
-                    %i.fa.fa-angle-down
-                  -if @item.errors[:shipping_id]
-                    %ul.has-error-text
-                      -@item.errors.full_messages_for(:shipping_id).each do |error|
-                        %li=error
-                .form-group
                   =f.label :prefecture_id do
                     発送元の地域
                     %span.form-require 必須
