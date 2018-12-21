@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   get 'users/signup', to: 'users#signup'
   get 'users/logout', to: 'users#logout'
   get 'mypage/identification', to: 'users#identification'
+  resources :categories, only: [:index]
 end
