@@ -46,7 +46,7 @@
             .sell-content.clearfix
               %h3.sell-sub-head 商品詳細
               .sell-form-box
-                .form-group
+                .form-group.form-group-category
                   =f.label :l_category_id do
                     カテゴリ
                     %span.form-require 必須
@@ -65,7 +65,7 @@
                     %ul.has-error-text
                       -@item.errors.full_messages_for(:category_id).each do |error|
                         %li=error
-                .form-group
+                .form-group.form-group-item_condition
                   =f.label :item_condition_id do
                     商品状態
                     %span.form-require 必須
@@ -80,7 +80,7 @@
               %h3.sell-sub-head 配送について
               =link_to "?", "#", class: "form-question"
               .sell-form-box
-                .form-group
+                .form-group.form-group-postage_select
                   =f.label :postage_select_id do
                     配送料の負担
                     %span.form-require 必須
@@ -91,7 +91,7 @@
                     %ul.has-error-text
                       -@item.errors.full_messages_for(:postage_select_id).each do |error|
                         %li=error
-                .form-group
+                .form-group.form-group-prefecture
                   =f.label :prefecture_id do
                     発送元の地域
                     %span.form-require 必須
@@ -102,7 +102,7 @@
                     %ul.has-error-text
                       -@item.errors.full_messages_for(:prefecture_id).each do |error|
                         %li=error
-                .form-group
+                .form-group.form-group-leadtime
                   =f.label :leadtime_id do
                     発送までの日数
                     %span.form-require 必須
@@ -131,15 +131,15 @@
                           %ul.has-error-text
                             -@item.errors.full_messages_for(:price).each do |error|
                               %li=error
-                  %li.clearfix.salse-commission
-                    .l-left.salse-commission-text
+                  %li.clearfix.sell-commission
+                    .l-left.sell-commission-text
                       販売手数料 (10%)
-                    .l-right.salse-commission-value -
+                    .l-right.sell-commission-value -
 
-                  %li.clearfix.salse-profit
-                    .l-left.salse-profit-text
+                  %li.clearfix.sell-profit
+                    .l-left.sell-profit-text
                       販売利益
-                    .l-right.salse-profit-value -
+                    .l-right.sell-profit-value -
             .sell-btn-box.sell-content
               .sell-btn-box-precaution
                 %p
