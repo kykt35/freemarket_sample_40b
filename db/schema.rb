@@ -157,4 +157,6 @@ ActiveRecord::Schema.define(version: 2018_12_21_041007) do
   add_foreign_key "items", "shippings"
   add_foreign_key "items", "sizes"
   add_foreign_key "items", "users", column: "seller_id"
+  add_foreign_key "postage_selects_shippings", "postage_selects"
+  add_foreign_key "postage_selects_shippings", "shippings"
 end
