@@ -15,7 +15,7 @@ $(document).on('turbolinks:load', function() {
     $('.item-photo').slick('slickGoTo', i, false);}
   });
 
-  // カテゴリセレクトでサブカテゴリ追加
+  // 大カテゴリセレクトで中カテゴリ追加
   $('#item_l_category_id').on('change',function(e){
     e.preventDefault();
     var category_id = $('#item_l_category_id option:selected').val()
@@ -64,7 +64,7 @@ $(document).on('turbolinks:load', function() {
     })
   });
 
-  // カテゴリセレクトでサブサブカテゴリ追加
+  // 中カテゴリセレクトで小カテゴリ追加
   $(document).on("change", "#item_m_category_id", function (e) {
     e.preventDefault();
     var category_id = $('#item_m_category_id option:selected').val()
@@ -109,7 +109,7 @@ $(document).on('turbolinks:load', function() {
     })
   });
 
-    // カテゴリ選択で必要な時にサイズとブランドを表示
+    // 小カテゴリ選択で必要な時にサイズとブランドを表示
   $(document).on("change", "#item_category_id", function (e) {
     e.preventDefault();
     var category_id = $('#item_category_id option:selected').val()
@@ -151,7 +151,7 @@ $(document).on('turbolinks:load', function() {
         $('.form-group-category').after(formgroup);
         $('#item_size_id').append(options);
 
-        if (datas.brand.flag){
+        if (datas.hasBrand){
           var formgroup =
             `<div class="form-group form-group-brand">
               <label for="item_brand_id">ブランド
@@ -216,6 +216,7 @@ $(document).on('turbolinks:load', function() {
       }else{
         select = $('#item_shipping_id');
         select.children().remove()
+        select.append(`<option value >---</option>`);
         options = datas.map(function(data){
           option = $('<option>',{value: data.id, text: data.text});
           return option;
@@ -227,6 +228,8 @@ $(document).on('turbolinks:load', function() {
       console.log("fail");
     })
   });
+
+  //価格入力時に手数料、収益を表示
   $(document).on("keyup", "#item_price", function (e) {
     var price = Number($(this).val());
     if ((price >= 300) && (price < 10000000)) {
