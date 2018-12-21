@@ -84,6 +84,27 @@ describe ItemsController, type: :controller do
         end
       end
     end
+
+    describe '#edit' do
+      context '@itemの情報が取れている' do
+      it 'has a 200 status code' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'assigns @item' do
+        item = create(:item)
+        get :edit, params: {id: item.id}
+        expect(assigns(:item)).to eq item
+      end
+
+      it 'renders the :edit template' do
+        item = create(:item)
+        get :edit, params: {id: item.id}
+        expect(response).to render_template :edit
+      end
+    end
+  end
+
 end
 
 
