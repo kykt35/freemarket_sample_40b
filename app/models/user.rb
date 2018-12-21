@@ -7,4 +7,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :sns_credentials
+  def self.create_from_auth!(auth)
+  #authの情報を元にユーザー生成の処理を記述
+    data = auth.info
+    user = User.where(email: data['email']).first
+    unless user.present?
+      user = User.create(nickname: data['name'],
+         email: data['email'],
+         password: Devise.friendly_token[0,20]
+      )
+    end
+    return user
+  end
 end
