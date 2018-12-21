@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_20_085148) do
+ActiveRecord::Schema.define(version: 2018_12_21_041007) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -94,6 +94,15 @@ ActiveRecord::Schema.define(version: 2018_12_20_085148) do
     t.string "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "postage_selects_shippings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "postage_select_id", null: false
+    t.bigint "shipping_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["postage_select_id"], name: "index_postage_selects_shippings_on_postage_select_id"
+    t.index ["shipping_id"], name: "index_postage_selects_shippings_on_shipping_id"
   end
 
   create_table "prefectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
