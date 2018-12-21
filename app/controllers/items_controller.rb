@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :set_item, only: [:show, :edit, :update]
 
   def new
     @item = Item.new()
@@ -15,6 +16,24 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item), notice: 'アイテムを編集しました。'
+    else
+      render :edit
+    end
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
   private
