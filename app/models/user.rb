@@ -8,16 +8,16 @@ class User < ApplicationRecord
 
   has_many :sns_credentials
   def self.create_from_auth!(auth)
-  #authの情報を元にユーザー生成の処理を記述
     data = auth.info
-    user = User.where(email: data['email']).first
-    unless user.present?
-      nickname = auth.info.name.split(" ")[0]
-      user = User.create(nickname: nickname,
-         email: data['email'],
-         password: Devise.friendly_token[0,20]
-      )
-    end
-    return user
+    nickname = auth.info.name.split(" ")[0]
+    user = User.where(email: data['email']).first_or_create(
+      nickname: nickname,
+      email: data['email'],
+      password: Devise.friendly_token[0,20])
+    user_uid = SnsCredential.where(uid: auth['uid']).first_or_create(
+      :user => user,
+      :uid => auth['uid'],
+      :provider => auth['provider'])
+    return user_uid
   end
 end
