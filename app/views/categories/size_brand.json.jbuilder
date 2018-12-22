@@ -4,4 +4,4 @@ json.set! :size do
     json.name  size.name
   end
 end
-json.hasBrand @has_brand
+json.hasBrand @hasBrand
