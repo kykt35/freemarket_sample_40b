@@ -6,3 +6,13 @@ ja:
         password: パスワード
         password_confirmation: パスワード(確認)
         email: メールアドレス
+      item:
+        name: 商品名
+        description: 商品の説明
+        category_id: カテゴリ
+        item_condition_id: 商品状態
+        postage_select_id: 配送料の負担
+        shipping_id: 配送方法
+        prefecture_id: 発送元の地域
+        leadtime_id: 発送までの日数
+        price: 価格
