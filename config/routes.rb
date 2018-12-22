@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
+  devise_scope :user do
+    match "/auth/:provider/callback", to: "sessions#create",via: [:get, :post]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#index'
   get 'mypage' => 'users#mypage'
