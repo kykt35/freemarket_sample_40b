@@ -76,3 +76,22 @@ end
   leadtime = Leadtime.where(text: ltime).first_or_initialize(text: ltime)
   leadtime.save
 end
+
+# 着払い(購入者負担)
+postage = PostageSelect.find_by(text: "着払い(購入者負担)")
+shippings = %w(未定 クロネコヤマト ゆうパック ゆうメール)
+shippings.each do |s|
+  shipping =   Shipping.find_by(text: s)
+  ps = PostageSelectsShipping.where(postage_select_id: postage.id,shipping_id: shipping.id).first_or_initialize(postage_select_id: postage.id,shipping_id: shipping.id)
+  ps.save
+end
+
+# 送料込み(出品者負担)
+postage = PostageSelect.find_by(text: "送料込み(出品者負担)")
+shippings = %w(未定 らくらくメルカリ便 ゆうメール レターパック 普通郵便(定形、定形外) クロネコヤマト ゆうパック クリックポスト ゆうパケット)
+shippings.each do |s|
+  shipping =   Shipping.find_by(text: s)
+  ps = PostageSelectsShipping.where(postage_select_id: postage.id,shipping_id: shipping.id).first_or_initialize(postage_select_id: postage.id,shipping_id: shipping.id)
+  ps.save
+end
+
