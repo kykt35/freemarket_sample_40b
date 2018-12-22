@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
       format.json{
         m_category = Category.find(params[:id]).parent
         @sizes = m_category.sizes
-        @hasBrand = m_category.hasrand
+        @hasBrand = m_category.hasBrand
       }
     end
   end
