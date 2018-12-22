@@ -85,6 +85,6 @@ gem 'mini_magick'
 gem 'fog-aws'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
-gem 'mechanize'
 gem 'ancestry'
 gem "gretel"
+gem "aws-sdk-s3", require: false
