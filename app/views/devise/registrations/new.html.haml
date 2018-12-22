@@ -13,15 +13,15 @@
           = f.text_field :nickname, autofocus: true,placeholder:"例）メルカリ太郎",class: "input-default"
         .field
           = f.label :email,"メールアドレス",class: "label"
-          = f.label :nickname,"必須",class: "form-require"
+          = f.label :email,"必須",class: "form-require"
           = f.email_field :email, autofocus: true, autocomplete: "email",placeholder:"PC・携帯どちらでも可",class: "input-default"
         .field
           = f.label :password, "パスワード",class: "label"
-          = f.label :nickname,"必須",class: "form-require"
+          = f.label :password,"必須",class: "form-require"
           = f.password_field :password, autocomplete: "new-password",placeholder:"６文字以上",class: "input-default"
         .field
           = f.label :password_confirmation, "パスワード（確認）",class: "label"
-          = f.label :nickname,"必須",class: "form-require"
+          = f.label :password_confirmation,"必須",class: "form-require"
           = f.password_field :password_confirmation, autocomplete: "new-password",placeholder:"６文字以上",class: "input-default"
         .field
           .g-recaptcha{"data-callback": "clearcall", "data-sitekey": "6LdrEYAUAAAAALRAUuH0ifiAxMKih7ajkhe-g0Gj"}
