@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :set_item, only: [:show, :edit, :update]
+
   def new
     @item = Item.new()
     #商品登録
@@ -13,6 +16,29 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item), notice: 'アイテムを編集しました。'
+    else
+      render :edit
+    end
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy if item.seller_id == current_user.id
   end
 
   private
