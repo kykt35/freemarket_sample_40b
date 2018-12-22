@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   get 'mypage/card' => 'users#card'
   get 'mypage/card/add' => 'users#add'
   get 'mypage/profile' => 'users#profile'
-  get 'users/registration_card' => 'users#registration_card'
-  resources :items, only: [:new, :show, :create, :edit, :update]
-  resources :transaction, only: [:new]
+  get 'mypage/identification', to: 'users#identification'
   get 'users/signup', to: 'users#signup'
   get 'users/logout', to: 'users#logout'
-  get 'mypage/identification', to: 'users#identification'
+  get 'users/registration_card' => 'users#registration_card'
+  resources :items, only: [:new, :show, :create, :destroy, :edit, :update]
+  resources :transaction, only: [:new]
 end
