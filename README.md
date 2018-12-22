@@ -292,6 +292,8 @@
 
 ### Association(sizes)
 - has_many :items
+- has_many :categories_sizes, dependent :destroy
+- has_many :categories, through: :categories_sizes
 
 
 ## Categoriesテーブル
@@ -305,6 +307,20 @@
 - has_many :items
 - has_many :children, class_name: "Category"
 - belongs_to :parent, class_name: "Category"
+- has_many :categories_sizes, dependent :destroy
+- has_many :sizes, through: :categories_sizes
+
+
+## Categories_Sizesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|category_id|reference|null:false|
+|size_id|reference|null:false|
+
+### Association(sizes)
+- belongs_to :category
+- belongs_to :size
 
 ## Brandsテーブル
 
