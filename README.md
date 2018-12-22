@@ -119,7 +119,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |saler_id|references|null: false,foreign_key: true|
-|brand_id|references|foreign_key: true|
+|brand|string||
 |category_id|references|null: false,foreign_key: true|
 |size_id|references|foreign_key: true|
 |item_condition_id|references|null: false,foreign_key: true|
@@ -135,7 +135,6 @@
 ### Association
 - has_many :transactions
 - belongs_to :user
-- belongs_to :brand
 - belongs_to :category
 - belongs_to :size
 - belongs_to :item_condition
