@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   get 'users/registration_card' => 'users#registration_card'
   resources :items, only: [:new, :show, :create, :destroy, :edit, :update]
   resources :transaction, only: [:new]
+  get 'mypage/identification', to: 'users#identification'
+  resources :categories, only: [:index]
+  resources :postage_selects, only: [:index]
+  get 'categories/size_brand', to: 'categories#size_brand'
 end

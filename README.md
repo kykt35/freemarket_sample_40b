@@ -119,7 +119,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |saler_id|references|null: false,foreign_key: true|
-|brand_id|references|foreign_key: true|
+|brand|string||
 |category_id|references|null: false,foreign_key: true|
 |size_id|references|foreign_key: true|
 |item_condition_id|references|null: false,foreign_key: true|
@@ -135,7 +135,6 @@
 ### Association
 - has_many :transactions
 - belongs_to :user
-- belongs_to :brand
 - belongs_to :category
 - belongs_to :size
 - belongs_to :item_condition
@@ -250,7 +249,19 @@
 
 ### Association(postage_selects)
 - has_many :items
+- has_many :postage_selects_shippings, dependent :destroy
+- has_many :shippings, through: :postage_selects_shippings
 
+## PostageSelects_Shippingsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|postage_select_id|reference|null:false, foreign_key:true|
+|shipping_id|reference|null:false, foreign_key:true|
+
+### Association(Postage_selects_Shippings)
+- belongs_to :postage_selects
+- belongs_to :shippings
 
 ## Shippingsテーブル
 
@@ -259,8 +270,9 @@
 |text|string|null:false|
 
 ### Association(shippongs)
-- has_many :items
-
+- has_many :items,
+- has_many :postage_selects_shippings, dependent :destroy
+- has_many :postage_select, through: :postage_selects_shippings
 
 ## Item_conditionsテーブル
 
@@ -280,6 +292,8 @@
 
 ### Association(sizes)
 - has_many :items
+- has_many :categories_sizes, dependent :destroy
+- has_many :categories, through: :categories_sizes
 
 
 ## Categoriesテーブル
@@ -293,6 +307,20 @@
 - has_many :items
 - has_many :children, class_name: "Category"
 - belongs_to :parent, class_name: "Category"
+- has_many :categories_sizes, dependent :destroy
+- has_many :sizes, through: :categories_sizes
+
+
+## Categories_Sizesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|category_id|reference|null:false|
+|size_id|reference|null:false|
+
+### Association(sizes)
+- belongs_to :category
+- belongs_to :size
 
 ## Brandsテーブル
 
