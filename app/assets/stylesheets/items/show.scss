@@ -251,3 +251,46 @@
   }
 }
 
+
+.item-button-edit-delete {
+  text-align: center;
+  background:#fff;
+  width:700px;
+  margin:0 auto;
+  margin-top: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  .item-button-edit {
+    height:50px;
+    line-height:50px;
+    width:650px;
+    background: #ea352d;
+    margin:0 auto;
+  }
+   a {
+    color:#fff;
+    text-decoration:none;
+   }
+  .item-button-or {
+    color: #000;
+    font-size:16px;
+    margin-top: 10px;
+  }
+  .item-button-stop {
+    height:50px;
+    line-height:50px;
+    width:650px;
+    background: #aaa;
+    margin:0 auto;
+    margin-top: 10px;
+  }
+  .item-button-delete {
+    height:50px;
+    line-height:50px;
+    width:650px;
+    background: #aaa;
+    margin:0 auto;
+    margin-top: 10px;
+  }
+}
+
