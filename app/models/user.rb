@@ -14,7 +14,7 @@ class User < ApplicationRecord
       nickname: nickname,
       email: data['email'],
       password: Devise.friendly_token[0,20])
-    user_uid = SnsCredential.where(uid: auth['uid']).first_or_create(
+    user_uid = SnsCredential.where(uid: auth['uid'],provider: auth['provider']).first_or_create(
       user: user,
       uid: auth['uid'],
       provider: auth['provider'])
