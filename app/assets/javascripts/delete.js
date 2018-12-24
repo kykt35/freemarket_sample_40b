@@ -6,3 +6,4 @@ $(function () {
     $('#modalArea').fadeOut();
   });
 });
+

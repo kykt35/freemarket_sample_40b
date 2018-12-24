@@ -85,7 +85,6 @@ describe ItemsController, type: :controller do
       end
     end
 
-<<<<<<< HEAD
   describe '#destroy' do
     context'削除機能確認' do
       it '削除ボタンを押すとitemの情報が削除される' do
@@ -95,7 +94,7 @@ describe ItemsController, type: :controller do
       end
     end
   end
-=======
+
     describe '#edit' do
       context '@itemの情報が取れている' do
       it 'has a 200 status code' do
@@ -115,8 +114,6 @@ describe ItemsController, type: :controller do
       end
     end
   end
-
->>>>>>> kanchimatsumoto/master
 end
 
 
