@@ -8,8 +8,8 @@ class User < ApplicationRecord
 
   has_many :sns_credentials
   def self.create_from_auth!(auth)
-    data = auth.info
-    nickname = auth.info.name.split(" ")[0]
+    data = auth['info']
+    nickname = auth['info']['name'].split(" ")[0]
     user = User.where(email: data['email']).first_or_create(
       nickname: nickname,
       email: data['email'],
