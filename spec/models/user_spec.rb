@@ -71,4 +71,40 @@ RSpec.describe User do
       end
     end
   end
+  describe".create_from_auth!(auth)" do
+    let!(:user){ user = create(:user, email: "aaaa@email.com")}
+    auth = { "provider" => "test", "uid" => 1000000, "info" => { "email" => "sample@email.com", "name" => "test user" } }
+
+    it "Usersテーブルに引数と同じemailがないとき、新たなuserを作ること" do
+      User.create_from_auth!(auth)
+      expect(User.last(1)).to eq User.where(email: "sample@email.com")
+    end
+    it "Usersテーブルに引数と同じemailがあるとき、それをuserとすること" do
+      auth['info']['email'] = "aaaa@email.com"
+      credential = User.create_from_auth!(auth)
+      find_user = credential.user
+      expect(find_user).to eq  User.find(user.id)
+      auth = { "provider" => "test", "uid" => 1000000, "info" => { "email" => "sample@email.com", "name" => "test user" } }
+    end
+    it "SnsCredentialsテーブルに引数と同じproviderのuidとがないとき、新たなsns_credentialを作ること" do
+      User.create_from_auth!(auth)
+      expect(SnsCredential.last(1)).to eq SnsCredential.where(uid: 1000000, provider: "test")
+    end
+    it "SnsCredentialsテーブルに引数と同じuidが存在していても違うプロバイダーなら、新たなsns_credentialを作ること" do
+      sns_credential = SnsCredential.create(uid: 1000000, provider: "test2", user_id: 1)
+      User.create_from_auth!(auth).save
+      expect(SnsCredential.last(1)).to eq SnsCredential.where(uid: 1000000, provider: "test")
+    end
+    it "SnsCredentialsテーブルに引数と同じproviderのuidとがあるとき、それをsns_credentialとすること" do
+      sns_credential = SnsCredential.create(uid: 1000000, provider: "test", user_id: 1)
+      credential = User.create_from_auth!(auth)
+      expect(credential).to eq sns_credential
+    end
+    auth = { "provider" => "test", "uid" => 1000000, "info" => { "email" => "sample@email.com", "name" => "test user" } }
+    it "保存されるnicknameがスペースで区切られていたら、一番最初の区切りをnicknameにすること" do
+      new_credential = User.create_from_auth!(auth)
+      @user = new_credential.user
+      expect(@user.nickname).to eq "test"
+    end
+  end
 end
