@@ -8,7 +8,7 @@
       %div.l-logout-container
         %form.l-single-inner{action: "",mathod:"POST",novalidate:"novalidate"}
           %div.l-single-content
-            %button.btn-default.btn-red{type:"submit"}ログアウト
+            =link_to "ログアウト", destroy_user_session_path, class: "btn-default btn-red",method: :delete
             %input{type:"hidden",value:"",name:"__csrf_value"}
 
     = render partial:"users/side-bar"

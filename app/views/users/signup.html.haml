@@ -9,11 +9,12 @@
         .account__form_group
           = link_to "メールアドレスで登録", new_user_registration_path
           = fa_icon 'envelope', class: 'icon'
-        %button#facebook-login.button-default.btn-sns.btn-facebook
-          %i.fab.fa-facebook-square.icon
-          %p Facebookで登録
-        %button#google-login.button-default.btn-sns.btn-google
-          %i.fab.fa-google-plus-g.icon
-          %p Googleで登録
+        .login__form_innner
+          =link_to '/auth/facebook',id: "facebook-login",class: "button-default btn-sns btn-facebook" do
+            %i.fab.fa-facebook-square.icon
+            %p Facebookで登録
+          =link_to '/auth/google_oauth2', id: "google-login", class: "button-default btn-sns btn-google" do
+            %i.fab.fa-google-plus-g.icon
+            %p Googleで登録
   %footer.single__footer
     = render partial:"shared/single-footer"
