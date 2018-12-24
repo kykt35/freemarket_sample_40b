@@ -219,33 +219,33 @@
       vertical-align: middle;
       text-align: center;
     }
-    .share-btn {
+  .share-btn {
+    display: block;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+    line-height: 44px;
+    color: #fff;
+    box-sizing: border-box;
+    &-facebook {
+      background: $facebookColor;
+    }
+    &-twitter {
+      background: $twitterColor;
+    }
+    &-line {
+      background: $lineColor;
+    }
+    &-printerest {
+      background: $printerestColor;
+    }
+    .icon-sns {
       display: block;
-      position: relative;
-      width: 44px;
-      height: 44px;
-      border-radius: 4px;
-      line-height: 44px;
-      color: #fff;
-      box-sizing: border-box;
-      &-facebook {
-        background: $facebookColor;
-      }
-      &-twitter {
-        background: $twitterColor;
-      }
-      &-line {
-        background: $lineColor;
-      }
-      &-printerest {
-        background: $printerestColor;
-      }
-      .icon-sns {
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       }
     }
   }
@@ -310,7 +310,7 @@
   margin-top:-10px;
 }
 
-  .modalArea {
+.modalArea {
   display: none;
   position: fixed;
   z-index: 10; /*サイトによってここの数値は調整 */
@@ -380,5 +380,5 @@ button {
   background: #aaa;
   font-size:13px;
   color:#fff;
-}
+  }
 }
