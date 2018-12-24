@@ -1,2 +1,2 @@
-json.image @image_blob
+json.imageKey @image_blob.key
 
