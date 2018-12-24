@@ -39,10 +39,18 @@ $(document).on('turbolinks:load', function() {
       contentType: false
     })
     .done(function(data){
-      buildItemHTML(imageFile,data.image.key)
+      buildItemHTML(imageFile, data.imageKey)
     })
     .fail(function(){
       alert('サーバーとの通信に失敗しました');
     })
   }
+
+  $('.sell-upload-drop-file').on('change',function(e){
+    var files = e.target.files;
+    for (var i = 0; i < files.length; i++) {
+      uploadImage(files[i]);
+    }
+    $('.sell-upload-drop-file').val('');
+  });
 });
