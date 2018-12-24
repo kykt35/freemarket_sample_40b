@@ -84,6 +84,16 @@ describe ItemsController, type: :controller do
         end
       end
     end
+
+  describe '#destroy' do
+    context'削除機能確認' do
+      it '削除ボタンを押すとitemの情報が削除される' do
+        item = create(:item,seller_id: user.id)
+        delete :destroy,params: {id: item.id}
+        expect(response).to render_template :destroy
+      end
+    end
+  end
 end
 
 
