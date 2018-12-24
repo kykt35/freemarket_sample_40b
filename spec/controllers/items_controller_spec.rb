@@ -55,7 +55,6 @@ describe ItemsController, type: :controller do
           expect(response).to render_template :new
         end
       end
-
     end
     context 'not logged in' do
         subject{
@@ -105,23 +104,21 @@ describe ItemsController, type: :controller do
       end
 
       it 'assigns @item' do
-        item = create(:item)
+        login user
+        item = create(:item,seller_id: user.id)
         get :edit, params: {id: item.id}
         expect(assigns(:item)).to eq item
       end
 
       it 'renders the :edit template' do
-        item = create(:item)
+        login user
+        item = create(:item,seller_id: user.id)
         get :edit, params: {id: item.id}
         expect(response).to render_template :edit
       end
     end
   end
 end
-
-
-
-
 
 
 
