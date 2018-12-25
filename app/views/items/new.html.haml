@@ -5,7 +5,6 @@
       #sell-item-container
         .sell-item-container-inner
           %h2.single-head 商品の情報を入力
-
           =form_with model: @item, local: true, class: "sell-form" do |f|
             .sell-upload-box
               %h3.sell-upload-head
@@ -23,7 +22,6 @@
                         .sell-upload-button
                           =link_to "編集", "", class: "sell-upload-edit"
                           =link_to "削除", "", class: "sell-upload-delete"
-
                 =label :images, "", for: "item_images" do
                   .sell-upload-dropbox.clearfix{class: "have-item-#{@item.images.length}"}
                     =f.file_field :images, class: "sell-upload-drop-file", multiple: true, style: "display: none;"
