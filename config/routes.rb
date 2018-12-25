@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   resources :categories, only: [:index]
   resources :postage_selects, only: [:index]
   get 'categories/size_brand', to: 'categories#size_brand'
+  post 'items/upload_image', to: 'items#upload_image'
 end

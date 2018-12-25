@@ -5,23 +5,27 @@
       #sell-item-container
         .sell-item-container-inner
           %h2.single-head 商品の情報を入力
-
           =form_with model: @item, local: true, class: "sell-form" do |f|
             .sell-upload-box
               %h3.sell-upload-head
                 出品画像
                 %span.form-require 必須
               %p 最大10枚までアップロードできます
-              =label :images, ""
-              .sell-upload-dropbox.clearfix
-                =f.file_field :images, class: "sell-upload-drop-file", multiple: true
-                %pre
-                  ドラッグアンドドロップ
-                  またはクリックしてファイルをアップロード
-              -if @item.errors[:images]
-                %ul.has-error-text
-                  -@item.errors.full_messages_for(:images).each do |error|
-                    %li=error
+              .sell-dropbox-container.clearfix
+                .sell-upload-items{class: "have-item-#{@item.images.length}"}
+                  %ul
+                    -if @item.images.attached?
+                      =render partial: 'uploaded_image', collection: @item.images, locals: {form: f}
+                =label :images, "", for: "item_images" do
+                  .sell-upload-dropbox.clearfix{class: "have-item-#{@item.images.length}"}
+                    =f.file_field :images, class: "sell-upload-drop-file", multiple: true, style: "display: none;"
+                    %pre
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルをアップロード
+                  -if @item.errors[:images]
+                    %ul.has-error-text
+                      -@item.errors.full_messages_for(:images).each do |error|
+                        %li=error
             .sell-content
               .form-group
                 =f.label :name do
@@ -55,11 +59,11 @@
                     %i.fa.fa-angle-down
                   -if @item[:m_category_id]
                     .select-wrap
-                      = f.collection_select :m_category_id, Category.where(id: 2), :id, :name, {prompt: "---"}, {class: 'select-default'}
+                      = f.collection_select :m_category_id, Category.find(@item.l_category_id).children, :id, :name, {prompt: "---"}, {class: 'select-default'}
                       %i.fa.fa-angle-down
                   -if @item[:category_id]
                     .select-wrap
-                      = f.collection_select :category_id, Category.where(id: 3), :id, :name, {prompt: "---"}, {class: 'select-default'}
+                      = f.collection_select :category_id, Category.find(@item.m_category_id).children, :id, :name, {prompt: "---"}, {class: 'select-default'}
                       %i.fa.fa-angle-down
                   -if @item.errors[:category_id]
                     %ul.has-error-text
