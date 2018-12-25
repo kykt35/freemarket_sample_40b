@@ -1,0 +1,7 @@
+%li.sell-upload-item{class: "upload-item-#{@item.images.index(uploaded_image) + 1}"}
+  =form.hidden_field :uploaded_image, {name: "item[uploaded_images][]",value: "#{uploaded_image.blob.key}"}
+  %figure.sell-upload-figure
+    =image_tag uploaded_image.variant(resize: "150x150")
+  .sell-upload-button
+    =link_to "編集", "", class: "sell-upload-edit"
+    =link_to "削除", "", class: "sell-upload-delete"

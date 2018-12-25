@@ -14,14 +14,8 @@
               .sell-dropbox-container.clearfix
                 .sell-upload-items{class: "have-item-#{@item.images.length}"}
                   %ul
-                    -@item.images.each do |image|
-                      %li.sell-upload-item{class: "upload-item-#{@item.images.length}"}
-                        =f.hidden_field :uploaded_image, {name: "item[uploaded_images][]",value: "#{image.blob.key}"}
-                        %figure.sell-upload-figure
-                          =image_tag image.variant(resize: "150x150")
-                        .sell-upload-button
-                          =link_to "編集", "", class: "sell-upload-edit"
-                          =link_to "削除", "", class: "sell-upload-delete"
+                    -if @item.images.attached?
+                      =render partial: 'uploaded_image', collection: @item.images, locals: {form: f}
                 =label :images, "", for: "item_images" do
                   .sell-upload-dropbox.clearfix{class: "have-item-#{@item.images.length}"}
                     =f.file_field :images, class: "sell-upload-drop-file", multiple: true, style: "display: none;"
