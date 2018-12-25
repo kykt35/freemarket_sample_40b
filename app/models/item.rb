@@ -15,27 +15,26 @@ class Item < ApplicationRecord
   validate :images_attached
   validate :images_validate
 
-
   private
 
   #カスタムバリデーション
   def images_attached
-    errors.add(:images, :presence) unless images.attached?
+    errors.add(:images, "images cant' be blank") unless images.attached?
   end
 
   def images_validate
     images.each do |image|
-      if not is_image
-        errors.add(:images).add(I18n.t('errors.messages.file_type_not_image'))
+      if not is_image(image.blob)
+        errors.add(:images,'jpg/png only')
         break
       elsif image.blob.byte_size > 10.megabytes
-        errors.add(:images, I18n.t('errors.messages.file_too_large'))
+        errors.add(:images, 'too large')
         break
       end
     end
   end
 
-  def is_image
-    %w[image/jpg image/jpeg image/png].include?(image.blob.content_type)
+  def is_image(blob)
+    %w[image/jpg image/jpeg image/png].include?(blob.content_type)
   end
 end
