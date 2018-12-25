@@ -6,8 +6,10 @@ class ItemsController < ApplicationController
     @item = Item.new()
     #商品登録
   end
+
   def create
     @item = Item.new(item_params)
+    uploaded_images.each {|image| @item.images.attach(image)} if uploaded_images.present?
     if @item.save
       respond_to do |format|
         format.html
@@ -32,20 +34,40 @@ class ItemsController < ApplicationController
     end
   end
 
-  def set_item
-    @item = Item.find(params[:id])
-  end
-
   def destroy
     item = Item.find(params[:id])
     item.destroy if item.seller_id == current_user.id
     redirect_to root_path
   end
 
+  def upload_image
+    #Active StrageのBlobを返す
+    @image_blob = create_blob(params[:image])
+    respond_to do |format|
+      format.html
+      format.json { @image_blob }
+    end
+  end
+
+
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :l_category_id,:m_category_id,:category_id, :brand_id, :size_id, :item_condition_id, :postage_select_id, :shipping_id, :prefecture_id,:leadtime_id, :price, images: []).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :description, :l_category_id,:m_category_id,:category_id, :brand_id, :size_id, :item_condition_id, :postage_select_id, :shipping_id, :prefecture_id,:leadtime_id, :price).merge(seller_id: current_user.id)
+  end
+  def uploaded_images
+    # ActiveStorage::Blob objectを返す
+    params[:item][:uploaded_images].map{|key| ActiveStorage::Blob.find_by(key: key)} if params[:item][:uploaded_images]
   end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def create_blob(uploading_file)
+      ActiveStorage::Blob.create_after_upload! \
+        io: uploading_file.open,
+        filename: uploading_file.original_filename,
+        content_type: uploading_file.content_type
+  end
 end
