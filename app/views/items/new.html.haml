@@ -16,7 +16,7 @@
                 .sell-upload-items{class: "have-item-#{@item.images.length}"}
                   %ul
                     -@item.images.each do |image|
-                      %li.sell-upload-item{class: "have-item-#{@item.images.length}"}
+                      %li.sell-upload-item{class: "upload-item-#{@item.images.length}"}
                         =f.hidden_field :uploaded_image, {name: "item[uploaded_images][]",value: "#{image.blob.key}"}
                         %figure.sell-upload-figure
                           =image_tag image.variant(resize: "150x150")
