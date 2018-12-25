@@ -80,54 +80,63 @@
     .item-description
       %p.item-description-inner
         =@item.description
-- if user_signed_in? && current_user.id == @item.seller_id
-  .item-button-edit-delete
-    .item-button-edit
-      =link_to "商品を編集する"
-    .item-button-or
-      %span or
-    .item-button-stop
-      =link_to "出品を一旦停止する"
-    .item-button-delete
-      %button#openModal この商品を削除する
-      %section#modalArea.modalArea
-        #modalBg.modalBg
-        .modalWrapper
-          .modalContents
-            .modal-bold 確認
-            %p 削除すると二度と復活できません。
-            %br
-              削除する代わりに停止することもできます。
-          %br.final-answer
-            本当に削除しますか？
-          .clearfix
-            %li#closeModal.cansel-button
-              =link_to 'キャンセル',method: :post
-            %li.delete-button
-              =link_to '削除', "", method: :delete
-- else
-  .item-button-container.clearfix
-    .item-button-left
-      %buttom.item-button.item-button-like
-        %i.far.fa-heart
-        %span いいね！
-        %span 1
-      =link_to "#", class: "item-button item-button-report clearfix" do
-        %i.far.fa-flag
-        %span 不適切な商品の報告
-    .item-button-right
-      =link_to "#" do
-        %i.fas.fa-lock
-        %span あんしん・あんぜんの取り組み
-  .item-detail-comment
-    .item-detail-comment-container
-      .item-detail-comment-content
-        %form.item-detail-comment-form
+      - if user_signed_in? && current_user.id == @item.seller_id
+        .item-button-edit-delete
+          .item-button-edit
+            =link_to "商品を編集する"
+          .item-button-or
+            %span or
+          .item-button-stop
+            =link_to "出品を一旦停止する"
+          .item-button-delete
+            %button#openModal この商品を削除する
+            %section#modalArea.modalArea
+              #modalBg.modalBg
+              .modalWrapper
+                .modalContents
+                  .modal-bold 確認
+                  %p 削除すると二度と復活できません。
+                  %br
+                    削除する代わりに停止することもできます。
+                %br.final-answer
+                  本当に削除しますか？
+                .clearfix
+                  %li#closeModal.cansel-button
+                    =link_to 'キャンセル',method: :post
+                  %li.delete-button
+                    =link_to '削除', "", method: :delete
+      - else
+        .item-button-container.clearfix
+          .item-button-left
+            %buttom.item-button.item-button-like
+              %i.far.fa-heart
+              %span いいね！
+              %span 1
+            =link_to "#", class: "item-button item-button-report clearfix" do
+              %i.far.fa-flag
+              %span 不適切な商品の報告
+          .item-button-right
+            =link_to "#" do
+              %i.fas.fa-lock
+              %span あんしん・あんぜんの取り組み
+        .item-detail-comment
+          .item-detail-comment-container
+            .item-detail-comment-content
+              %form.item-detail-comment-form
+                %p
+                  相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      .comments
+      - if @comments
+        - @comments.each do |comment|
           %p
-            相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          %textarea.textarea-default
-          %button.comment-submit.btn-default.btn-gray
-            %span コメントする
+            %strong 
+            = link_to comment.user.nickname, "/users/#{comment.user_id}"
+            = comment.text
+            
+      = form_tag("/items/#{@item.id}/comments", method: :post) do
+        %textarea.textarea-default{cols: "30", name: "text", placeholder: "コメントする", rows: "2"}
+        %button.comment-submit.btn-default.btn-gray
+          %span コメントする
   %ul.nav-item-link-prev-next.clearfix
     %li.nav-item-link.nav-item-link-prev.l-left
       =link_to "#" do
