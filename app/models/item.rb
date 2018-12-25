@@ -12,4 +12,30 @@ class Item < ApplicationRecord
   validates :price, numericality: { only_integer: true }
   validates :name, presence: true, length: { maximum: 40 }
   validates :description, presence: true, length: { maximum: 1000 }
+  validate :images_attached
+  validate :images_validate
+
+
+  private
+
+  #カスタムバリデーション
+  def images_attached
+    errors.add(:images, :presence) unless images.attached?
+  end
+
+  def images_validate
+    images.each do |image|
+      if not is_image
+        errors.add(:images).add(I18n.t('errors.messages.file_type_not_image'))
+        break
+      elsif image.blob.byte_size > 10.megabytes
+        errors.add(:images, I18n.t('errors.messages.file_too_large'))
+        break
+      end
+    end
+  end
+
+  def is_image
+    %w[image/jpg image/jpeg image/png].include?(image.blob.content_type)
+  end
 end
