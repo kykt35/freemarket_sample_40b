@@ -21,7 +21,6 @@ $(document).on('turbolinks:load', function() {
         $('.sell-upload-dropbox').addClass("have-item-"+(upload_items.length+1));
         $('.sell-upload-items ul').append(item_image);
         $('.upload-item-'+ (upload_items.length + 1) + " img").attr("src", reader.result);
-        l = $('.upload-item-'+ (upload_items.length + 1 + " img"))
       };
     })(imageFile);
     reader.readAsDataURL(imageFile);
@@ -49,8 +48,22 @@ $(document).on('turbolinks:load', function() {
   $('.sell-upload-drop-file').on('change',function(e){
     var files = e.target.files;
     for (var i = 0; i < files.length; i++) {
-      uploadImage(files[i]);
+      if ($('.sell-upload-item').length <= 10){
+        uploadImage(files[i]);
+      }
     }
     $('.sell-upload-drop-file').val('');
+  });
+
+  $(document).on("click", ".sell-upload-delete", function (e) {
+    e.preventDefault();
+    $(this).parents('.sell-upload-item').remove();
+    var upload_item = $('.sell-upload-item');
+    var num = upload_item.length;
+    $('.sell-upload-items').removeClass().addClass("sell-upload-items have-item-" + num);
+    $('.sell-upload-dropbox').removeClass().addClass("sell-upload-dropbox clearfix have-item-" + num);
+    upload_item.each(function(index, element){
+      $(element).removeClass().addClass("sell-upload-item upload-item-" + index);
+    });
   });
 });
