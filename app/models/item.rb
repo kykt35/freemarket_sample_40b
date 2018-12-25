@@ -14,6 +14,7 @@ class Item < ApplicationRecord
   validates :description, presence: true, length: { maximum: 1000 }
   validate :images_attached
   validate :images_validate
+  validates :images, length: { maximum: 10 }
 
   private
 
