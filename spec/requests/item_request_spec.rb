@@ -31,7 +31,6 @@ describe "Item", type: :request do
     context 'not logged in' do
       it 'responce 401 ' do
         subject
-        binding.pry
         expect(response.status).to eq 401
       end
     end
