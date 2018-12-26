@@ -61,7 +61,7 @@
             float: right;
           }
         }
-        input#submit-pay{
+        #submit-pay{
           @include main_contents_same;
           @include bold_small_font;
           padding: 5%;
