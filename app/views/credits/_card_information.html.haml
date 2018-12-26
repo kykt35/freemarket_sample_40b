@@ -1,15 +1,13 @@
 .card__content
   %section.card__content__container
     %h2.card__content__container__head クレジットカード情報入力
-    
-    %form#add-card-form.card__content__container__card-form{action: "https://www.mercari.com/jp/mypage/card/add/", "data-adyen-id": "card-form", method: "POST", novalidate: "novalidate"}
-
+    = form_with url: mypage_card_path, class: "card__content__container__card-form", local: true do |f|
       %input{name: "__csrf_value", type: "hidden", value: ""}/
       .card__content__container__card-form__content
         .card__content__container__card-form__content__group
           %label{for: "card__content__container__card-form__content__group__payment-card-no"} カード番号
           %span.card__content__container__card-form__content__group__form-require 必須
-          %input#payment-card-no.input-default{"data-input-type": "card", maxlength: "19", placeholder: "半角数字のみ", type: "text", value: ""}/
+          = f.number_field :number, class: "input-default", maxlength: "19", placeholder: "半角数字のみ", value: ""
           %ul#card-no-error-wrapper.has-error-text
           %ul.card__content__container__card-form__content__group__card-list
             %li
@@ -31,7 +29,7 @@
           %span.card__content__container__card-form__content__group__signup-form-expire__form-require 必須
           %br/
           .card__content__container__card-form__content__group__signup-form-expire__select-wrap
-            %select#payment-card-expire-mm.select-default
+            = f.select :month, {}, {}, class: "select-default" do
               %option{value: "01"} 01
               %option{value: "02"} 02
               %option{value: "03"} 03
@@ -47,9 +45,8 @@
             %i.fa.fa-angle-down
           %span 月
           %ul#expire-mm-error-wrapper.has-error-text
-
           .card__content__container__card-form__content__group__signup-form-expire__select-wrap
-            %select#payment-card-expire-yy.select-default
+            = f.select :year, {}, {}, {class: "select-default"} do
               %option{value: "18"} 18
               %option{value: "19"} 19
               %option{value: "20"} 20
@@ -68,7 +65,7 @@
         .card__content__container__card-form__content__group
           %label{for: "card__content__container__card-form__content__group__payment-card-security-code"} セキュリティコード
           %span.card__content__container__card-form__content__group__form-require 必須
-          %input#payment_card_security_code.input-default{ type: "number", placeholder: "カード背面4桁もしくは3桁の番号", value: ""}/
+          =f.number_field :cvc, placeholder: "カード背面4桁もしくは3桁の番", class: "input-default", value:""
           %ul#security-code-error-wrapper.has-error-text
           .card__content__container__card-form__content__group__signup-seqcode
             .card__content__container__card-form__content__group__signup-seqcode__text{"data-js": "show-tips-toggle"}
@@ -79,6 +76,6 @@
         %input#encrypted_card_data{name: "encrypted_card_data", type: "hidden"}/
         %p#primary-error.has-error-text
         %input{name: "after_save_callback", type: "hidden", value: ""}/
-        %button#submit-button.btn-default.btn-red{type: "button"} 追加する
+        = f.submit "追加する", class: "btn-default btn-red"
       %script{async: "", src: "https://p01.mul-pay.jp/ext/js/token.js"}
       %script{async: "", src: "//www-mercari-jp.akamaized.net/assets/js/get_gmopg_card_token.js?560393726"}
