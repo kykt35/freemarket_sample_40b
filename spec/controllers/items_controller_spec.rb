@@ -55,7 +55,6 @@ describe ItemsController, type: :controller do
           expect(response).to render_template :new
         end
       end
-
     end
     context 'not logged in' do
         subject{
@@ -85,6 +84,19 @@ describe ItemsController, type: :controller do
       end
     end
 
+    describe '#destroy' do
+      before do
+        login user
+      end
+      context'削除機能確認' do
+        it '削除ボタンを押すとitemの情報が削除される' do
+          item = create(:item,seller_id: user.id)
+          delete :destroy,params: {id: item.id}
+          expect(response).to redirect_to(root_path)
+        end
+      end
+    end
+
     describe '#edit' do
       context '@itemの情報が取れている' do
       it 'has a 200 status code' do
@@ -92,24 +104,21 @@ describe ItemsController, type: :controller do
       end
 
       it 'assigns @item' do
-        item = create(:item)
+        login user
+        item = create(:item,seller_id: user.id)
         get :edit, params: {id: item.id}
         expect(assigns(:item)).to eq item
       end
 
       it 'renders the :edit template' do
-        item = create(:item)
+        login user
+        item = create(:item,seller_id: user.id)
         get :edit, params: {id: item.id}
         expect(response).to render_template :edit
       end
     end
   end
-
 end
-
-
-
-
 
 
 
