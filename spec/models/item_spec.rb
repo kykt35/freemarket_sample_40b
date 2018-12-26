@@ -10,7 +10,7 @@ describe Item do
         expect(item).to be_valid
       end
       it "is valid with brand nil" do
-        item = build(:item, :image, brand_id: nil, seller_id: seller.id)
+        item = build(:item, :image, brand: nil, seller_id: seller.id)
         expect(item).to be_valid
       end
       it "is valid with size nil" do
