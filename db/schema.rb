@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_095644) do
+ActiveRecord::Schema.define(version: 2018_12_24_104040) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -44,7 +44,25 @@ ActiveRecord::Schema.define(version: 2018_12_19_095644) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ancestry"
+    t.boolean "hasBrand", default: false
     t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
+
+  create_table "categories_sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "size_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categories_sizes_on_category_id"
+    t.index ["size_id"], name: "index_categories_sizes_on_size_id"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "item_id", null: false
+    t.text "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "item_conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -69,10 +87,15 @@ ActiveRecord::Schema.define(version: 2018_12_19_095644) do
     t.bigint "postage_select_id", null: false
     t.bigint "prefecture_id", null: false
     t.bigint "leadtime_id", null: false
+    t.bigint "l_category_id"
+    t.bigint "m_category_id"
+    t.string "brand"
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["item_condition_id"], name: "index_items_on_item_condition_id"
+    t.index ["l_category_id"], name: "index_items_on_l_category_id"
     t.index ["leadtime_id"], name: "index_items_on_leadtime_id"
+    t.index ["m_category_id"], name: "index_items_on_m_category_id"
     t.index ["postage_select_id"], name: "index_items_on_postage_select_id"
     t.index ["prefecture_id"], name: "index_items_on_prefecture_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
@@ -90,6 +113,15 @@ ActiveRecord::Schema.define(version: 2018_12_19_095644) do
     t.string "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "postage_selects_shippings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "postage_select_id", null: false
+    t.bigint "shipping_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["postage_select_id"], name: "index_postage_selects_shippings_on_postage_select_id"
+    t.index ["shipping_id"], name: "index_postage_selects_shippings_on_shipping_id"
   end
 
   create_table "prefectures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -142,8 +174,12 @@ ActiveRecord::Schema.define(version: 2018_12_19_095644) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories_sizes", "categories"
+  add_foreign_key "categories_sizes", "sizes"
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
+  add_foreign_key "items", "categories", column: "l_category_id"
+  add_foreign_key "items", "categories", column: "m_category_id"
   add_foreign_key "items", "item_conditions"
   add_foreign_key "items", "leadtimes"
   add_foreign_key "items", "postage_selects"
@@ -151,4 +187,6 @@ ActiveRecord::Schema.define(version: 2018_12_19_095644) do
   add_foreign_key "items", "shippings"
   add_foreign_key "items", "sizes"
   add_foreign_key "items", "users", column: "seller_id"
+  add_foreign_key "postage_selects_shippings", "postage_selects"
+  add_foreign_key "postage_selects_shippings", "shippings"
 end
