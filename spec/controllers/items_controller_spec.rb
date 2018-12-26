@@ -26,8 +26,12 @@ describe ItemsController, type: :controller do
   end # '#new'
 
   describe '#create' do
-    let(:params) {{seller_id: user.id, item: attributes_for(:item)}}
-
+    let(:uploading_file) {fixture_file_upload("#{::Rails.root}/spec/fixtures/sample.jpg", "image/jpg")}
+    let(:uploaded_images) {[ActiveStorage::Blob.create_after_upload!(
+                io: uploading_file.open,
+                filename: uploading_file.original_filename,
+                content_type: uploading_file.content_type).key]}
+    let(:params) {{seller_id: user.id, item: attributes_for(:item, uploaded_images: uploaded_images)}}
     context 'logged in' do
      before do
         login user
@@ -42,7 +46,7 @@ describe ItemsController, type: :controller do
         end
       end
       context 'can not save' do
-        let(:invalid_params) {{seller_id: user.id, item: attributes_for(:item, name: nil)}}
+        let(:invalid_params) {{seller_id: user.id, item: attributes_for(:item, :image, name: nil)}}
         subject {
           post :create,
           params: invalid_params
@@ -68,51 +72,55 @@ describe ItemsController, type: :controller do
     end
   end
 
-
   describe '#show' do
-      context 'viewが正常か'  do
-        it 'showの画面が表示できているか' do
-          item = create(:item,seller_id: user.id,name: "タイトル")
-          get :show, params: {id: item.id}
-          expect(response).to render_template :show
-        end
-        it 'タイトルを取得できるか' do
-          item = create(:item,seller_id: user.id,name: "タイトル")
-          get :show, params: {id: item.id}
-          expect(assigns(:item)).to eq item
-        end
+    context 'viewが正常か'  do
+      it 'showの画面が表示できているか' do
+        item = create(:item, :image, seller_id: user.id,name: "タイトル")
+        get :show, params: {id: item.id}
+        expect(response).to render_template :show
+      end
+      it 'タイトルを取得できるか' do
+        item = create(:item, :image, seller_id: user.id,name: "タイトル")
+        get :show, params: {id: item.id}
+        expect(assigns(:item).name).to eq "タイトル"
       end
     end
+  end
 
-    describe '#destroy' do
-      before do
-        login user
-      end
-      context'削除機能確認' do
-        it '削除ボタンを押すとitemの情報が削除される' do
-          item = create(:item,seller_id: user.id)
-          delete :destroy,params: {id: item.id}
-          expect(response).to redirect_to(root_path)
-        end
-      end
+  describe '#destroy' do
+    let(:item) {create(:item, :image, seller_id: user.id)}
+    before do
+      login user
     end
+    subject {
+      delete :destroy, params: {id: item.id}
+    }
+    it 'itemテーブルから1つ情報が削除される' do
+      binding.pry
+      delete :destroy, params: {id: item.id}
+      binding.pry
+      expect{ subject}.to change(Item, :count).by(1)
+    end
+    it '削除後にルートにリダイレクトされる' do
+      subject
+      expect(response).to redirect_to(root_path)
+    end
+  end
 
-    describe '#edit' do
-      context '@itemの情報が取れている' do
+  describe '#edit' do
+    context '@itemの情報が取れている' do
       it 'has a 200 status code' do
         expect(response).to have_http_status(:ok)
       end
-
       it 'assigns @item' do
         login user
-        item = create(:item,seller_id: user.id)
+        item = create(:item, :image, seller_id: user.id)
         get :edit, params: {id: item.id}
         expect(assigns(:item)).to eq item
       end
-
       it 'renders the :edit template' do
         login user
-        item = create(:item,seller_id: user.id)
+        item = create(:item, :image, seller_id: user.id)
         get :edit, params: {id: item.id}
         expect(response).to render_template :edit
       end
