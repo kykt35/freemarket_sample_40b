@@ -65,6 +65,9 @@ describe ItemsController, type: :controller do
           post :create,
           params: params
         }
+      it 'does not count up' do
+        expect{ subject }.not_to change(Item, :count)
+      end
       it 'redirects to  new_user_session_path' do
         subject
         expect(response).to redirect_to(new_user_session_path)
@@ -88,23 +91,39 @@ describe ItemsController, type: :controller do
   end
 
   describe '#destroy' do
-    let(:item) {create(:item, :image, seller_id: user.id)}
-    before do
-      login user
+    context '削除される' do
+      before do
+        login user
+      end
+      it 'itemテーブルから1つ情報が削除される' do
+        item = create(:item, :image, seller_id: user.id)
+        expect{
+          delete :destroy, params: {id: item.id}
+        }.to change(Item, :count).by(-1)
+      end
+      it '削除後にルートにリダイレクトされる' do
+        item = create(:item, :image, seller_id: user.id)
+        delete :destroy, params: {id: item.id}
+        expect(response).to redirect_to(root_path)
+      end
     end
-    subject {
-      delete :destroy, params: {id: item.id}
-    }
-    it 'itemテーブルから1つ情報が削除される' do
-      binding.pry
-      delete :destroy, params: {id: item.id}
-      binding.pry
-      expect{ subject}.to change(Item, :count).by(1)
+    context '削除されない' do
+      let(:user2) { create(:user)}
+      it 'ログインしていないので削除できない' do
+        item = create(:item, :image, seller_id: user.id)
+        expect{
+          delete :destroy, params: {id: item.id}
+        }.not_to change(Item, :count)
+      end
+      it '違うユーザーの商品なので削除できない' do
+        login user
+        item = create(:item, :image, seller_id: user2.id)
+        expect{
+          delete :destroy, params: {id: item.id}
+        }.not_to change(Item, :count)
+      end
     end
-    it '削除後にルートにリダイレクトされる' do
-      subject
-      expect(response).to redirect_to(root_path)
-    end
+
   end
 
   describe '#edit' do
