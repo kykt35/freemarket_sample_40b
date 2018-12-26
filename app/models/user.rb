@@ -6,6 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :comments
+  has_many :items
   has_many :sns_credentials
   def self.create_from_auth!(auth)
     data = auth['info']
