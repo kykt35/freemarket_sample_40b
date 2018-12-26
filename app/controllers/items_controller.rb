@@ -42,10 +42,17 @@ class ItemsController < ApplicationController
 
   def upload_image
     #Active StrageのBlobを返す
-    @image_blob = create_blob(params[:image])
-    respond_to do |format|
-      format.html
-      format.json { @image_blob }
+    if user_signed_in?
+      @image_blob = create_blob(params[:image])
+      respond_to do |format|
+        format.json { @image_blob }
+      end
+    else
+      respond_to do |format|
+        format.json {
+          render status: 401, json: { status: 401, message: 'Unauthorized' }
+        }
+      end
     end
   end
 
@@ -65,9 +72,9 @@ class ItemsController < ApplicationController
   end
 
   def create_blob(uploading_file)
-      ActiveStorage::Blob.create_after_upload! \
-        io: uploading_file.open,
-        filename: uploading_file.original_filename,
-        content_type: uploading_file.content_type
+    ActiveStorage::Blob.create_after_upload! \
+      io: uploading_file.open,
+      filename: uploading_file.original_filename,
+      content_type: uploading_file.content_type
   end
 end
