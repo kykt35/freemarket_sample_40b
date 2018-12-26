@@ -1,6 +1,5 @@
-class OrdersController < ApplicationController
+class ItemTransactionsController < ApplicationController
     before_action :set_item, only: [:new, :pay]
-
   def new
   end
 
@@ -10,7 +9,7 @@ class OrdersController < ApplicationController
     if current_user && current_user.credits.present
        charge(price)
     end
-    @order = Order.new(order_params)
+    @item_transaction = ItemTransaction.new(order_params)
     @sales = Sales.new(price: price * 0.9, limit_time: Date.today() + "180", user_id: @item.user_id)
     redirect_to root_path, notice: 'ありがとうございました。'
   end

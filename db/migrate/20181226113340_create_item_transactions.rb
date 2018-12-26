@@ -1,6 +1,6 @@
-class CreateOrders < ActiveRecord::Migration[5.2]
+class CreateItemTransactions < ActiveRecord::Migration[5.2]
   def change
-    create_table :orders do |t|
+    create_table :item_transactions do |t|
       t.references :user, foreign_key: true 
       t.references :item, foreign_key: true 
       t.timestamps
