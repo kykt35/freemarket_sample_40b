@@ -18,6 +18,18 @@ CSV.foreach('db/categories.csv') do |row|
   grandson.save
 end
 
+has_brand_categories = [" レディース", " メンズ", " ベビー・キッズ", " インテリア・住まい・小物", " コスメ・香水・美容", " 家電・スマホ・カメラ", " スポーツ・レジャー"]
+has_brand_categories.each do |cate|
+  parent = Category.find_by(name: cate)
+    parent.update(hasBrand: true)
+    parent.children.each do |child|
+      child.update(hasBrand: true)
+      child.children.each do |grand_child|
+        grand_child.update(hasBrand: true)
+    end
+  end
+end
+
 #item_condition table data
 item_conditions = %w(新品、未使用 未使用に近い 目立った傷や汚れなし やや傷や汚れあり 傷や汚れあり 全体的に状態が悪い)
 item_conditions.each do |condition|
@@ -27,7 +39,7 @@ end
 
 #size table data
 #服
-clothes_size = %w(S M L FREE SIZE XXS以下 XS(SS) 2XL(3L) 3XL(4L) 4XL(5L)以上)
+clothes_size = %w(S M L FREE SIZE XXS以下 XS(SS) XL(LL) 2XL(3L) 3XL(4L) 4XL(5L)以上)
 clothes_size.each do |size|
   size = Size.where(name: size).first_or_initialize(name: size)
   size.save
@@ -44,7 +56,11 @@ child_size.each do |size|
   size = Size.where(name: size).first_or_initialize(name: size)
   size.save
 end
-
+child_shoes = %w(10.5cm以下 11cm・11.5cm 12cm・12.5cm 13cm・13.5cm 14cm・14.5cm 15cm・15.5cm 16cm・16.5cm 16.5cm以上)
+child_size.each do |size|
+  size = Size.where(name: size).first_or_initialize(name: size)
+  size.save
+end
 #Shippings table
 shippings = %w(未定 らくらくメルカリ便 ゆうメール レターパック 普通郵便(定形、定形外) クロネコヤマト ゆうパック クリックポスト ゆうパケット)
 shippings.each do |ship|
@@ -94,4 +110,6 @@ shippings.each do |s|
   ps = PostageSelectsShipping.where(postage_select_id: postage.id,shipping_id: shipping.id).first_or_initialize(postage_select_id: postage.id,shipping_id: shipping.id)
   ps.save
 end
+
+
 
