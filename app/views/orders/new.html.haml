@@ -1,0 +1,59 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
+    %title FreemarketSample40b
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %header.confirmation-header
+      =render partial: "shared/single-header"
+    %main.confirmation-main
+      = form_with model: @item, class: "main-content", local: true do |f|
+        %section.main-contents__item-header
+          %p 購入を確定しますか？
+        %section.main-contents__item-info
+          .item-header
+            =image_tag @item.images[0],class: "is-higher-width lazyloaded"
+            %p.image-title ぬいぐるみ
+          .item-pay-form
+            .item-pay-form__price
+              .item-price ￥ 1000
+              .delivery-price 送料込み
+            .item-pay-form__point
+              .none ポイントはありません
+            .item-pay-form__sum
+              %p.sum-headword 支払い金額
+              %p.sum-price ¥ 1,000
+            #submit-pay
+              = link_to "購入する", root_path
+              %script{:src => "https://js.pay.jp/", :type => "text/javascript"}
+              %script{:type => "text/javascript"}
+        %section.main-contents__delivery-info
+          %p.header-address 配送先
+          .contents-address
+            %p 〒123-4567
+            %p 大阪府大阪市1-2-345
+            %p メルカリ太郎
+          .contents-change
+            =link_to root_path,method: :get do
+              ="変更する"
+              =fa_icon("angle-right")
+          .clearfix
+        %section.main-contents__pay-info
+          %p.header-card 支払方法
+          .contents-card
+            %p **********012
+            %p 12 / 34
+            %img.card-img{src:"assets/american_express.svg"}
+          .contents-change
+            =link_to root_path, method: :get do
+              ="変更する"
+              =fa_icon("angle-right")
+          .clearfix
+
+    %footer.confirmation-footer
+      =render partial: "shared/single-footer"
+
