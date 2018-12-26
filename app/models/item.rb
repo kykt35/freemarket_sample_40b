@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   belongs_to :postage_select
   belongs_to :leadtime
   belongs_to :prefecture
+  has_many :transactions
   validates :name, :description, :category_id, :item_condition_id, :postage_select_id, :shipping_id, :prefecture_id, :leadtime_id, :price, :seller_id, presence: true
   validates :price, numericality: { only_integer: true }
   validates :name, presence: true, length: { maximum: 40 }
