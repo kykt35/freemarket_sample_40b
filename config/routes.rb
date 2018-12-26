@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'users/logout', to: 'users#logout'
   get 'users/registration_card' => 'users#registration_card'
   resources :items, only: [:new, :show, :create, :destroy, :edit, :update] do
-    resources :comments, only: [:create]
+    resources :comments, only: [:create , :destroy]
   end
   resources :transaction, only: [:new]
   get 'mypage/identification', to: 'users#identification'
