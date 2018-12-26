@@ -3,7 +3,8 @@
     .pc-header-inner
       .header__top.clearfix
         %h1.logo.l-left
-          %a= image_tag 'logo.svg', alt:"mercari",width: "134", height: "36"
+          =link_to root_path do
+            = image_tag 'logo.svg', alt:"mercari",width: "134", height: "36"
         %form.header__top__form.l-right{action: "/", method: "post"}
           %input.input-default{name: "keyword", type: :search,placeholder: "キーワードから探す"}
           %i.fa.fa-search
@@ -19,7 +20,7 @@
             -if user_signed_in?
               %ul.pc-header-user-nav
                 %li
-                  =link_to "mypage", class: "pc-header-navbox-root" do
+                  =link_to mypage_path, class: "pc-header-navbox-root" do
                     %figure
                       %div
                         =image_tag "member_photo_noimage_thumb.png",width: 32, height: 32
@@ -35,7 +36,7 @@
             -else
               %ul.pc-header-login-nav
                 %li
-                  =link_to "ログイン", "/users/sign_in", class: "pc-header-btn btn btn-red"
+                  =link_to "ログイン", new_user_session_path, class: "pc-header-btn btn btn-red"
 
                 %li
-                  =link_to "新規会員登録", "/users/sign_up", class: "pc-header-btn btn header-signup"
+                  =link_to "新規会員登録", new_user_registration_path, class: "pc-header-btn btn header-signup"
