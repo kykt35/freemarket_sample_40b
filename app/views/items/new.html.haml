@@ -1,0 +1,6 @@
+.single-container
+  =render "shared/single-header"
+  %main.single-main
+    %section.single-container-section
+      =render partial: "item_form", locals: {submit_value: "出品する"}
+=render "shared/single-footer"
