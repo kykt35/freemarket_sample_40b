@@ -1,3 +1,4 @@
+include ActionDispatch::TestProcess
 Faker::Config.locale = :ja
 FactoryBot.define do
   factory :item do
@@ -11,8 +12,23 @@ FactoryBot.define do
     leadtime_id { 1 }
     seller_id { 1 }
     price { 100 }
-    trait(:images) do
-      images { fixture_file_upload("#{::Rails.root}/public/images/sample.jpg", "image/jpeg") }
+    trait(:image) do
+      images { fixture_file_upload("#{::Rails.root}/spec/fixtures/sample.jpg", "image/jpg") }
+    end
+    trait(:image_jpeg) do
+      images { fixture_file_upload("#{::Rails.root}/spec/fixtures/sample.jpeg", "image/jpeg") }
+    end
+    trait(:image_png) do
+      images { fixture_file_upload("#{::Rails.root}/spec/fixtures/sample.png", "image/png") }
+    end
+    trait(:image_gif) do
+      images { fixture_file_upload("#{::Rails.root}/spec/fixtures/sample.gif", "image/gif") }
+    end
+    trait(:text) do
+      images { fixture_file_upload("#{::Rails.root}/spec/fixtures/sample.txt", "text/txt") }
+    end
+    trait(:image_10m) do
+      images { fixture_file_upload("#{::Rails.root}/spec/fixtures/sample_10m.jpg", "image/jpg") }
     end
   end
 end

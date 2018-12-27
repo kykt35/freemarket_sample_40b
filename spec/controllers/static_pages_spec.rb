@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe StaticPagesController, type: :controller do
 
   describe "GET #index" do
-    let(:item) { create(:item) }
-
+    let(:user) { create(:user)}
+    let(:item) { create(:item, :image, seller_id: user.id, ) }
     it "200 responseが返ってくること" do
       get :index
       expect(response).to have_http_status "200"
