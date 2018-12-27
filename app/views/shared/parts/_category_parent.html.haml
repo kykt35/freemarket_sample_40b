@@ -1,0 +1,5 @@
+%li.pc-header-navbox-parent
+  %h3
+    =link_to category_parent.name, category_path(category_parent)
+  %ul.pc-header-navbox-child-wrap
+    =render partial: "shared/parts/category_child", collection: category_parent.children
