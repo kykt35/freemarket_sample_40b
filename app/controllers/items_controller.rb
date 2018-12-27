@@ -36,6 +36,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @items = Item.where('name LIKE(?)', "#{params[:search]}")
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
   def destroy
     item = Item.find(params[:id])
     item.destroy if user_signed_in? && item.seller_id == current_user.id

@@ -1,0 +1,100 @@
+.search-container{
+  padding: 40px 200px;
+  .search-area{
+    width: 280px;
+    .select-order{
+      background-color: $siro;
+    }
+    .select-detail{
+      padding: 16px;
+      box-sizing: border-box;
+      margin-top: 40px;
+      width: 280px;
+      background-color: $siro;
+      span{
+        font-weight: 600;
+      }
+      .fas{
+        color:$header-arrow;
+      }
+      .input-default{
+        margin-top: 0px;
+      }
+      .price-limits{
+        p{
+          padding: 0px 16.5px;
+        }
+        .input-default{
+          margin-top: 8px;
+          width: 40%;
+        }
+      }
+      .btn-default{
+        width: 45%
+      }
+      .btn-red{
+        float: right;
+      }
+    }
+  }
+  .result-area{
+      width: 700px;
+    &__header{
+      font-size: 22px;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    &__contents{
+    }
+  }
+}
+
+.checkbox-area{
+  padding-top: 10px;
+  .checkbox-default{
+    line-height: 20px;
+    width: 120px;
+    float: left;
+    margin-bottom: 10px;
+    word-wrap:break-word;
+    display: inline-block;
+    .checkbox-label{
+      width: 90px;
+      padding-left: 20px;
+      position:relative;
+      margin-right: 10px;
+      font-weight: 400;
+      word-break: break-word;
+    }
+    .checkbox-label::before{
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 15px;
+      height: 15px;
+      border: 1px solid #999;
+      border-radius: 2px;
+    }
+    .check-btn:checked + .checkbox-label::after{
+      content: "";
+      display: block;
+      position: absolute;
+      top: -1px;
+      left: 4px;
+      width: 7px;
+      height: 12px;
+      transform: rotate(40deg);
+      border-bottom: 2px solid #fff;
+      border-right: 2px solid #fff;
+    }
+    .check-btn:checked + .checkbox-label::before{
+      background-color: #388cf5;
+    }
+
+    .check-btn{
+      display: none;
+    }
+  }
+}

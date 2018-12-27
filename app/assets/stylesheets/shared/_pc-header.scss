@@ -108,7 +108,10 @@
       line-height: 36px;
       cursor: pointer;
       text-align: center;
+      visibility: visible;
+    }
+    .hidden{
+      visibility:hidden;
     }
   }
-
 }
