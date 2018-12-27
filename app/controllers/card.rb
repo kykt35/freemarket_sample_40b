@@ -19,10 +19,11 @@ module Card
   end
 
   def charge(price)
+    customer = current_user.credits.first.customer_id
     charge = Payjp::Charge.create(
       :amount => price,
       :currency => 'jpy',
-      :customer => current_user.credits.first.customer_id
+      :customer => customer
       )
   end
 

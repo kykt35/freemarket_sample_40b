@@ -1,3 +1,3 @@
 class ItemTransaction < ApplicationRecord
-  belongs: items
+  belongs_to :item
 end

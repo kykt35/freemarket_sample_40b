@@ -76,7 +76,7 @@
       - if user_signed_in? && current_user.id == @item.seller_id
         =link_to "購入できません", "#", class: "item-buy-btn btn-default btn-red",style: "visibility:hidden;"
       - else
-        =link_to "購入画面に進む", new_item_transaction_path(@item), class: "item-buy-btn btn-default btn-red"
+        =link_to "購入画面に進む", new_item_item_transaction_path(@item), class: "item-buy-btn btn-default btn-red"
     .item-description
       %p.item-description-inner
         =@item.description
