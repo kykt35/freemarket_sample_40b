@@ -1,0 +1,157 @@
+.default-container
+  =render partial: "shared/pc-header"
+  =render partial: "shared/bread-crumbs"
+  .search-container
+    .l-left.search-area
+      .select-order
+        .form-group
+          .select-wrap
+            %select.select-default
+              %option 並び替え
+              %option 価格の安い順
+              %option 価格の高い順
+              %option 出品の古い順
+              %option 出品の新しい順
+              %option いいね！の多い順
+            %i.fa.fa-angle-down
+
+      .select-detail
+        %span 詳細検索
+        .sell-form-box
+          = form_with url: items_seach_path, method: :get, local: true do |f|
+
+            .form-group.form-group-keyword
+              =f.label :search do
+                %i.fas.fa-plus
+                %span キーワードで検索する
+              .select-wrap
+                = f.text_field :search, class: "input-default"
+            .form-group.form-group-category
+              =f.label :l_category_id do
+                %i.fas.fa-list-ul
+                %span カテゴリーで検索する
+              .select-wrap
+                = f.collection_select :l_category_id, Category.where(ancestry: nil), :id, :name, {prompt: "すべて"}, {class: 'select-default'}
+                %i.fa.fa-angle-down
+            .form-group.form-group-brand
+              =f.label :brand do
+                %i.fas.fa-tag
+                %span ブランド名で検索する
+              .select-wrap
+                = f.text_field :brand, class: "input-default",placeholder:"例）シャネル"
+            .form-group.form-group-size
+              =f.label :size do
+                %i.fas.fa-expand
+                %span サイズを指定する
+              .select-wrap
+                %select.select-default{name: "size-tag"}
+                  %option すべて
+                %i.fa.fa-angle-down
+                .checkbox-area
+                  .checkbox-default
+                    %label
+                      %input{type:"checkbox",class: "check-btn"}
+                      %p.checkbox-label 100cm
+                  .checkbox-default
+                    %label
+                      %input{type:"checkbox",class: "check-btn"}
+                      %p.checkbox-label 110cm
+                  .checkbox-default
+                    %label
+                      %input{type:"checkbox",class: "check-btn"}
+                      %p.checkbox-label 120cm
+                  .checkbox-default
+                    %label
+                      %input{type:"checkbox",class: "check-btn"}
+                      %p.checkbox-label 130cm
+                  .checkbox-default
+                    %label
+                      %input{type:"checkbox",class: "check-btn"}
+                      %p.checkbox-label 140cm
+                  .clearfix
+            .form-group.form-group-price
+              =f.label :price do
+                %i.fas.fa-coins
+                %span 価格
+              .select-wrap
+                %select.select-default{name:"price"}
+                  %option 選択してください
+                %i.fa.fa-angle-down
+                .price-limits
+                  = f.text_field :price, class: "input-default inline",placeholder: "¥Min"
+                  %p.inline ~
+                  = f.text_field :price, class: "input-default inline", placeholder: "¥Max"
+
+
+
+            .form-group.form-group-item_condition
+              =f.label :item_condition_id do
+                %i.fas.fa-star
+                %span 商品状態
+              .select-wrap
+                .checkbox-area
+                  .checkbox-default
+                    %label
+                      %input{type:"checkbox",class: "check-btn all",}
+                      %p.checkbox-label すべて
+                  - ItemCondition.all.each do |item_condition|
+                    .checkbox-default
+                      %label
+                        = f.check_box "item_condition_id[]", {id: "item-condition_id_#{item_condition.id}", class: "check-btn"}, item_condition.id, false
+                        %p.checkbox-label=item_condition.text
+                  .clearfix
+
+            .form-group.form-group-postage_select
+              =f.label :postage_select_id do
+                %i.fas.fa-truck
+                %span 配送料の負担
+              .select-wrap
+                .checkbox-area
+                  .checkbox-default
+                    %label
+                      %input{type:"checkbox",class: "check-btn all",}
+                      %p.checkbox-label すべて
+                  - PostageSelect.all.each do |postage_select|
+                    .checkbox-default
+                      %label
+                        = f.check_box "postage_select_id[]", {id: "postage_select_id_#{postage_select.id}", class: "check-btn"}, postage_select.id, false
+                        %p.checkbox-label=postage_select.text
+                  .clearfix
+
+            .form-group.form-group_stock
+              %i.fas.fa-shopping-cart
+              %span 在庫状況
+              .checkbox-area
+                .checkbox-default
+                  %label
+                    %input{type:"checkbox",class: "check-btn"}
+                    %p.checkbox-label すべて
+                .checkbox-default
+                  %label
+                    %input{type:"checkbox",class: "check-btn"}
+                    %p.checkbox-label 販売中
+                .checkbox-default
+                  %label
+                    %input{type:"checkbox",class: "check-btn"}
+                    %p.checkbox-label 売り切れ
+                .clearfix
+
+
+            .form-group.form-group-btn
+              =f.submit "リセット",class: "btn-default btn-gray inline",type: :reset
+              =f.submit "完了",class: "btn-default btn-red inline",type: :submit
+
+
+
+    .l-right.result-area
+      %h2.result-area__header 検索結果
+      .result-area__contents
+        -@items.each do |item|
+          = render partial: "item", locals: { item: item }
+        -# = paginate(@items)後で kaminarriをインストール
+  .clearfix
+
+
+  =render partial: "shared/app-banner"
+  =render partial: "shared/global-footer"
+  =render partial: "shared/footer-sell-btn"
