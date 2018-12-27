@@ -37,7 +37,8 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.where('name LIKE(?)', "#{params[:search]}")
+    @items = Item.where('name LIKE(?)', "%#{params[:search]}%")
+    @value = params[:search]
   end
 
   def set_item

@@ -25,7 +25,7 @@
                 %i.fas.fa-plus
                 %span キーワードで検索する
               .select-wrap
-                = f.text_field :search, class: "input-default"
+                = f.text_field :search, class: "input-default", value: @value
             .form-group.form-group-category
               =f.label :l_category_id do
                 %i.fas.fa-list-ul
