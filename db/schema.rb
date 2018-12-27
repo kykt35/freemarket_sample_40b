@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2018_12_24_104040) do
     t.datetime "updated_at", null: false
     t.bigint "seller_id"
     t.bigint "category_id", null: false
+    t.bigint "brand_id"
     t.bigint "size_id"
     t.bigint "item_condition_id", null: false
     t.bigint "shipping_id", null: false
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(version: 2018_12_24_104040) do
     t.bigint "l_category_id"
     t.bigint "m_category_id"
     t.string "brand"
+    t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["item_condition_id"], name: "index_items_on_item_condition_id"
     t.index ["l_category_id"], name: "index_items_on_l_category_id"
@@ -174,6 +176,7 @@ ActiveRecord::Schema.define(version: 2018_12_24_104040) do
 
   add_foreign_key "categories_sizes", "categories"
   add_foreign_key "categories_sizes", "sizes"
+  add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "categories", column: "l_category_id"
   add_foreign_key "items", "categories", column: "m_category_id"

@@ -1,0 +1,15 @@
+%section.items-box
+  = link_to item_path(item) do
+    %figure.items-box-photo
+      =image_tag item.images[0],class: "is-higher-width lazyloaded"
+
+  .items-box-body
+    %h3.items-box-name.font-2
+      = item.name
+    .items-box-num.clearfix
+      .items-box-price.font-5
+        = item.price
+      .items-box-likes.font-2
+        %i.fa.fa-heart
+        %span 4
+      %p.items-box-tax (税込)
