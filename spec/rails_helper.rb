@@ -65,6 +65,7 @@ RSpec.configure do |config|
   Dir[Rails.root.join('spec/support/**/*rb')].each {|f| require f}
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ControllerMacros, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
   config.before(:suite) do
     require Rails.root.join("db", "seeds")
   end

@@ -1,2 +1,2 @@
-json.imageKey @image_blob.key
+json.imageKey @image_blob.key if @image_blob
 
