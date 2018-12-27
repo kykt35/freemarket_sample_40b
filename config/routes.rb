@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'mypage/identification', to: 'users#identification'
   resources :categories, only: [:index]
   resources :postage_selects, only: [:index]
+  resources :category, only: [:show]
   get 'categories/size_brand', to: 'categories#size_brand'
   post 'items/upload_image', to: 'items#upload_image'
 end
