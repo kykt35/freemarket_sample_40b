@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
     end
   end
   def search
-    @search_items = Item.where('name LIKE(?)', "#{params[:search]}")
+    @items = Item.where('name LIKE(?)', "#{params[:search]}")
   end
   def set_item
     @item = Item.find(params[:id])
