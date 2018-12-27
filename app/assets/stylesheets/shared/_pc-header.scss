@@ -46,14 +46,14 @@
         top: 38px;
         z-index: 100;
         background-color: white;
-        border-left: 1px solid #eee;
-        border-right: 1px solid #eee;
-        border-bottom: 1px solid #eee;
+        border-left: 1px solid $mGray;
+        border-right: 1px solid $mGray;
+        border-bottom: 1px solid $mGray;
       }
       &:hover {
         >h3 > a {
           color: white;
-          background-color: #ea352d;
+          background-color: $mRed;
           text-decoration: none;
           opacity: 1;
         }
@@ -79,13 +79,13 @@
         z-index: 100;
         background-color: white;
         border-left: 1px solid white;
-        border-left: 1px solid #eee;
-        border-right: 1px solid #eee;
-        border-bottom: 1px solid #eee;
+        border-left: 1px solid $mGray;
+        border-right: 1px solid $mGray;
+        border-bottom: 1px solid $mGray;
       }
       &:hover {
         > a {
-          background-color: #eee;
+          background-color: $mGray;
           text-decoration: none;
           opacity: 1;
         }
@@ -107,13 +107,13 @@
         z-index: 100;
         background-color: white;
         border-left: 1px solid white;
-        border-left: 1px solid #eee;
-        border-right: 1px solid #eee;
-        border-bottom: 1px solid #eee;
+        border-left: 1px solid $mGray;
+        border-right: 1px solid $mGray;
+        border-bottom: 1px solid $mGray;
       }
       &:hover {
         > a {
-          background-color: #eee;
+          background-color: $mGray;
           text-decoration: none;
           opacity: 1;
         }
