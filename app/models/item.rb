@@ -18,6 +18,19 @@ class Item < ApplicationRecord
   validate :images_validate
   validates :images, length: { maximum: 10 }
 
+  #いいねする
+  def like(user)
+    likes.create(user_id: user.id)
+  end
+  #いいねをやめる
+  def unlike(user)
+    likes.find_by(user_id: user.id).destroy
+  end
+  #いいねしたか確認する
+  def liked?(user)
+    likes.find_by(user_id: user.id)
+  end
+
   private
 
   #カスタムバリデーション
