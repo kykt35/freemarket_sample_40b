@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   has_many_attached :images
   has_many :comments
+  has_many :likes, dependent: :destroy
   belongs_to :seller, class_name: "User"
   belongs_to :category
   belongs_to :size, optional: true
