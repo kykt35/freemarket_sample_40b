@@ -245,4 +245,11 @@ $(document).on('turbolinks:load', function() {
       $('.sell-profit-value').text("-");
     }
   });
+  $('#report-modal-open').click(function(){
+      $('#report-modal-area').fadeIn();
+  });
+  $('#report-modal-close, .modal-bg').click(function(){
+    $('#report-modal-area').fadeOut();
+    return false;
+  });
 });
