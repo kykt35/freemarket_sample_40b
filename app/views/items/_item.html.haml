@@ -1,15 +1,19 @@
 %section.items-box
   = link_to item_path(item) do
     %figure.items-box-photo
-      =image_tag item.images[0],class: "is-higher-width lazyloaded"
-
+      =image_tag item.images.first,class: "is-higher-width lazyloaded"
   .items-box-body
     %h3.items-box-name.font-2
       = item.name
     .items-box-num.clearfix
       .items-box-price.font-5
-        = item.price
+        ="¥"+item.price.to_s(:delimited)
       .items-box-likes.font-2
-        %i.fa.fa-heart
-        %span 4
+        -if item.likes.length > 0
+          -if item.liked?(current_user)
+            %i.fa.fa-heart
+            %span=item.likes.length
+          -else
+            %i.far.fa-heart
+            %span=item.likes.length
       %p.items-box-tax (税込)
