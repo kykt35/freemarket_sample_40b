@@ -3,4 +3,5 @@ class Category < ApplicationRecord
   has_many :items
   has_many :categories_sizes, dependent: :destroy
   has_many :sizes, through: :categories_sizes
+  validates :name, presence: true
 end
