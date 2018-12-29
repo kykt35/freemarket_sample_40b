@@ -125,7 +125,6 @@
                     =link_to 'キャンセル', ""
                   %li.modal-button.modal-button-ok
                     =link_to 'はい'
-
           .item-button-right
             =link_to "#" do
               %i.fas.fa-lock
@@ -133,7 +132,6 @@
         .item-detail-comment
           .item-detail-comment-container
             .item-detail-comment-content
-
   .item-detail-message
     .message-container
       .message-content
@@ -154,7 +152,6 @@
                     .message-delete
                       = link_to item_comment_path(@item,comment),method: :delete do
                         %i.far.fa-trash-alt
-
         - else
           - @comments.each do |comment|
             %li.clearfix
