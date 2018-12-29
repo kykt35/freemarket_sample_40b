@@ -8,12 +8,12 @@
     .items-box-num.clearfix
       .items-box-price.font-5
         ="¥"+item.price.to_s(:delimited)
-      .items-box-likes.font-2
-        -if item.likes.length > 0
-          -if item.liked?(current_user)
+      .items-box-favorites.font-2
+        -if item.favorites.length > 0
+          -if item.favorited?(current_user)
             %i.fa.fa-heart
-            %span=item.likes.length
+            %span=item.favorites.length
           -else
             %i.far.fa-heart
-            %span=item.likes.length
+            %span=item.favorites.length
       %p.items-box-tax (税込)

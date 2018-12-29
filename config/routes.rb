@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'users/registration_card' => 'users#registration_card'
   resources :items, only: [:new, :show, :create, :destroy, :edit, :update] do
     resources :comments, only: [:create , :destroy]
-    resources :likes, only: [:create, :destroy]
+    resources :favorites, only: [:create, :destroy]
   end
   resources :transaction, only: [:new]
   get 'mypage/identification', to: 'users#identification'

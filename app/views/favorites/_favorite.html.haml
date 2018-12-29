@@ -1,0 +1,10 @@
+-if item.favorited?(current_user)
+  =link_to item_favorite_path(item,item.favorites.find_by(user_id: current_user.id)), {method: :delete,class: "item-button item-button-favorite", remote: true} do
+    %i.fa.fa-heart
+    %span いいね!
+    %span=item.favorites.count
+-else
+  =link_to item_favorites_path(item), {method: :post, class: "item-button item-button-favorite", remote: true} do
+    %i.far.fa-heart
+    %span いいね!
+    %span=item.favorites.count

@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :items
   has_many :sns_credentials
-  has_many :likes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   def self.create_from_auth!(auth)
     data = auth['info']

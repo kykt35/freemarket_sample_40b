@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :like do
+  factory :favorite do
     user { create(:user) }
     item { create(:item, :image) }
   end
