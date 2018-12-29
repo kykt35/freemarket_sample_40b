@@ -28,6 +28,8 @@ class ItemsController < ApplicationController
   end
 
   def update
+    @item.images.detach #attachmentを一旦すべて解除
+    uploaded_images.each {|image| @item.images.attach(image)} if uploaded_images.present?
     if @item.update(item_params)
       redirect_to item_path(@item), notice: 'アイテムを編集しました。'
     else
