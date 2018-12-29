@@ -161,6 +161,70 @@
       text-decoration: none;
     }
   }
+  .modal-area {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+  }
+  .modal-contents {
+    line-height:10px;
+    margin-top: 60px;
+  }
+  .modal-bold {
+    font-weight:bold;
+    font-size:20px;
+    margin-bottom: 15px;
+  }
+  .modal-final-answer {
+    margin-top:-10px;
+  }
+  .modal-wrapper {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    width: 70%;
+    max-width: 600px;
+    background-color: #fff;
+    text-align: center;
+    margin-top: 25px;
+  }
+  .modal-bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30,30,30,0.9);
+  }
+  .modal-button {
+    width:100%;
+    height:63px;
+    display:flex;
+    list-style: none;
+    border-top: 1px solid #ccc;
+    a {
+      line-height: 63px;
+      text-decoration: none;
+      width: 100%;
+      color:#000;
+    }
+    &-ok {
+      border-left: 1px solid #ccc;
+      a {
+        color: #0099e8;
+      }
+    }
+    &-box {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+  }
+  #report-modal-open {
+    cursor: pointer;
+  }
 } //.item-box-container
 
 .item-detail-comment {
@@ -258,7 +322,7 @@
   }
 }
 
-.item-button-edit-delete {
+.item-button-edit-delete{
   text-align: center;
   background:#fff;
   width:600px;
@@ -298,147 +362,131 @@
     margin-top: 10px;
     position:relative;
   }
+  .modalContents {
+    line-height:10px;
+    margin-top: 60px;
+  }
+  .modal-bold {
+    font-weight:bold;
+    font-size:20px;
+    margin-bottom: 15px;
+  }
+  .final-answer {
+    margin-top:-10px;
+  }
+  .modalArea {
+    display: none;
+    position: fixed;
+    z-index: 10; /*サイトによってここの数値は調整 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .modalWrapper {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    width: 70%;
+    max-width: 600px;
+    height:280px;
+    background-color: #fff;
+  }
+  .modalBg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30,30,30,0.9);
+  }
+  /* 以下ボタンスタイル */
+  button {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #282828;
+    border-radius: 2px;
+    cursor: pointer;
+  }
 
-.modalContents {
-  line-height:10px;
-  margin-top: 60px;
-}
-
-
-.modal-bold {
-  font-weight:bold;
-  font-size:20px;
-  margin-bottom: 15px;
-}
-
-.final-answer {
-  margin-top:-10px;
-}
-
-.modalArea {
-  display: none;
-  position: fixed;
-  z-index: 10; /*サイトによってここの数値は調整 */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-
-.modalWrapper {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform:translate(-50%,-50%);
-  width: 70%;
-  max-width: 600px;
-  height:280px;
-  background-color: #fff;
-}
-.modalBg {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(30,30,30,0.9);
-}
-
-/* 以下ボタンスタイル */
-button {
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #282828;
-  border-radius: 2px;
-  cursor: pointer;
-}
-
-.clearfix {
-  display:flex;
-  list-style: none;
-  border-top: 1px solid #ccc;
-}
-
-.cansel-button {
-  width:100%;
-  height:63px;
-  a {
-    line-height: 63px;
-    color:#000;
+  .clearfix {
+    display:flex;
+    list-style: none;
+    border-top: 1px solid #ccc;
+  }
+  .cansel-button {
+    width:100%;
+    height:63px;
+    a {
+      line-height: 63px;
+      color:#000;
+    }
+  }
+  .delete-button {
+    width:100%;
+    height:63px;
+    border-left: 1px solid #ccc;
+    a {
+      line-height: 63px;
+      color: #0099e8;
+    }
+  }
+  #openModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    border-style: none;
+    background: #aaa;
+    font-size:13px;
+    color:#fff;
   }
 }
-
-.delete-button {
-  width:100%;
-  height:63px;
-  border-left: 1px solid #ccc;
-a {
-  line-height: 63px;
-  color: #0099e8;
-  }
-}
-
-#openModal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform:translate(-50%,-50%);
-  border-style: none;
-  background: #aaa;
-  font-size:13px;
-  color:#fff;
-  }
-}
-
 .item-detail-message {
   width: 700px;
   margin:8px auto;
   .message-content {
-  padding: 24px;
-  background-color:#fff;
-  .textarea-default {
-    margin: 8px 0 0 0;
-  }
+    padding: 24px;
+    background-color:#fff;
+    .textarea-default {
+      margin: 8px 0 0 0;
+    }
   }
   .message-items {
-  margin: 0;
+    margin: 0;
   }
   li {
-  list-style: none;
+    list-style: none;
   }
   .message-items li:first-child {
-  margin: 1.5em 0 0;
-  list-style: none;
+    margin: 1.5em 0 0;
+    list-style: none;
   }
   .message-self .message-body {
-  float:left;
-  background: #fbf0e6;
+    float:left;
+    background: #fbf0e6;
   }
   .message-body {
-  float: right;
-  position: relative;
-  width: calc(100% - 56px);
-  padding: 16px;
-  background: #eef0f4;
-  border-radius: 15px;
-  line-height: 1.5;
-  word-break: break-all;
-  margin-bottom: 50px;
+    float: right;
+    position: relative;
+    width: calc(100% - 56px);
+    padding: 16px;
+    background: #eef0f4;
+    border-radius: 15px;
+    line-height: 1.5;
+    word-break: break-all;
+    margin-bottom: 50px;
   }
   .message-icons {
-  margin: 8px 0 0;
+    margin: 8px 0 0;
   }
   form {
-  background:#fff;
-  //padding-bottom: 30px;
+    background:#fff;
   }
   .message-items li {
-  margin: 60px 0 0;
+    margin: 60px 0 0;
   }
   .message-delete{
-  float: right;
+    float: right;
   }
-  // .item-detail-comment-form p {
-  // margin:0 15px 0 15px;
-  // }
 }
 
 
