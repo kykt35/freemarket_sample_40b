@@ -25,7 +25,7 @@
           %tr
             %th 出品者
             %td
-              =link_to "#{@item.seller.nickname}"
+              =link_to @item.seller.nickname
               .face
                 .item-user-ratings.l-left
                   %i.fas.fa-laugh.icon-good
@@ -69,13 +69,13 @@
               =@item.shipping.text
           %tr
             %th 配送元地域
-            %td=link_to "#{@item.prefecture.name}"
+            %td=link_to @item.prefecture.name
           %tr
             %th 発送日の目安
             %td
               =@item.leadtime.text
     .item-price-box
-      %span.item-price-box-price ¥#{@item.price}
+      %span.item-price-box-price="¥"+@item.price.to_s(:delimited)
       %span.item-price-box-tax (税込)
       %span.item-price-box-shipping-fee 送料込み
       - if user_signed_in? && current_user.id == @item.seller_id
