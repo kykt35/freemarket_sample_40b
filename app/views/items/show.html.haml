@@ -110,9 +110,22 @@
           .item-button-left.clearfix
             .like-button.l-left
               =render partial: "likes/like", locals: {item: @item}
-            =link_to "#", class: "item-button item-button-report clearfix" do
+            #report-modal-open.item-button.item-button-report.clearfix
               %i.far.fa-flag
               %span 不適切な商品の報告
+            %section#report-modal-area.modal-area
+              .modal-bg
+              .modal-wrapper
+                .modal-contents
+                  .modal-bold 確認
+                  %p 不適切な商品を通報しますか？
+                %br.modal-final-answer
+                %ul.modal-button-box
+                  %li#report-modal-close.modal-button
+                    =link_to 'キャンセル', ""
+                  %li.modal-button.modal-button-ok
+                    =link_to 'はい'
+
           .item-button-right
             =link_to "#" do
               %i.fas.fa-lock
