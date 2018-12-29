@@ -21,7 +21,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item =Item.find(params[:id])
     @comments = @item.comments.includes(:user)
   end
 
@@ -42,7 +41,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:id]).with_attached_image
   end
 
   def destroy
