@@ -13,9 +13,12 @@
           %nav.l-reft
             %ul.pc-header-navbox
               %li
-                %h2=link_to "カテゴリーから探す", "#", class: "pc-header-navbox-root"
+                %h2=link_to "カテゴリーから探す", "#", class: " pc-header-navbox-root"
+                %ul.pc-header-navbox-parent-wrap{style: "width: auto;"}
+                  =render partial: "shared/parts/category_parent", collection: @categories
               %li
                 %h2=link_to "ブランドから探す", "#", class: "pc-header-navbox-root"
+
           .l-right
             -if user_signed_in?
               %ul.pc-header-user-nav

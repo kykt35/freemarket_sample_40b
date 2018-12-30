@@ -18,11 +18,105 @@
        display: block;
        color: #333;
     }
-    li {
+    & > li {
       float: left;
       padding: 0 0 0 16px;
       &:first-child{
         padding:0;
+      }
+      & > ul >li {
+        display: none;
+      }
+      &:hover > ul >li {
+        display: block;
+      }
+    }
+    &-parent {
+      width: 224px;
+      h3 {
+        font-size: 14px;
+        font-weight: 400;
+        a {
+          line-height: 44px;
+          padding: 0 16px;
+        }
+      }
+      &-wrap {
+        position: absolute;
+        top: 38px;
+        z-index: 100;
+        background-color: white;
+        border-left: 1px solid $mGray;
+        border-right: 1px solid $mGray;
+        border-bottom: 1px solid $mGray;
+      }
+      &:hover {
+        >h3 > a {
+          color: white;
+          background-color: $mRed;
+          text-decoration: none;
+          opacity: 1;
+        }
+      }
+      &> ul > li{
+        display: none;
+      }
+      &:hover > ul > li{
+        display: block;
+      }
+    }
+    &-child {
+      width: 224px;
+      a {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+      &-wrap {
+        position: absolute;
+        top: 0;
+        left: 224px;
+        bottom: 0;
+        z-index: 100;
+        background-color: white;
+        border-left: 1px solid white;
+        border-left: 1px solid $mGray;
+        border-right: 1px solid $mGray;
+        border-bottom: 1px solid $mGray;
+      }
+      &:hover {
+        > a {
+          background-color: $mGray;
+          text-decoration: none;
+          opacity: 1;
+        }
+      }
+      &> ul > li{
+        display: none;
+      }
+      &:hover > ul > li{
+        display: block;
+      }
+    }
+    &-grandchild {
+      width: 320px;
+      &-wrap {
+        position: absolute;
+        top: 0;
+        left: 224px;
+        bottom: 0;
+        z-index: 100;
+        background-color: white;
+        border-left: 1px solid white;
+        border-left: 1px solid $mGray;
+        border-right: 1px solid $mGray;
+        border-bottom: 1px solid $mGray;
+      }
+      &:hover {
+        > a {
+          background-color: $mGray;
+          text-decoration: none;
+          opacity: 1;
+        }
       }
     }
   }
@@ -113,5 +207,8 @@
     .hidden{
       visibility:hidden;
     }
+  }
+  .header__bavbox {
+    position: relative;
   }
 }
