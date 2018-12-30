@@ -1,7 +1,7 @@
 %section.items-box
   = link_to item_path(item) do
     %figure.items-box-photo
-      =image_tag item.images.first,class: "is-higher-width lazyloaded"
+      =image_tag item.images.first.variant(resize: "250x250"),class: "is-higher-width lazyloaded"
   .items-box-body
     %h3.items-box-name.font-2
       = item.name
