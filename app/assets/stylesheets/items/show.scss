@@ -137,6 +137,10 @@
     border-radius: 40px;
     transition: all ease-out .3s;
     line-height: 1;
+    &:hover {
+      text-decoration: none;
+      opacity: 1;
+    }
     &-container {
       margin: 16px 0 0;
       span {
@@ -157,7 +161,25 @@
       border: 1px solid Whitesmoke;
       background: Whitesmoke;
       text-decoration: none;
-
+      -webkit-transition: all 2s ease;
+      transition: all 2s ease;
+    }
+    &-favorited {
+      border: 1px solid #ea352d;
+      color: $mRed;
+      background: none;
+    }
+    .fade-in-up {
+      -webkit-animation: fade-in-up ease-out 0.4s forwards;
+      animation: fade-in-up ease-out 0.4s forwards;
+    }
+    .fade-in-down {
+      -webkit-animation: fade-in-down ease-out 0.4s forwards;
+      animation: fade-in-down ease-out 0.4s forwards;
+    }
+    .rubber-band {
+      -webkit-animation: rubber-band ease-out 1s forwards;
+      animation: rubber-band ease-out 1s forwards;
     }
     &-report {
       padding: 8px 16px;
