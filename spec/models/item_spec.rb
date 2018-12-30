@@ -139,7 +139,7 @@ describe Item do
       end
     end
   end
-  describe '#favarite' do
+  describe '#favorite' do
     context "can favorite" do
       it "is valid" do
         item = create(:item ,:image , seller_id: seller.id)

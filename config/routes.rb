@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
   resources :transaction, only: [:new]
   get 'mypage/identification', to: 'users#identification'
-  resources :categories, only: [:index]
+  resources :categories, only: [:index, :show]
   resources :postage_selects, only: [:index]
   get 'categories/size_brand', to: 'categories#size_brand'
   post 'items/upload_image', to: 'items#upload_image'
