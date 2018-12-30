@@ -28,7 +28,7 @@ class Item < ApplicationRecord
   end
   #いいねしたか確認する
   def favorited?(user)
-    favorites.find_by(user_id: user.id)
+    favorites.find_by(user_id: user.id) if user.present?
   end
 
   private
