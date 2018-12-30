@@ -15,7 +15,7 @@
               %li
                 %h2=link_to "カテゴリーから探す", "#", class: " pc-header-navbox-root"
                 %ul.pc-header-navbox-parent-wrap{style: "width: auto;"}
-                  =render partial: "shared/parts/category_parent", collection: @categories
+                  =render partial: "shared/parts/category_parent", collection: @categories, cached: true
               %li
                 %h2=link_to "ブランドから探す", "#", class: "pc-header-navbox-root"
 
