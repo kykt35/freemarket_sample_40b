@@ -28,4 +28,4 @@
 /config/secrets.yml
 public/uploads/*
 storage/*
-spec/examples.txt"
+/spec/examples.txt
