@@ -16,4 +16,7 @@ class Category < ApplicationRecord
     return items_array.flatten
   end
 
+  def self.cache_all
+    Rails.cache.fetch("categories"){Category.all}
+  end
 end

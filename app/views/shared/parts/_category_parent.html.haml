@@ -3,13 +3,11 @@
     =link_to category_parent.name, category_path(category_parent)
   %ul.pc-header-navbox-child-wrap
     -category_children = categories.find_all{|n| n[:ancestry]==category_parent.id.to_s}
-    - cache category_children do
-      -category_children.each do |category_child|
-        %li.pc-header-navbox-child
-          =link_to category_child.name, category_path(category_child)
-          %ul.pc-header-navbox-grandchild-wrap
-            -category_grandchildren = categories.find_all{|n| n[:ancestry]=="#{category_parent.id}/#{category_child.id}"}
-            - cache category_grandchildren do
-              -category_grandchildren.each do |category_grandchild|
-                %li.pc-header-navbox-grandchild
-                  =link_to category_grandchild.name, category_path(category_grandchild)
+    -category_children.each do |category_child|
+      %li.pc-header-navbox-child
+        =link_to category_child.name, category_path(category_child)
+        %ul.pc-header-navbox-grandchild-wrap
+          -category_grandchildren = categories.find_all{|n| n[:ancestry]=="#{category_parent.id}/#{category_child.id}"}
+          -category_grandchildren.each do |category_grandchild|
+            %li.pc-header-navbox-grandchild
+              =link_to category_grandchild.name, category_path(category_grandchild)

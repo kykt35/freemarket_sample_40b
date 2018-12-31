@@ -16,8 +16,7 @@
                 %h2=link_to "カテゴリーから探す", "#", class: " pc-header-navbox-root"
                 %ul.pc-header-navbox-parent-wrap{style: "width: auto;"}
                   - category_parents = @categories.find_all{|n| n[:ancestry] == nil}
-                  - cache category_parents do
-                    =render partial: "shared/parts/category_parent", collection: category_parents, cached: true,locals: {categories: @categories}
+                  =render partial: "shared/parts/category_parent", collection: category_parents, cached: true,locals: {categories: @categories}
               %li
                 %h2=link_to "ブランドから探す", "#", class: "pc-header-navbox-root"
 

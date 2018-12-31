@@ -21,6 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_categories
-    @categories = Category.all
+    @categories = Category.cache_all
   end
 end
