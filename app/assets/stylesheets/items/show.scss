@@ -23,13 +23,14 @@
     margin: 16px 0 0;
   }
   .item-photo {
-    float: left;
-    min-width: 300px;
-    max-width: 300px;
-    min-height: 375px;
-    background-color: $whiteGray;
+      min-width: 280px;
+      max-width: 360px;
+      min-height: 280px;
+      margin: 0 auto;
+      background-color: $whiteGray;
     .slick-dots {
       bottom: 0;
+      position: relative;
       li {
         margin: 0;
         display: inline-block;
@@ -47,7 +48,7 @@
       }
     }
     .slick-list{
-      height: 300px;
+      // height: 300px;
       img {
         width: 300px;
         height: 300px;
@@ -56,11 +57,9 @@
     }
   }
   .item-detail-table {
-    float: right;
     width: 100%;
-    max-width: 300px;
-    height: 375px;
-    margin: 0 auto;
+    max-width: 360px;
+    margin: 8px auto 0;
     border-collapse: collapse;
     border: 1px solid Whitesmoke;
     border-spacing: 0;
@@ -170,8 +169,7 @@
 } //.item-detal-comment
 
 .nav-item-link-prev-next {
-    margin: 24px auto 0;
-    width: 700px;
+  margin: 24px 4% 0;
   .nav-item-link {
     width: 45%;
     word-wrap: break-word;
@@ -200,9 +198,8 @@
 }
 
 .item-social-media-box {
-  margin: 24px auto;
-  padding: 32px 0 24px;
-  width: 700px;
+  margin: 24px 0 0;
+  padding: 16px 0 8px;
   background-color: #fff;
   .text-center {
     padding: 14px 0 0;
@@ -251,18 +248,16 @@
 .item-button-edit-delete {
   text-align: center;
   background:#fff;
-  width:600px;
   margin-top: 25px;
   padding-top: 10px;
   padding-bottom: 10px;
   .item-button-edit {
     height:50px;
     line-height:50px;
-    width:650px;
     background: #ea352d;
     margin:0 auto;
   }
-   a {
+  a {
     color:#fff;
     text-decoration:none;
    }
@@ -274,7 +269,6 @@
   .item-button-stop {
     height:50px;
     line-height:50px;
-    width:650px;
     background: #aaa;
     margin:0 auto;
     margin-top: 10px;
@@ -282,13 +276,12 @@
   .item-button-delete {
     height:50px;
     line-height:50px;
-    width:650px;
     background: #aaa;
     margin:0 auto;
     margin-top: 10px;
     position:relative;
   }
-
+}
 .modalContents {
   line-height:10px;
   margin-top: 60px;
@@ -333,19 +326,19 @@
 }
 
 /* 以下ボタンスタイル */
-button {
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #282828;
-  border-radius: 2px;
-  cursor: pointer;
-}
+// button {
+//   padding: 10px;
+//   background-color: #fff;
+//   border: 1px solid #282828;
+//   border-radius: 2px;
+//   cursor: pointer;
+// }
 
-.clearfix {
-  display:flex;
-  list-style: none;
-  border-top: 1px solid #ccc;
-}
+// .clearfix {
+//   display:flex;
+//   list-style: none;
+//   border-top: 1px solid #ccc;
+// }
 
 .cansel-button {
   width:100%;
@@ -375,14 +368,13 @@ a {
   background: #aaa;
   font-size:13px;
   color:#fff;
-  }
 }
 
+
 .item-detail-message {
-  width: 700px;
   margin:8px auto;
   .message-content {
-  padding: 24px;
+  padding: 24px 7.5%;
   background-color:#fff;
   }
   .message-items {
@@ -422,9 +414,6 @@ a {
   }
   .message-delete{
   float: right;
-  }
-  .item-detail-comment-form p {
-  margin:0 15px 0 15px;
   }
 }
 

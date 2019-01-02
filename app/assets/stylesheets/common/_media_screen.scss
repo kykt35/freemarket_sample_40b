@@ -62,10 +62,94 @@
       width: 620px;
       padding: 40px;
     }
+    .sell-form-box {
+      float: right;
+      width: 400px;
+      margin: 0;
+    }
+    .sell-sub-head {
+      float: left;
+    }
+    .sell-upload-dropbox {
+      .fa-camera {
+        display: none;
+      }
+      &.have {
+        &-item-0 {
+          width: 620px;
+        }
+        &-item-1 {
+          width: 491px;
+        }
+        &-item-2 {
+          width: 363px;
+        }
+        &-item-3 {
+          width: 234px;
+        }
+        &-item-4 {
+          width: 106px;
+        }
+        &-item-5 {
+          width: 620px;
+        }
+        &-item-6 {
+          width: 491px;
+        }
+        &-item-7 {
+          width: 363px;
+        }
+        &-item-8 {
+          width: 234px;
+        }
+        &-item-9 {
+          width: 106px;
+        }
+        &-item-10 {
+          display: none;
+        }
+      }
+    }
+    .sell-upload-item {
+      width: 116px;
+      margin: 0 0 10px 10px;
+    }
+  }
+  .item-box-container {
+    .item-photo {
+      float: left;
+      min-width: 300px;
+      max-width: 300px;
+      min-height: 375px;
+    }
+    .item-detail-table {
+      float: right;
+      max-width: 300px;
+      height: 375px;
+      margin: 0 auto;
+    }
   }
   .single-container-section {
     width: 700px;
     margin: 0 auto;
+  }
+  .item-detail-message {
+    width: 700px;
+  }
+  .nav-item-link-prev-next {
+    margin: 24px auto 0;
+    width: 700px;
+  }
+  .item-social-media-box {
+    margin: 24px auto;
+    padding: 32px 0 24px;
+    width: 700px;
+  }
+  .visible-pc {
+    display: block;
+  }
+  .visible-sp {
+    display: none;
   }
 }
 

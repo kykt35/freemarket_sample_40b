@@ -15,9 +15,10 @@
           =label :images, "", for: "item_images" do
             .sell-upload-dropbox.clearfix{class: "have-item-#{@item.images.length}"}
               =f.file_field :images, class: "sell-upload-drop-file", åmultiple: true, style: "display: none;"
-              %pre
+              %pre.visible-pc
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
+              %i.fas.fa-camera
             -if @item.errors[:images]
               %ul.has-error-text
                 -@item.errors.full_messages_for(:images).each do |error|
