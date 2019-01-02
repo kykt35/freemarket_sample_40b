@@ -23,8 +23,8 @@
 - has_many :items
 - has_many :comments
 - has_many :comments_items, through: :comments, source: :items
-- has_many :likes
-- has_many :liked_items, through: :likes, source: :items
+- has_many :favorites
+- has_many :favorited_items, through: :favorites, source: :items
 - has_many :address
 - has_many :credit_cards, dependent: :destroy
 - has_many :points
@@ -147,8 +147,8 @@
 - has_many :evaluation_transactions, through: :evaluations, source: :users, dependent: :destroy
 - has_many :comments
 - has_many :comments_items, through: :comments, source: :users, dependent: :destroy
-- has_many :likes
-- has_many :liked_items, through: :likes, source: :users, dependent: :destroy
+- has_many :favorites
+- has_many :favorited_items, through: :favorites, source: :users, dependent: :destroy
 
 ## Transactionsテーブル
 |Column|Type|Options|
@@ -192,7 +192,7 @@
 - belongs_to :user
 
 
-## Likesテーブル
+## favoritesテーブル
 
 |Column|Type|Options|
 |------|----|-------|

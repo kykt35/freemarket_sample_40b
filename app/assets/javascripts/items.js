@@ -231,9 +231,8 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
-  //価格入力時に手数料、収益を表示
-  $(document).on("keyup", "#item_price", function (e) {
-    var price = Number($(this).val());
+  function displayPrice(){
+    var price = Number($("#item_price").val());
     if ((price >= 300) && (price < 10000000)) {
       var fee =0.1; //手数料 10％
       var commission = Math.floor(price * fee);
@@ -244,5 +243,20 @@ $(document).on('turbolinks:load', function() {
       $('.sell-commission-value').text("-");
       $('.sell-profit-value').text("-");
     }
+  }
+  //価格入力時に手数料、収益を表示
+  $(document).on("keyup", "#item_price", function (e) {
+    displayPrice();
+  });
+  $("#item_price").ready(function(){
+    displayPrice();
+  });
+
+  $('#report-modal-open').click(function(){
+      $('#report-modal-area').fadeIn();
+  });
+  $('#report-modal-close, .modal-bg').click(function(){
+    $('#report-modal-area').fadeOut();
+    return false;
   });
 });

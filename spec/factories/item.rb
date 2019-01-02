@@ -4,13 +4,13 @@ FactoryBot.define do
   factory :item do
     name { Faker::Name.name }
     description  { Faker::Lorem.sentence }
-    category_id { 1 }
-    item_condition_id { 1 }
-    postage_select_id { 1 }
-    shipping_id { 1 }
-    prefecture_id { 1 }
-    leadtime_id { 1 }
-    seller_id { 1 }
+    category_id { create(:category_grandchild, name: "かてごり").id }
+    item_condition_id { create(:item_condition).id }
+    postage_select_id { create(:postage_select).id }
+    shipping_id { create(:shipping).id }
+    prefecture_id { create(:prefecture).id }
+    leadtime_id { create(:leadtime).id }
+    seller_id { create(:user).id }
     price { 100 }
     trait(:image) do
       images { fixture_file_upload("#{::Rails.root}/spec/fixtures/sample.jpg", "image/jpg") }
