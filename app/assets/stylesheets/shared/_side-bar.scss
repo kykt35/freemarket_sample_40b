@@ -1,11 +1,6 @@
 .l-side {
-  float: left;
-  height:1252px;
-  width: 280px;
-  margin: 0 30px 0 0;
+  margin: 40px auto 0;
   .mypage-nav {
-  width:280px;
-  height:1252px;
   margin:0;
   padding:0;
   .mypage-nav-head  {
@@ -18,7 +13,6 @@
   text-decoration: none;
   display: block;
   min-height: 15px;
-  width:250px;
   padding: 16px;
   background: $siro;
   color: $action_arrow;
