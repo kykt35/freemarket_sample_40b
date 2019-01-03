@@ -34,57 +34,7 @@
                       %div
                         =image_tag "member_photo_noimage_thumb.png",width: 32, height: 32
                     %div マイページ
-                  .pc-header-user-box.pc-header-mypage-box
-                    .pc-header-mypage-box-state
-                      %figure
-                        .pc-header-mypage-box-avator
-                          =image_tag "member_photo_noimage_thumb.png"
-                        %figcaption=current_user.nickname
-                      %ul.pc-header-mypage-box-review-listing.clearfix
-                        %li
-                          =link_to "評価:2","#"
-                        %li
-                          =link_to "出品数:2","#"
-                      %ul.pc-header-mypage-box-sales-point
-                        %li
-                          =link_to "#", class: "clearfix" do
-                            .l-left
-                              売上金
-                            .l-right
-                              ¥ 0
-                              %i.fa.fa-angle-right.icon
-                        %li
-                          =link_to "#", class: "clearfix" do
-                            .l-left
-                              ポイント
-                            .l-right
-                              P 0
-                              %i.fa.fa-angle-right.icon
-                    %ul.pc-header-mypage-box-nav-list
-                      %li
-                        =link_to "#" do
-                          いいね！一覧
-                          %i.fa.fa-angle-right.icon
-                      %li
-                        =link_to "#" do
-                          出品した商品-出品中
-                          %i.fa.fa-angle-right.icon
-                      %li
-                        =link_to "#" do
-                          出品した商品-取引中
-                          %i.fa.fa-angle-right.icon
-                      %li
-                        =link_to "#" do
-                          出品した商品-売却済
-                          %i.fa.fa-angle-right.icon
-                      %li
-                        =link_to "#" do
-                          購入した商品-取引中
-                          %i.fa.fa-angle-right.icon
-                      %li
-                        =link_to "#" do
-                          購入した商品-過去の取引
-                          %i.fa.fa-angle-right.icon
+                  =render partial: 'shared/parts/pc-header-mypage-box'
 
                 %li
                   =link_to "#", class: "pc-header-navbox-root" do
