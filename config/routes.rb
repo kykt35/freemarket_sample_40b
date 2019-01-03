@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'mypage/card/add' => 'users#add'
   get 'mypage/profile' => 'users#profile'
   get 'mypage/identification', to: 'users#identification'
+  get 'mypage/favorite', to: 'users#favorite'
   get 'users/signup', to: 'users#signup'
   get 'users/logout', to: 'users#logout'
   get 'users/registration_card' => 'users#registration_card'
@@ -20,7 +21,6 @@ Rails.application.routes.draw do
   end
   resources :transaction, only: [:new]
   get 'mypage/identification', to: 'users#identification'
-  # get 'categories/size_brand', to: 'categories#size_brand'
   resources :categories, only: [:index, :show] do
     collection do
       get 'size_brand'
