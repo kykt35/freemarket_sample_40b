@@ -1,0 +1,21 @@
+= render partial:"shared/pc-header"
+= render partial:"shared/bread-crumbs"
+.l-container.clearfix
+  .l-content
+    %section.l-chapter-container
+      %h2.l-chapter-head いいね！一覧
+      %ul.mypage-item-list
+        -@favorites.each do |favorite|
+          %li
+            =link_to item_path(favorite.item), class: "mypage-item-link" do
+              %figure
+                =image_tag favorite.item.images.first.variant(resize: "48x48")
+              .mypage-item-body
+                .mypage-item-text=favorite.item.name
+                .mypage-item-text=favorite.item.price
+              %i.fa.fa-angle-right.icon
+
+  = render partial:"users/side-bar"
+= render partial:"shared/footer-sell-btn"
+= render partial:"shared/app-banner"
+= render partial:"shared/global-footer"
