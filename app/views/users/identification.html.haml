@@ -3,8 +3,7 @@
   - breadcrumb :identification
   = render partial:"shared/bread-crumbs"
   %main.l-container.clearfix
-    =render partial:"users/side-bar"
-    %div.l-content.l-right
+    %div.l-content
       %section.l-identification-container.mypage-identification
         %h2.l-chapter-head 本人情報の登録
         %p.text-center お客さまのあんしん・あんぜんな取引のため、本人情報のご登録をお願いしております。
@@ -279,6 +278,7 @@
                 = link_to "本人情報の登録について",target:"_blank"
                 = fa_icon 'angle-right', class: 'icon'
             %input{type:"hidden",name:"__csrf_value",value:""}
+    =render partial:"users/side-bar"
   = render partial:"shared/app-banner"
   = render partial:"shared/global-footer"
   = render partial:"shared/footer-sell-btn"
