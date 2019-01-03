@@ -12,7 +12,7 @@
                 =image_tag favorite.item.images.first.variant(resize: "48x48")
               .mypage-item-body
                 .mypage-item-text=favorite.item.name
-                .mypage-item-text=favorite.item.price
+                .mypage-item-text="¥"+favorite.item.price.to_s(:delimited)
               %i.fa.fa-angle-right.icon
 
   = render partial:"users/side-bar"
