@@ -27,7 +27,7 @@ $(document).on('turbolinks:load', function() {
   }
 
   function uploadImage(imageFile){
-    var formData = new FormData(this);
+    var formData = new FormData();
     formData.append('image', imageFile);
     $.ajax({
       type: "POST",
@@ -55,7 +55,7 @@ $(document).on('turbolinks:load', function() {
     $('.sell-upload-drop-file').val('');
   });
 
-  $(document).on("click", ".sell-upload-delete", function (e) {
+  $("#sell-item-container").on("click", ".sell-upload-delete", function (e) {
     e.preventDefault();
     $(this).parents('.sell-upload-item').remove();
     var upload_item = $('.sell-upload-item');

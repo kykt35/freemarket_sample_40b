@@ -96,7 +96,7 @@ RSpec.describe User do
       expect(SnsCredential.last(1)).to eq SnsCredential.where(uid: 1000000, provider: "test")
     end
     it "SnsCredentialsテーブルに引数と同じproviderのuidとがあるとき、それをsns_credentialとすること" do
-      sns_credential = SnsCredential.create(uid: 1000000, provider: "test", user_id: 1)
+      sns_credential = SnsCredential.create(uid: 1000000, provider: "test", user_id: user.id)
       credential = User.create_from_auth!(auth)
       expect(credential).to eq sns_credential
     end

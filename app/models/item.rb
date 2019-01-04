@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   has_many_attached :images
   has_many :comments
+  has_many :favorites, dependent: :destroy
   belongs_to :seller, class_name: "User"
   belongs_to :category
   belongs_to :size, optional: true
@@ -16,6 +17,19 @@ class Item < ApplicationRecord
   validate :images_attached
   validate :images_validate
   validates :images, length: { maximum: 10 }
+
+  #いいねする
+  def favorite(user)
+    favorites.create(user_id: user.id)
+  end
+  #いいねをやめる
+  def unfavorite(user)
+    favorites.find_by(user_id: user.id).destroy
+  end
+  #いいねしたか確認する
+  def favorited?(user)
+    favorites.find_by(user_id: user.id) if user.present?
+  end
 
   private
 

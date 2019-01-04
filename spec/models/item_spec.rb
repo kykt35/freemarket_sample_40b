@@ -3,7 +3,6 @@ require 'rails_helper'
 describe Item do
   let(:seller) { create(:user) }
   describe '#create' do
-
     context 'can save' do
       it "is valid with parameter" do
         item = build(:item, :image, seller_id: seller.id)
@@ -140,4 +139,41 @@ describe Item do
       end
     end
   end
+  describe '#favorite' do
+    let(:user) { create(:user)}
+    let(:item) { create(:item ,:image , seller_id: seller.id) }
+    context "can favorite" do
+      it "is valid" do
+        expect(item.favorite(user)).to be_valid
+      end
+      it "count up Favorite" do
+        expect{item.favorite(user)}.to change(Favorite, :count).by(1)
+      end
+      it "count up item.favorites" do
+        expect{item.favorite(user)}.to change(item.favorites, :count).by(1)
+      end
+      it "count up Favorite" do
+        expect{item.favorite(user)}.to change(user.favorites, :count).by(1)
+      end
+    end
+    context "can unfavorite" do
+      it "is valid" do
+        Favorite.create(item: item, user: user)
+        expect(item.unfavorite(user)).to be_valid
+      end
+      it "count up Favorite" do
+        Favorite.create(item: item, user: user)
+        expect{item.unfavorite(user)}.to change(Favorite, :count).by(-1)
+      end
+      it "count up item.favorites" do
+        Favorite.create(item: item, user: user)
+        expect{item.unfavorite(user)}.to change(item.favorites, :count).by(-1)
+      end
+      it "count up Favorite" do
+        Favorite.create(item: item, user: user)
+        expect{item.unfavorite(user)}.to change(user.favorites, :count).by(-1)
+      end
+    end
+  end
+
 end

@@ -21,7 +21,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item =Item.find(params[:id])
     @comments = @item.comments.includes(:user)
   end
 
@@ -29,6 +28,8 @@ class ItemsController < ApplicationController
   end
 
   def update
+    @item.images.detach #attachmentを一旦すべて解除
+    uploaded_images.each {|image| @item.images.attach(image)} if uploaded_images.present?
     if @item.update(item_params)
       redirect_to item_path(@item), notice: 'アイテムを編集しました。'
     else
@@ -42,7 +43,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:id]).with_attached_image
   end
 
   def destroy

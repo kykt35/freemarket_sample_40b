@@ -7,46 +7,15 @@
         %a{:href => "/jp/category/1/"}
           レディース 新着アイテム
       .items-box-content.clearfix
-        - @items.each do |item|
-          %section.items-box
-            = link_to item_path(item) do
-              %figure.items-box-photo
-                =image_tag item.images[0],class: "is-higher-width lazyloaded"
-
-            .items-box-body
-              %h3.items-box-name.font-2
-                = item.name
-              .items-box-num.clearfix
-                .items-box-price.font-5 
-                  = item.price
-                .items-box-likes.font-2
-                  %i.fa.fa-heart
-                  %span 4
-                %p.items-box-tax (税込)
+        = render partial: "items/item", collection: @items
       .view-all
         %a{:href => "/jp/category/1/"} すべての商品を見る
-
     %section.items-box-container.clearfix
       %h3.text-center
         %a{:href => "/jp/category/2/"}
           メンズ 新着アイテム
       .items-box-content.clearfix
-        - @items.each do |item|
-          %section.items-box
-            = link_to item_path(item) do
-              %figure.items-box-photo
-                =image_tag item.images[0],class: "is-higher-width lazyloaded"
-
-            .items-box-body
-              %h3.items-box-name.font-2
-                = item.name
-              .items-box-num.clearfix
-                .items-box-price.font-5 
-                  = item.price
-                .items-box-likes.font-2
-                  %i.fa.fa-heart
-                  %span 4
-                %p.items-box-tax (税込)
+        = render partial: "items/item", collection: @items
       .view-all
         %a{:href => "/jp/category/1/"} すべての商品を見る
     %section.items-box-container.clearfix
@@ -54,22 +23,7 @@
         %a{:href => "/jp/category/3/"}
           ベビー・キッズ 新着アイテム
       .items-box-content.clearfix
-        - @items.each do |item|
-          %section.items-box
-            = link_to item_path(item) do
-              %figure.items-box-photo
-                =image_tag item.images[0],class: "is-higher-width lazyloaded"
-
-            .items-box-body
-              %h3.items-box-name.font-2
-                = item.name
-              .items-box-num.clearfix
-                .items-box-price.font-5 
-                  = item.price
-                .items-box-likes.font-2
-                  %i.fa.fa-heart
-                  %span 4
-                %p.items-box-tax (税込)
+        = render partial: "items/item", collection: @items
       .view-all
         %a{:href => "/jp/category/1/"} すべての商品を見る
     %section.items-box-container.clearfix
@@ -77,22 +31,7 @@
         %a{:href => "/jp/category/6/"}
           コスメ・香水・美容 新着アイテム
       .items-box-content.clearfix
-        - @items.each do |item|
-          %section.items-box
-            = link_to item_path(item) do
-              %figure.items-box-photo
-                =image_tag item.images[0],class: "is-higher-width lazyloaded"
-
-            .items-box-body
-              %h3.items-box-name.font-2
-                = item.name
-              .items-box-num.clearfix
-                .items-box-price.font-5 
-                  = item.price
-                .items-box-likes.font-2
-                  %i.fa.fa-heart
-                  %span 4
-                %p.items-box-tax (税込)
+        = render partial: "items/item", collection: @items
       .view-all
         %a{:href => "/jp/category/1/"} すべての商品を見る
 
