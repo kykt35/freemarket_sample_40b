@@ -8,21 +8,38 @@
           レディース 新着アイテム
       .items-box-content.clearfix
         - @items.each do |item|
-          %section.items-box
-            = link_to item_path(item) do
-              %figure.items-box-photo
-                =image_tag item.images[0],class: "is-higher-width lazyloaded"
-
-            .items-box-body
-              %h3.items-box-name.font-2
-                = item.name
-              .items-box-num.clearfix
-                .items-box-price.font-5 
-                  = item.price
-                .items-box-likes.font-2
-                  %i.fa.fa-heart
-                  %span 4
-                %p.items-box-tax (税込)
+          -unless item.status.present?
+            %section.items-box
+              = link_to item_path(item) do
+                %figure.items-box-photo
+                  =image_tag item.images[0],class: "is-higher-width lazyloaded"
+              .items-box-body
+                %h3.items-box-name.font-2
+                  = item.name
+                .items-box-num.clearfix
+                  .items-box-price.font-5
+                    = item.price
+                  .items-box-likes.font-2
+                    %i.fa.fa-heart
+                    %span 4
+                  %p.items-box-tax (税込)
+          -else
+            %section.items-box
+              = link_to item_path(item) do
+                %figure.items-box-photo
+                  =image_tag item.images[0],class: "is-higher-width lazyloaded"
+                  .item-sold-out-badge
+                    %div SOLD
+              .items-box-body
+                %h3.items-box-name.font-2
+                  = item.name
+                .items-box-num.clearfix
+                  .items-box-price.font-5
+                    = item.price
+                  .items-box-likes.font-2
+                    %i.fa.fa-heart
+                    %span 4
+                  %p.items-box-tax (税込)
       .view-all
         %a{:href => "/jp/category/1/"} すべての商品を見る
 
@@ -41,7 +58,7 @@
               %h3.items-box-name.font-2
                 = item.name
               .items-box-num.clearfix
-                .items-box-price.font-5 
+                .items-box-price.font-5
                   = item.price
                 .items-box-likes.font-2
                   %i.fa.fa-heart
@@ -64,7 +81,7 @@
               %h3.items-box-name.font-2
                 = item.name
               .items-box-num.clearfix
-                .items-box-price.font-5 
+                .items-box-price.font-5
                   = item.price
                 .items-box-likes.font-2
                   %i.fa.fa-heart
@@ -87,7 +104,7 @@
               %h3.items-box-name.font-2
                 = item.name
               .items-box-num.clearfix
-                .items-box-price.font-5 
+                .items-box-price.font-5
                   = item.price
                 .items-box-likes.font-2
                   %i.fa.fa-heart

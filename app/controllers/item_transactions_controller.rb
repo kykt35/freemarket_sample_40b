@@ -12,7 +12,8 @@ class ItemTransactionsController < ApplicationController
     charge(price)
       if @item_transaction.save
       # @sales_amount = SalesAmount.new(price: price * 0.9, limit_time: Date.today() + "180", user_id: @item.user_id)
-      redirect_to root_path, notice: 'ありがとうございました。'
+      @item_transaction.item.update_attribute(:status, 1)
+      redirect_to root_path
       else
         render 'new'
       end
@@ -23,4 +24,3 @@ class ItemTransactionsController < ApplicationController
   end
 
 end
-

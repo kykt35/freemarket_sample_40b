@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
     #商品登録
   end
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(item_params).merge(status: @item.status)
     if @item.save
       respond_to do |format|
         format.html
