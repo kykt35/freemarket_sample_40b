@@ -1,0 +1,3 @@
+$(".favorite-button").html("<%= j(render partial: 'favorites/favorite', locals: { item: @item }) %>");
+$(".item-button-favorite-count").remove("fade-in-up").addClass("fade-in-down");
+

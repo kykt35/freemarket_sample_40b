@@ -1,15 +1,19 @@
 %section.items-box
   = link_to item_path(item) do
     %figure.items-box-photo
-      =image_tag item.images[0],class: "is-higher-width lazyloaded"
-
+      =image_tag item.images.first.variant(resize: "250x250"),class: "is-higher-width lazyloaded"
   .items-box-body
     %h3.items-box-name.font-2
       = item.name
     .items-box-num.clearfix
       .items-box-price.font-5
-        = item.price
-      .items-box-likes.font-2
-        %i.fa.fa-heart
-        %span 4
+        ="¥"+item.price.to_s(:delimited)
+      .items-box-favorites.font-2
+        -if item.favorites.length > 0
+          -if item.favorited?(current_user)
+            %i.fa.fa-heart
+            %span=item.favorites.length
+          -else
+            %i.far.fa-heart
+            %span=item.favorites.length
       %p.items-box-tax (税込)

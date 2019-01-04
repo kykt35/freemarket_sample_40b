@@ -12,15 +12,20 @@
       =link_to "#{@item.category.name}"
       の商品で、#{@item.prefecture.name}から#{@item.leadtime.text}で発送されます。
     .item-main-content.clearfix
-      .item-photo
-        -@item.images.each do |image|
-          =image_tag image,width: 300,hight:300
+      - if @item.images.length >= 5
+        .item-photo.item-photo-expanded
+          -@item.images.each do |image|
+            =image_tag image,width: 300,hight:300
+      - else
+        .item-photo
+          -@item.images.each do |image|
+            =image_tag image,width: 300,hight:300
       %table.item-detail-table
         %tbody
           %tr
             %th 出品者
             %td
-              =link_to "#{@item.seller.nickname}"
+              =link_to @item.seller.nickname
               .face
                 .item-user-ratings.l-left
                   %i.fas.fa-laugh.icon-good
@@ -64,13 +69,13 @@
               =@item.shipping.text
           %tr
             %th 配送元地域
-            %td=link_to "#{@item.prefecture.name}"
+            %td=link_to @item.prefecture.name
           %tr
             %th 発送日の目安
             %td
               =@item.leadtime.text
     .item-price-box
-      %span.item-price-box-price ¥#{@item.price}
+      %span.item-price-box-price="¥"+@item.price.to_s(:delimited)
       %span.item-price-box-tax (税込)
       %span.item-price-box-shipping-fee 送料込み
       - if user_signed_in? && current_user.id == @item.seller_id
@@ -107,14 +112,24 @@
                     =link_to '削除', "", method: :delete
       - else
         .item-button-container.clearfix
-          .item-button-left
-            %buttom.item-button.item-button-like
-              %i.far.fa-heart
-              %span いいね！
-              %span 1
-            =link_to "#", class: "item-button item-button-report clearfix" do
+          .item-button-left.clearfix
+            .favorite-button.l-left
+              =render partial: "favorites/favorite", locals: {item: @item}
+            #report-modal-open.item-button.item-button-report.clearfix
               %i.far.fa-flag
               %span 不適切な商品の報告
+            %section#report-modal-area.modal-area
+              .modal-bg
+              .modal-wrapper
+                .modal-contents
+                  .modal-bold 確認
+                  %p 不適切な商品を通報しますか？
+                %br.modal-final-answer
+                %ul.modal-button-box
+                  %li#report-modal-close.modal-button
+                    =link_to 'キャンセル', ""
+                  %li.modal-button.modal-button-ok
+                    =link_to 'はい'
           .item-button-right
             =link_to "#" do
               %i.fas.fa-lock
@@ -122,7 +137,6 @@
         .item-detail-comment
           .item-detail-comment-container
             .item-detail-comment-content
-
   .item-detail-message
     .message-container
       .message-content
@@ -143,7 +157,6 @@
                     .message-delete
                       = link_to item_comment_path(@item,comment),method: :delete do
                         %i.far.fa-trash-alt
-
         - else
           - @comments.each do |comment|
             %li.clearfix
@@ -157,13 +170,13 @@
                     = fa_icon 'cog', class: 'icon'
                     %span 1時間前
 
-      %form.item-detail-comment-form
-        %p
-          相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      = form_tag("/items/#{@item.id}/comments", method: :post) do
-        %textarea.textarea-default{cols: "30", name: "text", placeholder: "コメントする", rows: "2"}
-        %button.comment-submit.btn-default.btn-gray
-          %span コメントする
+        %form.item-detail-comment-form
+          %p
+            相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        = form_tag("/items/#{@item.id}/comments", method: :post) do
+          %textarea.textarea-default{cols: "30", name: "text", placeholder: "コメントする", rows: "2"}
+          %button.comment-submit.btn-default.btn-gray
+            %span コメントする
   %ul.nav-item-link-prev-next.clearfix
     %li.nav-item-link.nav-item-link-prev.l-left
       =link_to "#" do
