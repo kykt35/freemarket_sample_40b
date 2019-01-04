@@ -3,11 +3,5 @@
     =link_to category_parent.name, category_path(category_parent)
   %ul.pc-header-navbox-child-wrap
     -category_children = categories.find_all{|n| n[:ancestry]==category_parent.id.to_s}
-    -category_children.each do |category_child|
-      %li.pc-header-navbox-child
-        =link_to category_child.name, category_path(category_child)
-        %ul.pc-header-navbox-grandchild-wrap
-          -category_grandchildren = categories.find_all{|n| n[:ancestry]=="#{category_parent.id}/#{category_child.id}"}
-          -category_grandchildren.each do |category_grandchild|
-            %li.pc-header-navbox-grandchild
-              =link_to category_grandchild.name, category_path(category_grandchild)
+    =render partial: "shared/parts/category_child", collection: category_children, cached: true,locals: {categories: @categories, category_parent: category_parent}
+
