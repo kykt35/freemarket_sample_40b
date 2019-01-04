@@ -1,0 +1,7 @@
+.category-list-box-child.clearfix
+  .category-list-box-child-head
+    %h4=child.name
+  %ul.category-list-box-grandchild
+    %li
+      =link_to "すべて", category_path(child)
+    = render partial: "category_listbox_grandchild", collection: @categories.find_all{|n| n[:ancestry]== "#{parent.id}/#{child.id}"}, as: "grandchild"

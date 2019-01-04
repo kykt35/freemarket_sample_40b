@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_26_113340) do
+ActiveRecord::Schema.define(version: 2018_12_29_135151) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -57,12 +57,30 @@ ActiveRecord::Schema.define(version: 2018_12_26_113340) do
     t.index ["size_id"], name: "index_categories_sizes_on_size_id"
   end
 
+
   create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_credits_on_user_id"
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "item_id", null: false
+    t.text "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_favorites_on_item_id"
+    t.index ["user_id", "item_id"], name: "index_favorites_on_user_id_and_item_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "item_conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -188,6 +206,8 @@ ActiveRecord::Schema.define(version: 2018_12_26_113340) do
   add_foreign_key "credits", "users"
   add_foreign_key "item_transactions", "items"
   add_foreign_key "item_transactions", "users"
+  add_foreign_key "favorites", "items"
+  add_foreign_key "favorites", "users"
   add_foreign_key "items", "brands"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "categories", column: "l_category_id"
@@ -202,3 +222,4 @@ ActiveRecord::Schema.define(version: 2018_12_26_113340) do
   add_foreign_key "postage_selects_shippings", "postage_selects"
   add_foreign_key "postage_selects_shippings", "shippings"
 end
+

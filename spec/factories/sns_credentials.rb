@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :sns_credential do
-    provider { "MyString" }
-    uid { "MyString" }
-    user_id { 1 }
+    provider { "Test-provider" }
+    uid { 1000000000 }
+    user_id { create(:user).id }
   end
 end

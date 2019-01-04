@@ -1,0 +1,20 @@
+.sell-modal {
+  &-head {
+    text-align: center;
+    line-height:80px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  &-body {
+    border-top: 1px solid #eee;
+    padding: 40px;
+  }
+  .btn-default {
+    margin: 40px auto 0;
+  }
+  p {
+    margin: 8px 0 0;
+    text-align: center;
+  }
+
+}

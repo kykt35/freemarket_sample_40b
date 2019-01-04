@@ -6,17 +6,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :credits
 
+  has_many :credits
+  has_many :comments
+  has_many :items
   has_many :sns_credentials
+  has_many :favorites, dependent: :destroy
+
   def self.create_from_auth!(auth)
-    data = auth.info
-    nickname = auth.info.name.split(" ")[0]
+    data = auth['info']
+    nickname = auth['info']['name'].split(" ")[0]
     user = User.where(email: data['email']).first_or_create(
       nickname: nickname,
       email: data['email'],
       password: Devise.friendly_token[0,20])
-    user_uid = SnsCredential.where(uid: auth['uid']).first_or_create(
+    user_uid = SnsCredential.where(uid: auth['uid'],provider: auth['provider']).first_or_create(
       user: user,
       uid: auth['uid'],
       provider: auth['provider'])

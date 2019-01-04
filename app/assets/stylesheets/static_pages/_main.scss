@@ -1,4 +1,4 @@
-section.pickup-container{
+.pickup-container{
   padding: 40px 0;
   background: #f5f5f5;
   h2 {
@@ -17,8 +17,8 @@ section.pickup-container{
   }
   .items-box {
     float: left;
-    margin: 0 0 0 20px;
-    width: 213px;
+    margin: 0 0 20px 20px;
+    width: calc(50% - 30px);
     background-color: #fff;
     position: relative;
     &-photo {
@@ -64,6 +64,7 @@ section.pickup-container{
         }
       }
     }
+<<<<<<< HEAD
       &-tag{
         top: 20px;
         font-size: 26px;
@@ -72,6 +73,8 @@ section.pickup-container{
       width: 940px;
       margin: 0 auto;
     }
+=======
+>>>>>>> master
     &-body{
       padding: 16px;
       height: 78px;
@@ -98,7 +101,7 @@ section.pickup-container{
       font-size: 20px;
       float: left;
     }
-    &-likes {
+    &-favorites {
       font-size: 16px;
       font-weight: 400;
       float: right;
