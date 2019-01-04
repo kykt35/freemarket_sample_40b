@@ -4,7 +4,7 @@ include Card
 
   def index
   end
-  
+
   def new
     if current_user.credits.first.present?
       redirect_to mypage_card_path
