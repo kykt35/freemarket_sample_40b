@@ -29,7 +29,6 @@
     a {
       text-decoration: none;
     }
-
     .small-photo {
       height:100%;
       width: auto;
@@ -37,7 +36,6 @@
       top: 0;
       right: 0;
     }
-
   }
   .slider {
     height: 100%;
@@ -69,41 +67,11 @@
     display:none;
     }
   }
-
   .slick-dots {
     bottom: 15px;
   }
-
   .slick-dots li button:before {
     font-size:15px;
-  }
-
-
-  .owl-stage{
-    height: 100%;
-    &-outer {
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-  }
-  .owl-dots {
-    margin: -30px;
-    text-align: center;
-    line-height: 0;
-  }
-  .owl-item {
-    height: 100%;
-    a{
-      height: 100%;
-    }
-  }
-  .stage-outer{
-    height: 100%;
-  }
-  .stage-item{
-    height: 100%;
-    position: relative;
   }
   .top-main-visual {
     background-size: cover;
@@ -129,7 +97,6 @@
         line-height: 1.2;
         font-weight: bold;
         color:#333;
-
       }
       p {
         font-size: 16px;
