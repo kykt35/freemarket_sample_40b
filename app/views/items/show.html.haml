@@ -1,9 +1,9 @@
 .default-container
   =render "shared/pc-header"
+  - breadcrumb :items, @item
   =render "shared/bread-crumbs"
-
   %section.item-box-container.single-container-section
-    %h1.item-name 
+    %h1.item-name
       =@item.name
     %p.item-wording
       #{@item.name}は、48回の取引実績を持つ
@@ -35,7 +35,7 @@
             %th カテゴリー
             %td
               =link_to "#" do
-                .category 
+                .category
                   =@item.category.name
               =link_to "#" do
                 .item-detail-table-sub-category
@@ -52,29 +52,29 @@
                 =@item.brand.name
           %tr
             %th 商品の状態
-            %td 
+            %td
               =@item.item_condition.text
           %tr
             %th 配送料の負担
-            %td 
+            %td
               =@item.postage_select.text
           %tr
             %th 配送の方法
-            %td 
+            %td
               =@item.shipping.text
           %tr
             %th 配送元地域
             %td=link_to "#{@item.prefecture.name}"
           %tr
             %th 発送日の目安
-            %td 
+            %td
               =@item.leadtime.text
     .item-price-box
       %span.item-price-box-price ¥#{@item.price}
       %span.item-price-box-tax (税込)
       %span.item-price-box-shipping-fee 送料込み
-      - if user_signed_in? && current_user.id == @item.seller_id
-        =link_to "購入できません", "#", class: "item-buy-btn btn-default btn-red",style: "visibility:hidden;"
+      - if user_signed_in? && current_user.id == @item.seller_id || @item.status.present?
+        =link_to "購入できません", "#", class: "item-buy-btn btn-default btn-gray"
       - else
         =link_to "購入画面に進む", new_item_item_transaction_path(@item), class: "item-buy-btn btn-default btn-red"
     .item-description
