@@ -15,9 +15,10 @@
           =label :images, "", for: "item_images" do
             .sell-upload-dropbox.clearfix{class: "have-item-#{@item.images.length}"}
               =f.file_field :images, class: "sell-upload-drop-file", åmultiple: true, style: "display: none;"
-              %pre
+              %pre.visible-pc
                 ドラッグアンドドロップ
                 またはクリックしてファイルをアップロード
+              %i.fas.fa-camera
             -if @item.errors[:images]
               %ul.has-error-text
                 -@item.errors.full_messages_for(:images).each do |error|
@@ -91,6 +92,18 @@
               %ul.has-error-text
                 -@item.errors.full_messages_for(:postage_select_id).each do |error|
                   %li=error
+          - if @item.postage_select
+            .form-group.form-group-shipping
+              =f.label :shipping_id do
+                配送方法
+                %span.form-require 必須
+              .select-wrap
+                =f.collection_select :shipping_id, PostageSelect.find(@item.postage_select.id).shippings, :id, :text, {prompt: "---"}, {class: 'select-default'}
+                %i.fa.fa-angle-down
+              -if @item.errors[:shipping_id]
+                %ul.has-error-text
+                  -@item.errors.full_messages_for(:shipping_id).each do |error|
+                    %li=error
           .form-group.form-group-prefecture
             =f.label :prefecture_id do
               発送元の地域

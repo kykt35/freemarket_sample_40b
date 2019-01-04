@@ -9,16 +9,22 @@
           = button_tag "",:type => "submit", class: "hidden" do
             %i.fa.fa-search
       .header__bottom
-        .header__bavbox.clearfix
+        .header-bavbox.clearfix
           %nav.l-reft
             %ul.pc-header-navbox
               %li
-                %h2=link_to "カテゴリーから探す", "#", class: " pc-header-navbox-root"
+                %h2=link_to "カテゴリーから探す", categories_path, class: " pc-header-navbox-root"
                 %ul.pc-header-navbox-parent-wrap{style: "width: auto;"}
-                  =render partial: "shared/parts/category_parent", collection: @categories
+                  - category_parents = @categories.find_all{|n| n[:ancestry] == nil}
+                  =render partial: "shared/parts/category_parent", collection: category_parents, cached: true,locals: {categories: @categories}
+                  %li.pc-header-navbox-parent
+                    %h3
+                      =link_to "カテゴリ一覧", categories_path
+
               %li
                 %h2=link_to "ブランドから探す", "#", class: "pc-header-navbox-root"
-
+                %ul.pc-header-navbox-parent-wrap{style: "width: auto;"}
+                  =render partial: "shared/parts/brand"
           .l-right
             -if user_signed_in?
               %ul.pc-header-user-nav
@@ -28,14 +34,23 @@
                       %div
                         =image_tag "member_photo_noimage_thumb.png",width: 32, height: 32
                     %div マイページ
+                  =render partial: 'shared/parts/pc-header-mypage-box'
+
                 %li
                   =link_to "#", class: "pc-header-navbox-root" do
                     %i.fa.fa-bell
                     お知らせ
+                  %ul.pc-header-user-box.pc-header-notification-box.mypage-item-list
+                    %li.mypage-item-not-found{style: "background-image: url(#{image_path 'logo-gray-icon.svg'})"}
+                      現在、お知らせはありません
+
                 %li
                   =link_to "#", class: "pc-header-navbox-root" do
                     %i.fa.fa-check
                     やることリスト
+                  %ul.pc-header-user-box.pc-header-todo-box.mypage-item-list
+                    %li.mypage-item-not-found{style: "background-image: url(#{image_path 'logo-gray-icon.svg'})"}
+                      現在、やることリストはありません
             -else
               %ul.pc-header-login-nav
                 %li
