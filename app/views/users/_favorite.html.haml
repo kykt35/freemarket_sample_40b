@@ -1,0 +1,8 @@
+%li
+  =link_to item_path(favorite.item), class: "mypage-item-link" do
+    %figure
+      =image_tag favorite.item.images.first.variant(resize: "48x48")
+    .mypage-item-body
+      .mypage-item-text=favorite.item.name
+      .mypage-item-text="¥"+favorite.item.price.to_s(:delimited)
+    %i.fa.fa-angle-right.icon
