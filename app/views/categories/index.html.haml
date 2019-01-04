@@ -5,27 +5,9 @@
       %h2 カテゴリ一覧
     .category-list-nav.clearfix
       -parents = @categories.find_all{|n| n[:ancestry]==nil}
-      -parents.each do |parent|
-        =link_to parent.name,"#parent_category-#{parent.id}",class: "category-list-nav-parent-link"
+      = render partial: "category_list_bav", collection: parents, as: "parent"
     .category-list-box
-      -parents.each do |parent|
-        .category-list-box-parent-head
-          %h3{id: "parent_category-#{parent.id}"}=parent.name
-        .category-list-box-parent.clearfix
-          =link_to "すべて", category_path(parent),class: "category-list-box-parent-all"
-          -children = @categories.find_all{|n| n[:ancestry]==parent.id.to_s}
-          -children.each do |child|
-            .category-list-box-child.clearfix
-              .category-list-box-child-head
-                %h4=child.name
-              %ul.category-list-box-grandchild
-                %li
-                  =link_to "すべて", category_path(child)
-                -grandchildren = @categories.find_all{|n| n[:ancestry]== "#{parent.id}/#{child.id}"}
-                -grandchildren.each do |grandchild|
-                  %li
-                    =link_to grandchild.name, category_path(grandchild)
-
+      = render partial: "category_listbox_parent", collection: parents, as: "parent"
   =render partial: "shared/app-banner"
   =render partial: "shared/global-footer"
   =render partial: "shared/footer-sell-btn"
