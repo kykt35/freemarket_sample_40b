@@ -140,50 +140,36 @@ describe Item do
     end
   end
   describe '#favorite' do
+    let(:user) { create(:user)}
+    let(:item) { create(:item ,:image , seller_id: seller.id) }
     context "can favorite" do
       it "is valid" do
-        item = create(:item ,:image , seller_id: seller.id)
-        user = create(:user)
         expect(item.favorite(user)).to be_valid
       end
       it "count up Favorite" do
-        item = create(:item ,:image , seller_id: seller.id)
-        user = create(:user)
         expect{item.favorite(user)}.to change(Favorite, :count).by(1)
       end
       it "count up item.favorites" do
-        item = create(:item ,:image , seller_id: seller.id)
-        user = create(:user)
         expect{item.favorite(user)}.to change(item.favorites, :count).by(1)
       end
       it "count up Favorite" do
-        item = create(:item ,:image , seller_id: seller.id)
-        user = create(:user)
         expect{item.favorite(user)}.to change(user.favorites, :count).by(1)
       end
     end
     context "can unfavorite" do
       it "is valid" do
-        item = create(:item ,:image , seller_id: seller.id)
-        user = create(:user)
         Favorite.create(item: item, user: user)
         expect(item.unfavorite(user)).to be_valid
       end
       it "count up Favorite" do
-        item = create(:item ,:image , seller_id: seller.id)
-        user = create(:user)
         Favorite.create(item: item, user: user)
         expect{item.unfavorite(user)}.to change(Favorite, :count).by(-1)
       end
       it "count up item.favorites" do
-        item = create(:item ,:image , seller_id: seller.id)
-        user = create(:user)
         Favorite.create(item: item, user: user)
         expect{item.unfavorite(user)}.to change(item.favorites, :count).by(-1)
       end
       it "count up Favorite" do
-        item = create(:item ,:image , seller_id: seller.id)
-        user = create(:user)
         Favorite.create(item: item, user: user)
         expect{item.unfavorite(user)}.to change(user.favorites, :count).by(-1)
       end
