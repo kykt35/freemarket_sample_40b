@@ -20,6 +20,7 @@
         .item-photo
           -@item.images.each do |image|
             =image_tag image,width: 300,hight:300
+
       %table.item-detail-table
         %tbody
           %tr
@@ -79,7 +80,7 @@
       %span.item-price-box-tax (税込)
       %span.item-price-box-shipping-fee 送料込み
       - if user_signed_in? && current_user.id == @item.seller_id
-        =link_to "購入画面に進む", "", class: "item-buy-btn btn-default btn-red",style: "visibility:hidden;"
+        =link_to "購入画面に進む", "", class: "item-buy-btn btn-default btn-red",style: "display:none;"
       - else
         =link_to "購入画面に進む", "", class: "item-buy-btn btn-default btn-red"
     .item-description
@@ -137,6 +138,7 @@
         .item-detail-comment
           .item-detail-comment-container
             .item-detail-comment-content
+
   .item-detail-message
     .message-container
       .message-content

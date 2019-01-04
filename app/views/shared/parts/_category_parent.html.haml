@@ -2,4 +2,6 @@
   %h3
     =link_to category_parent.name, category_path(category_parent)
   %ul.pc-header-navbox-child-wrap
-    =render partial: "shared/parts/category_child", collection: category_parent.children
+    -category_children = categories.find_all{|n| n[:ancestry]==category_parent.id.to_s}
+    =render partial: "shared/parts/category_child", collection: category_children, cached: true,locals: {categories: @categories, category_parent: category_parent}
+

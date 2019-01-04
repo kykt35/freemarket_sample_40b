@@ -19,12 +19,12 @@ $(document).on('turbolinks:load', function() {
   $('#item_l_category_id').on('change',function(e){
     e.preventDefault();
     var category_id = $('#item_l_category_id option:selected').val()
-    if (category_id == ""){
+
       $('#item_m_category_id').parent().remove();
       $('#item_category_id').parent().remove();
       $('.form-group-size').remove();
       $('.form-group-brand').remove();
-    } else {
+
       $.ajax({
         type: "GET",
         url: '/categories',
@@ -59,20 +59,23 @@ $(document).on('turbolinks:load', function() {
         }
       })
       .fail(function(){
-        console.log("fail");
+        $('#item_m_category_id').parent().remove();
+        $('#item_category_id').parent().remove();
+        $('.form-group-size').remove();
+        $('.form-group-brand').remove();
       })
-    }
+
   });
 
   // 中カテゴリセレクトで小カテゴリ追加
   $(document).on("change", "#item_m_category_id", function (e) {
     e.preventDefault();
     var category_id = $('#item_m_category_id option:selected').val()
-    if (category_id == ""){
+
       $('#item_category_id').parent().remove();
       $('.form-group-size').remove();
       $('.form-group-brand').remove();
-    } else {
+
       $.ajax({
         type: "GET",
         url: '/categories',
@@ -104,9 +107,11 @@ $(document).on('turbolinks:load', function() {
         }
       })
       .fail(function(){
-        console.log("fail");
+        $('#item_category_id').parent().remove();
+        $('.form-group-size').remove();
+        $('.form-group-brand').remove();
       })
-    }
+
   });
 
     // 小カテゴリ選択で必要な時にサイズとブランドを表示
@@ -125,30 +130,44 @@ $(document).on('turbolinks:load', function() {
         timeout: 60000
       })
       .done(function(datas){
-        console.log("done");
-        if ( $('#item_size_id').length == 0){
-          var formgroup =
-            `<div class="form-group form-group-size">
-              <label for="item_size_id">サイズ
-                <span class="form-require">必須</span>
-              </label>
-              <div class="select-wrap">
-                <select class="select-default" name="item[size_id]" id="item_size_id">
-                  <option value="">---</option>
-                </select>
-                <i class="fa fa-angle-down"></i>
-              </div>
-              <ul class="has-error-text">
-              </ul>
-            </div>`
-          options = datas.size.map(function(data){
-            option = $('<option>',{value: data.id, text: data.name});
-            return option;
-          });
-          $('.form-group-category').after(formgroup);
-          $('#item_size_id').append(options);
+        if (datas.size.length != 0) {
+          if ( $('#item_size_id').length == 0){
+            var formgroup =
+              `<div class="form-group form-group-size">
+                <label for="item_size_id">サイズ
+                  <span class="form-require">必須</span>
+                </label>
+                <div class="select-wrap">
+                  <select class="select-default" name="item[size_id]" id="item_size_id">
+                    <option value="">---</option>
+                  </select>
+                  <i class="fa fa-angle-down"></i>
+                </div>
+                <ul class="has-error-text">
+                </ul>
+              </div>`
+            options = datas.size.map(function(data){
+              option = $('<option>',{value: data.id, text: data.name});
+              return option;
+            });
+            $('.form-group-category').after(formgroup);
+            $('#item_size_id').append(options);
+          } else {
+            select = $('#item_size_id');
+            select.children().remove()
+            select.append(`<option value >---</option>`);
+            options = datas.size.map(function(data){
+              option = $('<option>',{value: data.id, text: data.name});
+              return option;
+            });
+            select.append(options);
+          }
+        } else {
+          $('.form-group-size').remove();
+        }
 
-          if (datas.hasBrand){
+        if (datas.hasBrand) {
+          if ($('.form-group-brand').length == 0 ) {
             var formgroup =
               `<div class="form-group form-group-brand">
                 <label for="item_brand_id">ブランド
@@ -160,18 +179,13 @@ $(document).on('turbolinks:load', function() {
               </div>`
             $('.form-group-item_condition').before(formgroup);
           }
-        }else{
-          select = $('#item_size_id');
-          select.children().remove()
-          select.append(`<option value >---</option>`);
-          options = datas.size.map(function(data){
-            option = $('<option>',{value: data.id, text: data.name});
-            return option;
-          });
+        } else {
+          $('.form-group-brand').remove();
         }
       })
       .fail(function(){
-        console.log("fail");
+        $('.form-group-size').remove();
+        $('.form-group-brand').remove();
       })
     }
   });

@@ -1,4 +1,4 @@
-section.pickup-container{
+.pickup-container{
   padding: 40px 0;
   background: #f5f5f5;
   h2 {
@@ -17,8 +17,8 @@ section.pickup-container{
   }
   .items-box {
     float: left;
-    margin: 0 0 0 20px;
-    width: 213px;
+    margin: 0 0 20px 20px;
+    width: calc(50% - 30px);
     background-color: #fff;
     &-photo {
       position: relative;
@@ -28,10 +28,6 @@ section.pickup-container{
         height: 220px;
         object-fit: cover;
       }
-    }
-    &-container {
-      width: 940px;
-      margin: 0 auto;
     }
     &-body{
       padding: 16px;

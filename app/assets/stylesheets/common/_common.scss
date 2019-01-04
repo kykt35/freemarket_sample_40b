@@ -166,19 +166,14 @@ select {
   color: #fff;
 }
 .single-container-section {
-  width: 700px;
-  margin: 0 auto;
   background-color: #fff;
 }
 .l-container {
-  margin: 40px auto 0;
-  height:1252px;
-  width: 1080px;
+  margin: 24px auto 0;
+  padding: 0 0 40px;
 }
 
 .l-content{
-  float: right;
-  width: 700px;
   margin: 0;
   padding: 0;
   display: block;
@@ -210,4 +205,66 @@ select {
 }
 .inline{
   display: inline-block;
+}
+.visible-pc {
+  display: none;
+}
+.mypage-item-list {
+  li {
+    position: relative;
+    border-bottom: 1px solid #eee;
+    &:last-child {
+      border: 0;
+    }
+  }
+  a:hover {
+    background-color: #fafafa
+  }
+}
+.mypage-item-link {
+  display: block;
+  min-height: 80px;
+  padding: 16px;
+  color: #333;
+  box-sizing: border-box;
+  figure {
+    position: relative;
+    overflow: hidden;
+    float: left;
+    width: 48px;
+    height: 48px;
+
+  }
+  img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    object-fit: contain;
+  }
+  .fa-angle-right {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    font-size: 25px;
+  }
+}
+.mypage-item-body {
+  float: left;
+  margin: 0 40px 0 20px;
+}
+.mypage-item-text {
+  overflow: hidden;
+  display: block;
+  display: -webkit-box;
+  max-height: 4.4em;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  line-height: 1.5;
 }

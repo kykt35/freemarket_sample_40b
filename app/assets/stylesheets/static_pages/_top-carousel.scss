@@ -1,51 +1,59 @@
-section.top-carousel {
+.top-carousel {
   display: block;
-  height: 390px;
-
-  .img1 {
-    width:100%;
-    height:auto;
+  height: 200px;
+  .img2,.img3,.img4  {
+    display: block;
+    height:100%;
+    background-size: cover;
+    background-position: center;
   }
-
-  .img2,.img3 {
-    width:100%;
-    height:411px;
-  }
-  .img4 {
+  .top-main-visual {
     width:100%;
     height:100%;
-    padding-top: 70px;
-    padding-bottom: 70px;
-    background-color: $mizuiro;
   }
-
-  .slide{
-    position: relative;
-  a {
-    text-decoration: none;
-    }
   .top-main-visual-content{
     position: absolute;
     top:10%;
     left:20%;
+  }
+  .top-main-visual-content-wrap {
+    position: relative;
+    max-width: 730px;
+    height: 100%;
+    margin: 0 auto;
+  }
+  .slide{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    a {
+      text-decoration: none;
     }
-  .small-photo {
-    height:415px;
-    width:440px;
-    position:absolute;
-    top:-40px;
-    left:80%;
-      }
+    .small-photo {
+      height:100%;
+      width: auto;
+      position:absolute;
+      top: 0;
+      right: 0;
     }
-
+  }
+  .slider {
+    height: 100%;
+  }
+  .slick-list {
+    height: 100%;
+  }
+  .slick-track {
+    height: 100%;
+  }
   .slick-next{
     position:absolute;
     top:50%;
     right:5%;
     height:40px;
     width: 30px;
-  &:before {
-    display:none;
+    &:before {
+      display:none;
     }
   }
   .slick-prev {
@@ -59,41 +67,11 @@ section.top-carousel {
     display:none;
     }
   }
-
   .slick-dots {
     bottom: 15px;
   }
-
   .slick-dots li button:before {
     font-size:15px;
-  }
-
-
-  .owl-stage{
-    height: 100%;
-    &-outer {
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-  }
-  .owl-dots {
-    margin: -30px;
-    text-align: center;
-    line-height: 0;
-  }
-  .owl-item {
-    height: 100%;
-    a{
-      height: 100%;
-    }
-  }
-  .stage-outer{
-    height: 100%;
-  }
-  .stage-item{
-    height: 100%;
-    position: relative;
   }
   .top-main-visual {
     background-size: cover;
@@ -115,14 +93,13 @@ section.top-carousel {
       top: 46px;
       left: 0;
       h2 {
-        font-size: 60px;
+        font-size: 40px;
         line-height: 1.2;
         font-weight: bold;
         color:#333;
-
       }
       p {
-        font-size: 18px;
+        font-size: 16px;
         margin: 16px 0 0 0;
         line-height: 1.77778;
         color:#333;
@@ -131,8 +108,8 @@ section.top-carousel {
     &-store {
       margin: 24px 0 0;
       a {
-        width: 170px;
-        height: 50px;
+        width: 128px;
+        height: 38px;
         display: inline-block;
         margin:0 0 0 10px;
         &:first-child {

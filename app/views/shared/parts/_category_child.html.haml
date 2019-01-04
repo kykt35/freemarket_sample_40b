@@ -1,5 +1,5 @@
 %li.pc-header-navbox-child
   =link_to category_child.name, category_path(category_child)
   %ul.pc-header-navbox-grandchild-wrap
-    =render partial: "shared/parts/category_grandchild", collection: category_child.children
-
+    -category_grandchildren = categories.find_all{|n| n[:ancestry]=="#{category_parent.id}/#{category_child.id}"}
+    =render partial: "shared/parts/category_grandchild", collection: category_grandchildren, cached: true,locals: {categories: @categories}

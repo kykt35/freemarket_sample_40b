@@ -21,7 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_categories
-    @categories = Category.where(ancestry: nil).map{|m| m.becomes(Category)}
-
+    @categories = Category.cache_all
   end
 end

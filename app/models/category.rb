@@ -9,7 +9,6 @@ class Category < ApplicationRecord
     items_array = []
     if has_children?
       children.each do |child|
-        items_array << child.items unless child.items.empty?
         items_array << child.all_items
       end
     else
@@ -18,4 +17,7 @@ class Category < ApplicationRecord
     return items_array.flatten
   end
 
+  def self.cache_all
+    Rails.cache.fetch("categories"){Category.all}
+  end
 end
