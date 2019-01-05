@@ -1,6 +1,6 @@
 module Card
 
-  Payjp.api_key = 'sk_test_ace09f07a75489d03d33a6d0'
+  Payjp.api_key = Rails.application.credentials.dig(:pay_jp, :secret_key)
 
   def create_customer
     year = "20" + params[:year].to_s

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   get 'items/seach', to: 'items#search'
   get 'mypage' => 'users#mypage'
-   post 'mypage/card' => 'credits#create'
+  post 'mypage/card' => 'credits#create'
   get 'mypage/card' => 'credits#index'
   get 'mypage/card/new' => 'credits#new'
   get 'mypage/profile' => 'users#profile'

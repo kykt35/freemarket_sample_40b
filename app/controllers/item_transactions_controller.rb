@@ -15,7 +15,7 @@ class ItemTransactionsController < ApplicationController
       @item_transaction.item.update_attribute(:status, 1)
       redirect_to root_path
       else
-        render 'new'
+        render :new
       end
   end
 
