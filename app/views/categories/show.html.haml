@@ -1,5 +1,7 @@
+- breadcrumb :category, @category
 .default-container
   =render partial: "shared/pc-header"
+  = render partial:"shared/bread-crumbs"
   %main.categories-container
     .categories-content
       %ul.parts-nav.clearfix
