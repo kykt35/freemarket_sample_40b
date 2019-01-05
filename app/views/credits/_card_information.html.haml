@@ -1,7 +1,7 @@
 .card__content
   %section.card__content__container
     %h2.card__content__container__head クレジットカード情報入力
-    = form_with url: mypage_card_path, class: "card__content__container__card-form", local: true do |f|
+    = form_with url: credits_path, class: "card__content__container__card-form", local: true do |f|
       %input{name: "__csrf_value", type: "hidden", value: ""}/
       .card__content__container__card-form__content
         .card__content__container__card-form__content__group

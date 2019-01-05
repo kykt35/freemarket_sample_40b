@@ -13,7 +13,7 @@ crumb :identification do
 end
 
 crumb :card do
-  link "支払い方法", mypage_card_path
+  link "支払い方法", credits_path
   parent :mypage
 end
 

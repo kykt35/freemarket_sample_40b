@@ -7,9 +7,6 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   get 'items/seach', to: 'items#search'
   get 'mypage' => 'users#mypage'
-  post 'mypage/card' => 'credits#create'
-  get 'mypage/card' => 'credits#index'
-  get 'mypage/card/new' => 'credits#new'
   get 'mypage/profile' => 'users#profile'
   get 'mypage/identification', to: 'users#identification'
   get 'mypage/favorite', to: 'users#favorite'
@@ -30,5 +27,5 @@ Rails.application.routes.draw do
   end
   resources :postage_selects, only: [:index]
   post 'items/upload_image', to: 'items#upload_image'
-
+  resources :credits, path: 'mypage/card', only: [:new, :create, :index]
 end
