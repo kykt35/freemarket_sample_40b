@@ -70,6 +70,11 @@ RSpec.configure do |config|
   # config.before(:suite) do
   #   require Rails.root.join("db", "seeds")
   # end
+
+  #mysql not connect error 対策
+  config.after(:each) do
+    sleep 0.05
+  end
 end
 
 
