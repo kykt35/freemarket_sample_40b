@@ -1,0 +1,23 @@
+- if item.status === "listing"
+  - if item.images.length >= 5
+    .item-photo.item-photo-expanded
+      -item.images.each do |image|
+        =image_tag image,width: 300,hight:300
+  - else
+    .item-photo
+      -item.images.each do |image|
+        =image_tag image,width: 300,hight:300
+- else
+  .sold-out-box
+    - if item.images.length >= 5
+      .item-photo.item-photo-expanded
+        -item.images.each do |image|
+          =image_tag image,width: 300,hight:300
+      .item-sold-out-badge
+        .soldout-text SOLD
+    - else
+      .item-photo
+        -item.images.each do |image|
+          =image_tag image,width: 300,hight:300
+      .item-sold-out-badge
+        .soldout-text SOLD
