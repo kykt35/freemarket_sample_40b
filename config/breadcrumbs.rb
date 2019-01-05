@@ -32,6 +32,35 @@ crumb :logout do
   parent :mypage
 end
 
+crumb :favorite do
+  link "いいね！一覧",  mypage_favorite_path
+  parent :mypage
+end
+
+crumb :categories do
+  link "カテゴリ一覧",  categories_path
+  parent :root
+end
+
+crumb :category do |category|
+  link category.name, category_path(category)
+  if category.parent
+    parent category.parent
+  else
+    parent :categories
+  end
+end
+
+crumb :search do |keyword|
+  link keyword, items_seach_path(q: keyword)
+  parent :root
+end
+
+crumb :item do |item|
+  link item.name, item_path(item)
+  parent :root
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
