@@ -12,6 +12,7 @@ FactoryBot.define do
     leadtime_id { create(:leadtime).id }
     seller_id { create(:user).id }
     price { 100 }
+
     trait(:image) do
       images { fixture_file_upload("#{::Rails.root}/spec/fixtures/sample.jpg", "image/jpg") }
     end
