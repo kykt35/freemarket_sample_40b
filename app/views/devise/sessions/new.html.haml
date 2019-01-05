@@ -14,7 +14,6 @@
         =link_to '/auth/google_oauth2', id: "google-login", class: "button-default btn-sns btn-google" do
           %i.fab.fa-google-plus-g.icon
           %p Googleでログイン
-      %form
         .login__form_inner
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .form__group
