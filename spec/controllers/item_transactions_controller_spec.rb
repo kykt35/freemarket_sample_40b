@@ -9,7 +9,6 @@ describe ItemTransactionsController, type: :controller do
           before do
             login user
             get :new, params
-            binding.pry
           end
           it "assigns @item_transaction" do
             expect(assigns(:item_transaction)).to be_a_new(ItemTransaction)
@@ -24,8 +23,8 @@ describe ItemTransactionsController, type: :controller do
             it 'redirects to  new_user_session_path' do
               expect(response).to redirect_to(new_user_session_path)
             end
-          end #'not logged in'
-        end # '#new'
+          end
+        end
         context 'not logged in' do
           subject{
             post :create,
