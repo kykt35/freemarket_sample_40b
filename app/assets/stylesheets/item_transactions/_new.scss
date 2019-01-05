@@ -19,12 +19,13 @@
       @include main_contents_same();
       .item-header{
         .item-image{
-          height: 40%;
-          width: 40%;
+          height: 150px;
+          width: 20%;
         }
         .image-title{
           @include bold_small_font();
           padding-top: 3%;
+
         }
       }
       .item-pay-form{
@@ -61,7 +62,7 @@
             float: right;
           }
         }
-        input#submit-pay{
+        #submit-pay{
           @include main_contents_same;
           @include bold_small_font;
           padding: 5%;
@@ -71,6 +72,7 @@
           color: #f5f5f5;
           margin-top: 5%;
           margin-bottom: 5%;
+          box-sizing: border-box;
         }
       }
     }

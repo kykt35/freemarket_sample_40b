@@ -8,3 +8,4 @@ class PostageSelectsController < ApplicationController
     end
   end
 end
+
