@@ -91,4 +91,5 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem "aws-sdk-s3", require: false
+gem 'payjp'
 
