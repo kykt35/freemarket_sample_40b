@@ -5,14 +5,15 @@ class ItemTransactionsController < ApplicationController
 
   def new
     @item_transaction = ItemTransaction.new()
+    @sales_amount = SalesAmount.new()
   end
 
   def create
-    @item_transaction = ItemTransaction.new(item_id: @item.id, user_id: current_user.id)
     price = @item.price
+    @item_transaction = ItemTransaction.new(item_id: @item.id, user_id: current_user.id)
+    @sales_amount = SalesAmount.new(price: price * 0.9, limit_date: Date.today() + 180, user_id: @item.seller_id)
     charge(price)
-      if @item_transaction.save
-      @sales_amount = SalesAmount.new(price: price * 0.9, limit_date: Date.today() + "180", user_id: @item.user_id)
+      if @item_transaction.save && @sales_amount.save
       @item_transaction.item.update_attribute(:status, 1)
       redirect_to root_path
       else
