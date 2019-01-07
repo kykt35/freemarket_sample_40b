@@ -251,4 +251,138 @@
       margin: 8px 0 0;
     }
   }
+
+
+.modalContents {
+  line-height:10px;
+  margin-top: 20px;
+  height:155px;
+  span {
+    float: right;
+    position:absolute;
+    top: 10px;
+    right:10px;
+    color: #888;
+    background: #eee;
+    height:40px;
+    width:150px;
+    line-height: 40px;
+    text-align:center;
+    padding-left: 20px;
+  }
+  .fas {
+    position:absolute;
+    top:23px;
+    right:140px;
+    color:#888;
+    padding-right:10px;
+  }
+}
+
+.modalWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+  width: 70%;
+  max-width: 600px;
+  background-color: #fff;
+}
+
+.modal-bold {
+  font-weight:bold;
+  font-size:18px;
+  float:left;
+  margin:10px 0px 0px 10px;
+}
+
+.modalArea {
+  display: none;
+  position: fixed;
+  z-index: 10; /*サイトによってここの数値は調整 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modalBg {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30,30,30,0.9);
+}
+
+/* 以下ボタンスタイル */
+button {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #282828;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.clearfix {
+  display:flex;
+  list-style: none;
+}
+
+.cansel-button {
+  width:100%;
+  height:63px;
+  text-align:center;
+  margin-bottom: 50px;
+  a {
+    padding:20px 50px 20px 50px ;
+    line-height: 63px;
+    color:#fff;
+    background:#888;
+    text-decoration:none;
+  }
+}
+
+.ok-button {
+  width:100%;
+  height:63px;
+  text-align:center;
+a {
+  line-height: 63px;
+  color:#fff;
+  padding:20px 77px 20px 77px ;
+  background: #ea352d;
+  border: 1px solid #ea352d;
+  text-decoration:none;
+  }
+}
+
+#openModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+  border-style: none;
+  background: #aaa;
+  font-size:13px;
+  color:#fff;
+  }
+  a.disabled{
+    pointer-events: none;
+  }
+
+  #c1 {
+    margin:-100px 0 100px 100px;
+  }
+
+  .sell-crop-range {
+    text-align: center;
+    height:30px;
+    margin-top: -90px;
+    font-size: 20px;
+  .small-camera {
+    font-size: 15px;
+  }
+  input[type="range"] {
+    width:200px;
+    height:10px;
+    }
+  }
 }
