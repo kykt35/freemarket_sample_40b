@@ -22,8 +22,9 @@
         margin: 0 auto;
         display: block;
 
+
         &__sub-head{
-          margin: 40px 0px 0px; 
+          margin: 40px 0px 0px;
           font-size: 16px;
           margin: 0px;
           padding: 0px;
@@ -55,6 +56,11 @@
             border:1px solid #ea352d;
             color: #fff;
             display: block;
+              .btn-gray {
+                background: #aaa;
+                border: 1px solid #aaa;
+                color: #fff;
+              }/*btn-gray*/
           }/*btn-default*/
         }/*__single-content*/
       }/*__add-card*/
