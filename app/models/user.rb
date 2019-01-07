@@ -6,9 +6,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
+  has_many :credits, dependent: :destroy
   has_many :comments
   has_many :items
   has_many :sns_credentials
+  has_many :favorites, dependent: :destroy
+
   def self.create_from_auth!(auth)
     data = auth['info']
     nickname = auth['info']['name'].split(" ")[0]

@@ -10,15 +10,15 @@ require "csv"
 
 #category table initial data
 CSV.foreach('db/categories.csv') do |row|
-  parent = Category.where(name: row[0], ancestry: nil).first_or_initialize(name: row[0])
+  parent = Category.where(name: row[0].lstrip  , ancestry: nil).first_or_initialize(name: row[0].lstrip  )
   parent.save
-  child = parent.children.where(name: row[1]).first_or_initialize(name: row[1])
+  child = parent.children.where(name: row[1].lstrip  ).first_or_initialize(name: row[1].lstrip  )
   child.save
-  grandson =child.children.where(name: row[2]).first_or_initialize(name: row[2])
+  grandson =child.children.where(name: row[2].lstrip  ).first_or_initialize(name: row[2].lstrip  )
   grandson.save
 end
 
-has_brand_categories = [" レディース", " メンズ", " ベビー・キッズ", " インテリア・住まい・小物", " コスメ・香水・美容", " 家電・スマホ・カメラ", " スポーツ・レジャー"]
+has_brand_categories = ["レディース", "メンズ", "ベビー・キッズ", "インテリア・住まい・小物", "コスメ・香水・美容", "家電・スマホ・カメラ", "スポーツ・レジャー"]
 has_brand_categories.each do |cate|
   parent = Category.find_by(name: cate)
     parent.update(hasBrand: true)
@@ -45,7 +45,7 @@ clothes_size.each do |size|
   size.save
 end
 #靴
-shoes_size = %w(20cm以下 21cm 21.5cm 22.5cm 23cm 23.5cm 24cm 24.5cm 25.5cm 26cm 26.5cm 27cm 27.5cm 28cm 28.5cm 29cm 29.5cm 30cm 30.5cm 31cm以上 27.5cm以上)
+shoes_size = %w(20cm以下 20.5cm 21cm 21.5cm 22cm 22.5cm 23cm 23.5cm 24cm 24.5cm 25cm 25.5cm 26cm 26.5cm 27cm 27.5cm 28cm 28.5cm 29cm 29.5cm 30cm 30.5cm 31cm以上 27.5cm以上 23.5cm以下)
 shoes_size.each do |size|
   size = Size.where(name: size).first_or_initialize(name: size)
   size.save
@@ -114,6 +114,45 @@ end
 CSV.foreach('db/prices.csv') do |row|
   price = ItemPrice.where(price_tag: row[0] ).first_or_initialize(price_tag: row[0], min_price: row[1], max_price: row[2])
   price.save
+end
+
+#レディース　服
+lady_cloth_size = %w(XXS以下 XS(SS) S M L XL(LL) 2XL(3L) 3XL(4L) 4XL(5L)以上 FREE SIZE)
+clothes = ["トップス", "ジャケット/アウター", "パンツ", "スカート", "ワンピース"]
+clothes.each do |cloth|
+  category = Category.find_by(name: cloth, ancestry: 1)
+  lady_cloth_size.each do |s|
+    size = Size.find_by(name: s)
+    CategoriesSize.find_or_create_by(category_id: category.id,size_id: size.id)
+  end
+end
+
+# レディース　靴
+lady_shoes_size = %w(20cm以下 20.5cm 21cm 21.5cm 22cm 22.5cm 23cm 23.5cm 24cm 24.5cm 25cm 25.5cm 26cm 26.5cm 27cm 27.5cm以上)
+category = Category.find_by(name: "靴", ancestry: 1)
+lady_shoes_size.each do |s|
+  size = Size.find_by(name: s)
+  CategoriesSize.find_or_create_by(category_id: category.id,size_id: size.id)
+end
+
+
+#メンズ　服
+men_cloth_size = %w(XXS以下 XS(SS) S M L XL(LL) 2XL(3L) 3XL(4L) 4XL(5L)以上 FREE SIZE)
+clothes = ["トップス", "ジャケット/アウター", "パンツ", "スーツ"]
+clothes.each do |cloth|
+  category = Category.find_by(name: cloth, ancestry: 138)
+  men_cloth_size.each do |s|
+    size = Size.find_by(name: s)
+    CategoriesSize.find_or_create_by(category_id: category.id,size_id: size.id)
+  end
+end
+
+# メンズ　靴
+men_shoes_size = %w(23.5cm以下 24cm 24.5cm 25cm 25.5cm 26cm 26.5cm 27cm 27.5cm 28cm 28.5cm 29cm 29.5cm 30cm 30.5cm 31cm以上)
+category = Category.find_by(name: "靴", ancestry: 138)
+men_shoes_size.each do |s|
+  size = Size.find_by(name: s)
+  CategoriesSize.find_or_create_by(category_id: category.id,size_id: size.id)
 end
 
 

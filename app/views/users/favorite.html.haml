@@ -1,0 +1,12 @@
+= render partial:"shared/pc-header"
+= render partial:"shared/bread-crumbs"
+.l-container.clearfix
+  .l-content
+    %section.l-chapter-container
+      %h2.l-chapter-head いいね！一覧
+      %ul.mypage-item-list
+        = render partial: "favorite", collection: @favorites
+  = render partial:"users/side-bar"
+= render partial:"shared/footer-sell-btn"
+= render partial:"shared/app-banner"
+= render partial:"shared/global-footer"

@@ -3,43 +3,24 @@
     .top-main-visual-wrap
       %ul.slider
         %li.slide
-          %a{href:""}
-            =image_tag "main_bg_pc.jpg",alt:"image01",class: "img1"
-            .top-main-visual-content
-              %span.slide__content
-                %h2 スマホでかんたん<br>フリマアプリ
-                %p メルカリはスマホカメラからすぐに出品できる<br>購入時も安心な独自システムのアプリです
-                .top-main-visual-store.clearfix
-                  =link_to "https://itunes.apple.com/jp/app/id667861049?l=ja&amp;mt=8", class: "pull-left", target: "_blank" do
-                    =image_tag "app-store.svg", alt: ""
-                  =link_to "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&amp;hl=ja", class: "pull-left", target: "_blank" do
-                    =image_tag "google-play.svg", alt: ""
-                  =image_tag "main_content_pc.png", alt: "",class: "small-photo"
+          .top-main-visual{style:"background-image: url(#{image_path 'main_bg_pc.jpg'})"}
+            .top-main-visual-content-wrap
+              .top-main-visual-content
+                %span.slide__content
+                  %h2 スマホでかんたん<br>フリマアプリ
+                  %p メルカリはスマホカメラからすぐに出品できる<br>購入時も安心な独自システムのアプリです
+                  .top-main-visual-store.clearfix
+                    =link_to "https://itunes.apple.com/jp/app/id667861049?l=ja&amp;mt=8", class: "pull-left", target: "_blank" do
+                      =image_tag "app-store.svg", alt: ""
+                    =link_to "https://play.google.com/store/apps/details?id=com.kouzoh.mercari&amp;hl=ja", class: "pull-left", target: "_blank" do
+                      =image_tag "google-play.svg", alt: ""
+              =image_tag "main_content_pc.png", alt: "",class: "small-photo"
         %li
-          %a{href:""}
-            =image_tag "top-banner-new-register.png",alt:"image02",class: "img2"
+          %a{href:"",class: "img2", style:"background-image: url(#{image_path 'top-banner-new-register.png'})"}
         %li
-          %a{href:""}
-            =image_tag "top-banner-kusanagi-xmas.jpg",alt:"image03",class: "img3"
+          %a{href:"",class: "img2", style:"background-image: url(#{image_path 'top-banner-kusanagi-xmas.jpg'})"}
         %li
-          %a{href:""}
-            =image_tag "top-banner-welcome.png",alt:"image04",class: "img4"
-
+          %a{href:"",class: "img4", style:"background-image: url(#{image_path 'top-banner-welcome.png'})"}
       %div#arrows
         %div.slick-prev{style: "background-image: url(#{image_path 'carousel-prev.png'})"}
         %div.slick-next{style: "background-image: url(#{image_path 'carousel-next.png'})"}
-        
-          
-
-
-
-
-/カルーセル実装用
-/ %a.top-banner.banner-kusanagi-xmas{href: "1", style: "background-image: url(#{image_path 'top-banner-kusanagi-xmas.jpg'})"}
-/ %a.top-banner.banner-welcome{href: "2", style: "background-image: url(#{image_path 'top-banner-welcome.png'})"}
-/ %a.top-banner.banner-new-register{href: "3", style: "background-image: url(#{image_path 'top-banner-new-register.png'})"}
-
-
-
-
-

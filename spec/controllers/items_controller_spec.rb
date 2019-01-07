@@ -41,6 +41,10 @@ describe ItemsController, type: :controller do
           post :create,
           params: params
         }
+        it "returns http success" do
+          subject
+          expect(response).to have_http_status(:success)
+        end
         it 'count up items' do
           expect{ subject }.to change(Item, :count).by(1)
         end

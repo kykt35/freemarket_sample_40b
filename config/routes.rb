@@ -7,20 +7,25 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   get 'items/seach', to: 'items#search'
   get 'mypage' => 'users#mypage'
-  get 'mypage/card' => 'users#card'
-  get 'mypage/card/add' => 'users#add'
   get 'mypage/profile' => 'users#profile'
   get 'mypage/identification', to: 'users#identification'
+  get 'mypage/favorite', to: 'users#favorite'
   get 'users/signup', to: 'users#signup'
   get 'users/logout', to: 'users#logout'
   get 'users/registration_card' => 'users#registration_card'
   resources :items, only: [:new, :show, :create, :destroy, :edit, :update] do
+    resources :item_transactions, only: [:new, :create]
     resources :comments, only: [:create , :destroy]
+    resources :favorites, only: [:create, :destroy]
   end
   resources :transaction, only: [:new]
   get 'mypage/identification', to: 'users#identification'
-  resources :categories, only: [:index]
+  resources :categories, only: [:index, :show] do
+    collection do
+      get 'size_brand'
+    end
+  end
   resources :postage_selects, only: [:index]
-  get 'categories/size_brand', to: 'categories#size_brand'
   post 'items/upload_image', to: 'items#upload_image'
+  resources :credits, path: 'mypage/card', only: [:new, :create, :index, :destroy]
 end

@@ -1,7 +1,7 @@
 = render partial:"shared/pc-header"
 - breadcrumb :card
 = render partial:"shared/bread-crumbs"
-.l-container
+.l-container.clearfix
   .l-content
     %section.credit-container
       %h2.credit-container__top 支払い方法
@@ -11,9 +11,15 @@
             %h3.credit-container__inner__single-content__sub-head クレジットカード一覧
         %section.credit-container__inner__add-card
           .credit-container__inner__add-card__single-content
-            %a{ href: "/mypage/card/add", class: "btn-default btn-red submit_button" }
-              %i.fa.fa-credit-card{style: "padding-right: 10px"}
-              クレジットカードを追加する
+            - unless current_user.credits.present?
+              = link_to new_credit_path, class: "btn-default btn-red submit_button" do
+                %i.fa.fa-credit-card{style: "padding-right: 10px"}
+                クレジットカードを追加する
+            - else
+              = link_to credit_path(@credit), class: "btn-default btn-gray submit_button", method: :delete do
+                %i.fa.fa-credit-card{style: "padding-right: 10px"}
+                クレジットカードを削除する
+
         .credit-container__inner__settings-not-regist
           %a{ href: "/jp/help_center/category/6/", class: "link"}
             %span 支払い方法について
@@ -24,4 +30,4 @@
 = render partial:"shared/global-footer"
 
 
-            
+

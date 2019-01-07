@@ -8,12 +8,12 @@ crumb :mypage do
 end
 
 crumb :identification do
-  link "住所変更", mypage_identification_path
+  link "本人情報", mypage_identification_path
   parent :mypage
 end
 
 crumb :card do
-  link "支払い方法", mypage_card_path
+  link "支払い方法", credits_path
   parent :mypage
 end
 
@@ -30,6 +30,15 @@ end
 crumb :logout do
   link "ログアウト",  users_logout_path
   parent :mypage
+end
+
+crumb :items do
+  link "All issue", issues_path
+end
+
+crumb :items do |item|
+  link "#{item.name}",  item_path(item)
+  parent :root
 end
 
 # crumb :projects do
