@@ -26,13 +26,33 @@
                     %ul.has-error-text
                       -@item.errors.full_messages_for(:images).each do |error|
                         %li=error
+                %section#modalArea.modalArea
+                  #modalBg.modalBg
+                  .modalWrapper
+                    .modalContents
+                      .modal-bold 写真を切りとる
+                      =label :images, "", for: "item_images" do
+                        %span{style: "cursor: pointer;"} 写真を変更する
+                      %i.fas.fa-camera
+                    .sell-crop-editor
+                      %canvas{id: "c1",width: 400,height:300, style: "cursor: grab;"}
+                      .sell-crop-range
+                        %i.fas.fa-camera.small-camera
+                        %input.input-range-default{id: "zoom-slider",type: "range",step:"0.01",min: "1",max:"2",name:"scale"}
+                        %i.fas.fa-camera
+                    .clearfix
+                      %li#closeModal.cansel-button
+                        =link_to 'キャンセル',method: :post
+                      %li.ok-button
+                        =link_to '完了', ""
+
             .sell-content
               .form-group
                 =f.label :name do
                   商品名
                   %span.form-require 必須
                 %div
-                  =f.text_field :name, class: "input-default", placeholder: "商品名（必須 40文字まで)"
+                  =f.text_field :name, class: "q-default", placeholder: "商品名（必須 40文字まで)"
                   -if @item.errors[:name]
                     %ul.has-error-text
                       -@item.errors.full_messages_for(:name).each do |error|
