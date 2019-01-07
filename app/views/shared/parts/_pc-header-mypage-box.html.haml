@@ -15,7 +15,7 @@
           .l-left
             売上金
           .l-right
-            ¥ 0
+            = "¥" + current_user.sales_amounts.sum(:price).to_s(:delimited)
             %i.fa.fa-angle-right.icon
       %li
         =link_to "#", class: "clearfix" do
