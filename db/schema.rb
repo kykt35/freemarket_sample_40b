@@ -90,12 +90,12 @@ ActiveRecord::Schema.define(version: 2019_01_04_094617) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
   create_table "item_prices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "price_tag"
     t.integer "min_price"
     t.integer "max_price"
-=======
+  end
+
   create_table "item_transactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "item_id"
@@ -103,7 +103,6 @@ ActiveRecord::Schema.define(version: 2019_01_04_094617) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_item_transactions_on_item_id"
     t.index ["user_id"], name: "index_item_transactions_on_user_id"
->>>>>>> kanchimatsumoto/master
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
