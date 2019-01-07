@@ -37,8 +37,60 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.where('name LIKE(?)', "%#{params[:search]}%")
+    #キーワードで検索
+    @select = params[:order]
+    if @select.present?
+      order = params[:order].sub(/_desc/," "+"DESC")
+    end
+    @items = Item.includes([:category, :size, :item_condition, :shipping, :postage_select]).where('name LIKE(?)', "%#{params[:search]}%").order(order)
     @value = params[:search]
+    # カテゴリーで検索
+    @search_l = params[:search_item_l_category_id]
+    @search_m = params[:search_item_m_category_id]
+    @search = params[:search_item_category_id]
+    if @search.present?
+      @items = @items.where(category_id: params[:search_item_category_id])
+    elsif @search_m.present?
+      @items = @items.where(m_category_id: params[:search_item_m_category_id])
+    elsif @search_l.present?
+      @items = @items.where(l_category_id: params[:search_item_l_category_id])
+    end
+    # ブランド名で検索
+    @brand_name = params[:brand]
+    if @brand_name.present?
+      @items = @items.where(brand: params[:brand])
+    end
+    # サイズで検索
+    # 保留
+    # 値段で検索
+    @price_tag = params[:price_tag]
+    @min = params[:min_price]
+    @max = params[:max_price]
+      respond_to do |format|
+        format.html
+        format.json{
+          @price_tag  = ItemPrice.find(params[:price_tag_id])
+        }
+      end
+    if @min.present?||@max.present?
+      @items = @items.where('price >= ?', @min).where('price <= ?', @max)
+    end
+    # 商品状態
+    @item_condition_ids = params[:item_condition_id]
+    if @item_condition_ids.present?
+      @items = @items.where(item_condition_id: @item_condition_ids)
+    end
+    # 配送料金
+    @postage_select_ids = params[:postage_select_id]
+    if @postage_select_ids.present?
+      @items = @items.where(postage_select_id: @postage_select_ids)
+    end
+    # 在庫
+    @status = ["販売中","売り切れ"]
+    @stock_select_ids = params[:stock_select_id]
+    if @stock_select_ids.present?
+      # @items = @items.where(status: @stock_select_ids)
+    end
   end
 
   def set_item
