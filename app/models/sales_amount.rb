@@ -1,0 +1,2 @@
+class SalesAmount < ApplicationRecord
+end
