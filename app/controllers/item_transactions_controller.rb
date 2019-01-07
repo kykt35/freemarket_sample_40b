@@ -1,4 +1,5 @@
 class ItemTransactionsController < ApplicationController
+  require 'date'
   before_action :set_item, only: [:new, :create]
   include Card
 
@@ -11,7 +12,7 @@ class ItemTransactionsController < ApplicationController
     price = @item.price
     charge(price)
       if @item_transaction.save
-      @sales_amount = SalesAmount.new(price: price * 0.9, limit_time: Date.today() + "180", user_id: @item.user_id)
+      @sales_amount = SalesAmount.new(price: price * 0.9, limit_date: Date.today() + "180", user_id: @item.user_id)
       @item_transaction.item.update_attribute(:status, 1)
       redirect_to root_path
       else
