@@ -27,5 +27,5 @@ Rails.application.routes.draw do
   end
   resources :postage_selects, only: [:index]
   post 'items/upload_image', to: 'items#upload_image'
-  resources :credits, path: 'mypage/card', only: [:new, :create, :index]
+  resources :credits, path: 'mypage/card', only: [:new, :create, :index, :destroy]
 end

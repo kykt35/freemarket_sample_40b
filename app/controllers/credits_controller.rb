@@ -1,8 +1,8 @@
 class CreditsController < ApplicationController
-  before_action :credit_confirm, only: [:new, :create]
   include Card
 
   def index
+    @credit = current_user.credits.first
   end
 
   def new
@@ -18,12 +18,11 @@ class CreditsController < ApplicationController
     end
   end
 
- private
-  def credit_confirm
-    if current_user.credits.present?  #もし現在のユーザーがクレジットカード登録ないなら
+    def destroy
+      credit = current_user.credits.first
+      credit.destroy if user_signed_in? && current_user.credits.present?
       redirect_to credits_path
     end
-  end
 
 end
 
