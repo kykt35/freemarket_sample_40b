@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :items
   has_many :sns_credentials
   has_many :favorites, dependent: :destroy
+  has_many :sales_amounts
 
   def self.create_from_auth!(auth)
     data = auth['info']
