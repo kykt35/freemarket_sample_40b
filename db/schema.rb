@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_04_094617) do
+ActiveRecord::Schema.define(version: 2019_01_07_040955) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -157,6 +157,15 @@ ActiveRecord::Schema.define(version: 2019_01_04_094617) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sales_amounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "price", null: false
+    t.datetime "limit_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sales_amounts_on_user_id"
+  end
+
   create_table "shippings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "text", null: false
     t.datetime "created_at", null: false
@@ -221,4 +230,5 @@ ActiveRecord::Schema.define(version: 2019_01_04_094617) do
   add_foreign_key "items", "users", column: "seller_id"
   add_foreign_key "postage_selects_shippings", "postage_selects"
   add_foreign_key "postage_selects_shippings", "shippings"
+  add_foreign_key "sales_amounts", "users"
 end
