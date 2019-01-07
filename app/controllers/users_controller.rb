@@ -23,4 +23,9 @@ class UsersController < ApplicationController
 
   def registration_card
   end
+
+  def favorite
+    @favorites = current_user.favorites
+  end
+
 end

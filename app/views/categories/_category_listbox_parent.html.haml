@@ -1,0 +1,5 @@
+.category-list-box-parent-head
+  %h3{id: "parent_category-#{parent.id}"}=parent.name
+.category-list-box-parent.clearfix
+  =link_to "すべて", category_path(parent),class: "category-list-box-parent-all"
+  =render partial: "category_listbox_child", collection:  @categories.find_all{|n| n[:ancestry]==parent.id.to_s}, as: "child", locals: {parent: parent}

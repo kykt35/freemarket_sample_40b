@@ -58,6 +58,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  config.example_status_persistence_file_path = "./spec/examples.txt"
 end
 
 RSpec.configure do |config|
@@ -65,8 +66,14 @@ RSpec.configure do |config|
   Dir[Rails.root.join('spec/support/**/*rb')].each {|f| require f}
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ControllerMacros, type: :controller
-  config.before(:suite) do
-    require Rails.root.join("db", "seeds")
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  # config.before(:suite) do
+  #   require Rails.root.join("db", "seeds")
+  # end
+
+  #mysql not connect error 対策
+  config.after(:each) do
+    sleep 0.05
   end
 end
 

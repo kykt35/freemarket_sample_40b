@@ -1,0 +1,28 @@
+.categories-container {
+    margin: 40px auto 0;
+    padding: 0 0 40px;
+  .categories-content {
+    width: 100%;
+  }
+  .items-box-container {
+    width: 100%;
+  }
+  .items-box {
+    float: left;
+    margin: 0 0 20px 20px;
+    width: calc(50% - 30px);
+    background-color: #fff;
+    &-head {
+      font-size: 22px;
+      line-height: 1.4;
+      margin: 24px 0 8px;
+      font-weight: bold;
+    }
+  }
+  .parts-nav {
+    &-child {
+      float: left;
+      margin: 16px 16px 0 0;
+    }
+  }
+}

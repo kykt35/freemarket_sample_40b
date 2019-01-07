@@ -1,0 +1,33 @@
+= render partial:"shared/pc-header"
+- breadcrumb :card
+= render partial:"shared/bread-crumbs"
+.l-container.clearfix
+  .l-content
+    %section.credit-container
+      %h2.credit-container__top 支払い方法
+      .credit-container__inner
+        %section
+          .credit-container__inner__single-content
+            %h3.credit-container__inner__single-content__sub-head クレジットカード一覧
+        %section.credit-container__inner__add-card
+          .credit-container__inner__add-card__single-content
+            - unless current_user.credits.present?
+              = link_to new_credit_path, class: "btn-default btn-red submit_button" do
+                %i.fa.fa-credit-card{style: "padding-right: 10px"}
+                クレジットカードを追加する
+            - else
+              = link_to credit_path(@credit), class: "btn-default btn-gray submit_button", method: :delete do
+                %i.fa.fa-credit-card{style: "padding-right: 10px"}
+                クレジットカードを削除する
+
+        .credit-container__inner__settings-not-regist
+          %a{ href: "/jp/help_center/category/6/", class: "link"}
+            %span 支払い方法について
+            %i.fa.fa-angle-right{style:"font-size: 15px; font-weight: bold;"}
+  = render partial:"users/side-bar"
+= render partial:"shared/footer-sell-btn"
+= render partial:"shared/app-banner"
+= render partial:"shared/global-footer"
+
+
+
