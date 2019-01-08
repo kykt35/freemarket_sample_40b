@@ -15,7 +15,7 @@
           .l-left
             売上金
           .l-right
-            = "¥ " + (current_user.sales_amounts.sum(:price).to_i - current_user.item_transactions.sum(:point).to_i).to_s(:delimited)
+            =render partial: "shared/current_users_sales_amount"
             %i.fa.fa-angle-right.icon
       %li
         =link_to "#", class: "clearfix" do
