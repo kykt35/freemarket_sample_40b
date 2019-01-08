@@ -1,7 +1,7 @@
 %header.confirmation-header
   =render partial: "shared/single-header"
 %main.confirmation-main
-  = form_with url: "/items/#{@item.id}/item_transactions", local: true, class: "main-content" do |f|
+  = form_with url: item_item_transactions_path(@item.id), local: true, class: "main-content" do |f|
     %section.item-box-container.single-container-section
       - if current_user && current_user.credits.present?
         %section.main-contents__item-header
