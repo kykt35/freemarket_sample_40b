@@ -6,11 +6,13 @@ $(document).on('turbolinks:load', function() {
     var amount = $("#exist-sales-amount").children('input').val();
     var calculate = (price - point);
     var result = calculate.toLocaleString();
-    if ((point >= 0) && (calculate >= 0) && (amount >=  point)) {
-      $('#sum-price').empty('');
+    var SumPriceEmpty = $('#sum-price').empty('');
+
+    if ((point >= 0) && (calculate >= 0)) {
+      SumPriceEmpty;
       $('#sum-price').html("¥" + result);
     } else {
-      $('#sum-price').empty('');
+      SumPriceEmpty;
       $('#sum-price').html("¥ " + price);
       }
     });
