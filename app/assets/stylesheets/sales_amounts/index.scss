@@ -1,37 +1,38 @@
 .mypage-nav {
-margin:0;
-padding:0;
-.mypage-nav-head  {
-font-size:16px;
-font-weight: bold;
-margin-top:40px;
-margin-bottom: 5px;
-}
-&-list-item {
-text-decoration: none;
-display: block;
-min-height: 15px;
-padding: 16px;
-background: $siro;
-color: $action_arrow;
-line-height:10px;
-border-bottom: 1px solid #eee;
-&:hover {
-opacity: 1;
+  margin:0;
+  padding:0;
+  .mypage-nav-head  {
+  font-size:16px;
+  font-weight: bold;
+  margin-top:40px;
+  margin-bottom: 5px;
   }
-}
-.fa-angle-right{
-float:right;
-margin-top: -40px;
-margin-right:20px;
-font-size:25px;
-color:$usually-arrow;
+  &-list-item {
+  text-decoration: none;
+  display: block;
+  min-height: 15px;
+  padding: 16px;
+  background: $siro;
+  color: $action_arrow;
+  line-height:10px;
+  border-bottom: 1px solid #eee;
+    &:hover {
+    opacity: 1;
+      }
   }
-  .l-right {
-    float: right;
-    margin-right: 5px;
-  }
+  .fa-angle-right{
+  float:right;
+  margin-top: -40px;
+  margin-right:20px;
+  font-size:25px;
+  color:$usually-arrow;
+    }
+    .l-right {
+      float: right;
+      margin-right: 5px;
+    }
 }
+
 #active {
 background: #eee;
 font-weight: 600;
