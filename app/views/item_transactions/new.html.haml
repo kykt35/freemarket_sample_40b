@@ -21,7 +21,7 @@
             .item-pay-form__point
               - if current_user.sales_amounts.present?
                 #exist-sales-amount
-                  = "売上金が#{"¥" + (current_user.sales_amounts.sum(:price) - current_user.item_transactions.sum(:point).to_i).to_s(:delimited)}あります"
+                  = "売上金が#{"¥" + (current_user.sales_amounts.sum(:price) - current_user.item_transactions.sum(:point)).to_s(:delimited)}あります"
                   %input{type: "hidden", value: current_user.sales_amounts.sum(:price) - current_user.item_transactions.sum(:point)}
                 = f.number_field :point, id: "sales-price-form", class: "input-default",placeholder: "使用する売上金を入力してください"
               - else
