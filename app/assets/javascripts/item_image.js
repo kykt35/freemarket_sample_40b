@@ -130,7 +130,6 @@ $(document).on('turbolinks:load', function() {
 
   $('.sell-upload-drop-file').on('change',function(e){
     var files = e.target.files;
-
     for (var i = 0; i < files.length; i++) {
       if ($('.sell-upload-item').length <= 10){
         file = files[i];
