@@ -47,48 +47,85 @@ $(document).on('turbolinks:load', function() {
   }
 
   function resizeImage(file) {
-  const WIDTH = 360;
-  const HEIGHT = 360;
-  var img = new Image();
-  var def =$.Deferred();
-  var canvas = document.createElement('canvas');
-  var reader = new FileReader();
-  reader.onload = function(e){
-    img.onload = function(){
-      if(img.width > img.height){
-        var ratio = img.height/img.width;
-        width = WIDTH;
-        height = HEIGHT * ratio;
-      } else {
-        var ratio = img.width/img.height;
-        width = HEIGHT * ratio;
-        height = HEIGHT;
-      }
+    const WIDTH = 350;
+    var img = new Image();
+    var def =$.Deferred();
+    var canvas = document.createElement('canvas');
+    var reader = new FileReader();
+    var orientation;
+    EXIF.getData(file, function(){
+      orientation = file.exifdata.Orientation;
+    });
+    reader.onload = function(e){
+      img.onload = function(){
+        var aspect = (orientation == 5 || orientation == 6 || orientation == 7 || orientation == 8) ? img.width / img.height : img.height / img.width;
+        var canvas_width = WIDTH;
+        var canvas_height = Math.floor(WIDTH * aspect);
+        var ctx = canvas.getContext('2d');
+        canvas.width = canvas_width;
+        canvas.height = canvas_height;
+        width = canvas_width;
+        height = canvas_height;
+        //画像方向の調整
+        switch(orientation){
+          case 2:
+            ctx.transform(-1, 0, 0, 1, canvas_width, 0);
+            break;
+          case 3:
+            ctx.transform(-1, 0, 0, -1, canvas_width, canvas_height);
+            break;
+          case 4:
+            ctx.transform(1, 0, 0, -1, 0, canvas_height);
+            break;
+          case 5:
+            ctx.transform(-1, 0, 0, 1, 0, 0);
+            ctx.rotate((90 * Math.PI) / 180);
+            width = canvas_height;
+            height = canvas_width;
+            break;
+          case 6:
+            ctx.transform(1, 0, 0, 1, canvas_width, 0);
+            ctx.rotate((90 * Math.PI) / 180);
+            width = canvas_height;
+            height = canvas_width;
+            break;
+          case 7:
+            ctx.transform(-1, 0, 0, 1, canvas_width, canvas_height);
+            ctx.rotate((-90 * Math.PI) / 180);
+            width = canvas_height;
+            height = canvas_width;
+            break;
+          case 8:
+            ctx.transform(1, 0, 0, 1, 0, canvas_height);
+            ctx.rotate((-90 * Math.PI) / 180);
+            width = canvas_height;
+            height = canvas_width;
+            break;
+          default:
+            break;
+        }
 
-      // canvasに描写
-      var ctx = canvas.getContext('2d');
-      canvas.width = width;
-      canvas.height = height;
-      ctx.drawImage(img,0,0,width,height);
+        // canvasに描写
+        ctx.drawImage(img,0,0,width,height);
 
-      // base64からBlobデータを作成
-      var base64 = canvas.toDataURL('image/jpeg');
-      var barr, bin, i, len;
-      bin = atob(base64.split('base64,')[1]);
-      len = bin.length;
-      barr = new Uint8Array(len);
-      i = 0;
-      while (i < len) {
-        barr[i] = bin.charCodeAt(i);
-        i++;
-      }
-      blob = new Blob([barr], {type: 'image/jpeg'});
-      def.resolve(canvas);
+        // base64からBlobデータを作成
+        var base64 = canvas.toDataURL('image/jpeg');
+        var barr, bin, i, len;
+        bin = atob(base64.split('base64,')[1]);
+        len = bin.length;
+        barr = new Uint8Array(len);
+        i = 0;
+        while (i < len) {
+          barr[i] = bin.charCodeAt(i);
+          i++;
+        }
+        blob = new Blob([barr], {type: 'image/jpeg'});
+        def.resolve(canvas);
+      };
+      img.src = e.target.result;
     };
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-  return def.promise();
+    reader.readAsDataURL(file);
+    return def.promise();
   }
 
   $('.sell-upload-drop-file').on('change',function(e){
