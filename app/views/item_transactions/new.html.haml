@@ -1,7 +1,7 @@
 %header.confirmation-header
   =render partial: "shared/single-header"
 %main.confirmation-main
-  = form_with model: [@item, @item_transaction], local: true, class: "main-content" do |f|
+  = form_with url: item_item_transactions_path(@item.id), local: true, class: "main-content" do |f|
     %section.item-box-container.single-container-section
       - if current_user && current_user.credits.present?
         %section.main-contents__item-header
@@ -14,15 +14,21 @@
           .item-pay-form
             .item-pay-form__price
               .item-price
-                = "¥" + @item.price.to_s
+                %p ¥ #{@item.price}
+                %input{type: "hidden", value: @item.price}
                 .delivery-price
                   = @item.postage_select.text
             .item-pay-form__point
-              .none ポイントはありません
+              - if current_user.sales_amounts.present?
+                #exist-sales-amount
+                  = "売上金が#{"¥" + (current_user.sales_amounts.sum(:price) - current_user.item_transactions.sum(:point).to_i).to_s(:delimited)}あります"
+                  %input{type: "hidden", value: current_user.sales_amounts.sum(:price) - current_user.item_transactions.sum(:point)}
+                = f.number_field :point, id: "sales-price-form", class: "input-default",placeholder: "使用する売上金を入力してください"
+              - else
+                .none 売上金はありません
             .item-pay-form__sum
               %p.sum-headword 支払い金額
-              %p.sum-price
-                = "¥" + @item.price.to_s
+              %p#sum-price ¥ #{@item.price}
             = f.submit "購入する", id: "submit-pay"
 
       - else
@@ -40,7 +46,8 @@
               .delivery-price
                 = @item.postage_select.text
             .item-pay-form__point
-              .none ポイントはありません
+              #exist-sales-amount
+                = "売上金が#{"¥ " + current_user.sales_amounts.sum(:price).to_s(:delimited)}あります"
             .item-pay-form__sum
               %p.sum-headword 支払い金額
               %p.sum-price
