@@ -7,11 +7,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  has_many :credits
+  has_many :credits, dependent: :destroy
   has_many :comments
   has_many :items
   has_many :sns_credentials
   has_many :favorites, dependent: :destroy
+  has_many :sales_amounts
+  has_many :item_transactions
 
   def self.create_from_auth!(auth)
     data = auth['info']

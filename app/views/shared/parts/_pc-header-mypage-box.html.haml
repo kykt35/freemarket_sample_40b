@@ -11,11 +11,11 @@
         =link_to "出品数:2","#"
     %ul.pc-header-mypage-box-sales-point
       %li
-        =link_to "#", class: "clearfix" do
+        =link_to sales_amounts_path, class: "clearfix" do
           .l-left
             売上金
           .l-right
-            ¥ 0
+            =render partial: "shared/current_users_sales_amount"
             %i.fa.fa-angle-right.icon
       %li
         =link_to "#", class: "clearfix" do

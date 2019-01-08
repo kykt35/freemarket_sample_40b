@@ -18,10 +18,10 @@ module Card
     customer_id = Payjp::Customer.create(:card => token.id).id
   end
 
-  def charge(price)
+  def charge(payment)
     customer = current_user.credits.first.customer_id
     charge = Payjp::Charge.create(
-      :amount => price,
+      :amount => payment,
       :currency => 'jpy',
       :customer => customer
       )
