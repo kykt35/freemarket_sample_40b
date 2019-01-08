@@ -11,11 +11,11 @@
         =link_to "出品数:2","#"
     %ul.pc-header-mypage-box-sales-point
       %li
-        =link_to "#", class: "clearfix" do
+        =link_to sales_amounts_path, class: "clearfix" do
           .l-left
             売上金
           .l-right
-            = "¥ " + current_user.sales_amounts.sum(:price).to_s(:delimited)
+            = "¥ " + (current_user.sales_amounts.sum(:price).to_i - current_user.item_transactions.sum(:point).to_i).to_s(:delimited)
             %i.fa.fa-angle-right.icon
       %li
         =link_to "#", class: "clearfix" do
