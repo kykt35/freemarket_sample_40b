@@ -12,14 +12,7 @@
       =link_to "#{@item.category.name}"
       の商品で、#{@item.prefecture.name}から#{@item.leadtime.text}で発送されます。
     .item-main-content.clearfix
-      - if @item.images.length >= 5
-        .item-photo.item-photo-expanded
-          -@item.images.each do |image|
-            =image_tag image,width: 300,hight:300
-      - else
-        .item-photo
-          -@item.images.each do |image|
-            =image_tag image,width: 300,hight:300
+      = render partial: "items/item_show_photo", locals: {item: @item}
 
       %table.item-detail-table
         %tbody
