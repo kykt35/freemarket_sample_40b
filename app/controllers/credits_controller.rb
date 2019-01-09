@@ -12,8 +12,7 @@ class CreditsController < ApplicationController
   def create
     @credit = current_user.credits.new(customer_id: create_customer) #token.idのcustomerのidを取得し、Creditモデルのカラムのcustomer_idと定義する
     if @credit.save
-     flash[:notice] = "カードを追加しました。"
-     redirect_to credits_path
+      redirect_to credits_path
     else
       render 'new' # カード未登録で保存に失敗
     end

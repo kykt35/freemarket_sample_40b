@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function() {
       var result = calculate.toLocaleString();
       var SumPriceEmpty = $('#sum-price').empty('');
       var remaining = (amount - point);
-      if ((point >= 0) && (calculate >= 0) && (remaining >= 0)) {
+      if ((point >= 0) && (calculate >= 50) && (remaining >= 0)) {
         SumPriceEmpty;
         $('#sum-price').html("¥ " + result);
         $('#exist-sales-amount').html("売上金が¥" + remaining + "あります");
