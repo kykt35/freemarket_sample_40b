@@ -58,7 +58,6 @@ end
 
 crumb :item do |item|
   link item.name, item_path(item)
-
   parent :root
 end
 
