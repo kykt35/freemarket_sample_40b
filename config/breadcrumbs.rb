@@ -52,7 +52,7 @@ crumb :category do |category|
 end
 
 crumb :search do |keyword|
-  link keyword, items_seach_path(q: keyword)
+  link keyword, items_search_path(q: keyword)
   parent :root
 end
 

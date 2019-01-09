@@ -19,7 +19,7 @@
       .select-detail
         %span 詳細検索
         .sell-form-box
-          = form_with url: items_seach_path, method: :get, local: true do |f|
+          = form_with url: items_search_path, method: :get, local: true do |f|
 
             .form-group.form-group-keyword
               =f.label :search do

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#index'
-  get 'items/seach', to: 'items#search'
+  get 'items/search', to: 'items#search'
   get 'mypage' => 'users#mypage'
   get 'mypage/profile' => 'users#profile'
   get 'mypage/identification', to: 'users#identification'
