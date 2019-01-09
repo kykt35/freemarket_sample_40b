@@ -48,6 +48,9 @@
   .item-box-container {
       width: 700px;
       margin: 0 auto;
+      .sold-out-box {
+        float: left;
+      }
       .item-photo {
         float: left;
         min-width: 300px;
