@@ -19,5 +19,7 @@ class CategoriesController < ApplicationController
   end
   def show
     @category = Category.find(params[:id])
+    @items = Kaminari.paginate_array(@category.all_items.sort_by{|a| a[:updated_at]}.reverse).page(params[:page]).per(4)
+
   end
 end
