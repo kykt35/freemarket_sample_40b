@@ -22,13 +22,13 @@ crumb :profile do
   parent :mypage
 end
 
-crumb :profile do
-  link "プロフィール", mypage_profile_path
+crumb :logout do
+  link "ログアウト",  users_logout_path
   parent :mypage
 end
 
-crumb :logout do
-  link "ログアウト",  users_logout_path
+crumb :sales_amounts do
+  link "売上・振込申請", sales_amounts_path
   parent :mypage
 end
 
