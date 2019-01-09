@@ -34,7 +34,18 @@
     width: 700px;
   }
   .pickup-container {
-    .items-box-container {
+    .items-box {
+      margin: 0 0 20px 20px;
+      width: 213px;
+    }
+    .items-box-content {
+      width: auto;
+    }
+    .items-box-photo {
+      height: 220px;
+    }
+  }
+  .item-box-container {
       width: 700px;
       margin: 0 auto;
       .item-photo {
@@ -50,11 +61,6 @@
         margin: 0 auto;
       }
     }
-    .items-box {
-      margin: 0 0 0 20px;
-      width: 213px;
-    }
-  }
   .footer-sell-btn {
     bottom: 32px;
     right: 32px;
@@ -159,8 +165,14 @@
       margin: 0 auto;
     }
     .items-box {
-      margin: 0 0 0 20px;
+      margin: 0 0 20px 20px;
       width: 213px;
+    }
+    .items-box-content {
+      width: auto;
+    }
+    .items-box-photo {
+      height: 220px;
     }
   }
   .visible-pc {
