@@ -164,7 +164,8 @@ $(document).on('turbolinks:load', function() {
     $('#modalArea').fadeIn();
     draw(image.src);
   });
-    $('#closeModal , #modalBg').click(function(){
+    $('#closeModal , #modalBg , .canselButton').click(function(e){
+    e.preventDefault();
     $('#modalArea').fadeOut();
   });
 
