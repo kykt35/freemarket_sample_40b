@@ -39,12 +39,13 @@ class ItemsController < ApplicationController
   end
 
   def search
-    #キーワードで検索
+    #並べ替え
     @select = params[:order]
     if @select.present?
       order = params[:order].sub(/_desc/," "+"DESC")
     end
-    @items = Item.includes([:category, :size, :item_condition, :shipping, :postage_select]).where('name LIKE(?)', "%#{params[:search]}%").order(order)
+    #キーワードで検索
+    @items = Item.where('name LIKE(?)', "%#{params[:search]}%").order(order)
     @value = params[:search]
     # カテゴリーで検索
     @search_l = params[:search_item_l_category_id]
@@ -63,19 +64,25 @@ class ItemsController < ApplicationController
       @items = @items.where(brand: params[:brand])
     end
     # サイズで検索
-    # 保留
+    @category_size = params[:category_size]
+    @size_ids = params[:size_id]
+    @size_categories_ids = CategoriesSize.group(:category_id).having('count(*) >= 2').map{|sc| sc.category_id}
+    @category_sizes_ids = CategoriesSize.where(category_id: @category_size).map{|cs| cs.size_id}
+    if @size_ids.present? && @category_size.present?
+      @items = @items.where(size_id: params[:size_id],m_category_id: params[:category_size])
+    elsif @size_ids.blank? && @category_size.present?
+      @category_size = ""
+    end
     # 値段で検索
     @price_tag = params[:price_tag]
     @min = params[:min_price]
     @max = params[:max_price]
-      respond_to do |format|
-        format.html
-        format.json{
-          @price_tag  = ItemPrice.find(params[:price_tag_id])
-        }
-      end
-    if @min.present?||@max.present?
+    if @min.present?&&@max.present?
       @items = @items.where('price >= ?', @min).where('price <= ?', @max)
+    elsif @min.present?&&@max.blank?
+      @items = @items.where('price >= ?', @min)
+    elsif @min.blank?&&@max.present?
+      @items = @items.where('price <= ?', @max)
     end
     # 商品状態
     @item_condition_ids = params[:item_condition_id]
@@ -92,6 +99,19 @@ class ItemsController < ApplicationController
     @stock_select_ids = params[:stock_select_id]
     if @stock_select_ids.present?
       # @items = @items.where(status: @stock_select_ids)
+    end
+    #jsonの設定
+    respond_to do |format|
+      format.html
+      if params[:price_tag_id].present?
+        format.json{
+          @price_tag  = ItemPrice.find(params[:price_tag_id])
+        }
+      elsif params[:category_size_id].present?
+        format.json{
+          @category_sizes_ids = CategoriesSize.where(category_id: params[:category_size_id])
+        }
+      end
     end
   end
 
