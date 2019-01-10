@@ -4,7 +4,7 @@
       .header__top.clearfix
         %h1.logo.l-left
           = link_to image_tag('logo.svg',{alt:"mercari",width: "134", height: "36"}),root_path
-        = form_with(model: @items, url: items_seach_path, :method => 'get',local: true, class: "header__top__form l-right") do
+        = form_with(model: @items, url: items_search_path, :method => 'get',local: true, class: "header__top__form l-right") do
           = text_field_tag :search,"", class: "input-default ",placeholder: "キーワードから探す",value: @value
           = button_tag "",:type => "submit", class: "hidden" do
             %i.fa.fa-search

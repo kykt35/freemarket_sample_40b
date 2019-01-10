@@ -22,22 +22,42 @@ crumb :profile do
   parent :mypage
 end
 
-crumb :profile do
-  link "プロフィール", mypage_profile_path
-  parent :mypage
-end
-
 crumb :logout do
   link "ログアウト",  users_logout_path
   parent :mypage
 end
 
-crumb :items do
-  link "All issue", issues_path
+crumb :sales_amounts do
+  link "売上・振込申請", sales_amounts_path
+  parent :mypage
 end
 
-crumb :items do |item|
-  link "#{item.name}",  item_path(item)
+crumb :favorite do
+  link "いいね！一覧",  mypage_favorite_path
+  parent :mypage
+end
+
+crumb :categories do
+  link "カテゴリ一覧",  categories_path
+  parent :root
+end
+
+crumb :category do |category|
+  link category.name, category_path(category)
+  if category.parent
+    parent category.parent
+  else
+    parent :categories
+  end
+end
+
+crumb :search do |keyword|
+  link keyword, items_search_path(q: keyword)
+  parent :root
+end
+
+crumb :item do |item|
+  link item.name, item_path(item)
   parent :root
 end
 

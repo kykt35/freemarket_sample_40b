@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#index'
-  get 'items/seach', to: 'items#search'
+  get 'items/search', to: 'items#search'
   get 'mypage' => 'users#mypage'
   get 'mypage/profile' => 'users#profile'
   get 'mypage/identification', to: 'users#identification'
@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   resources :postage_selects, only: [:index]
   post 'items/upload_image', to: 'items#upload_image'
   resources :credits, path: 'mypage/card', only: [:new, :create, :index, :destroy]
+  resources :sales_amounts, path: 'mypage/sales', only: [:index]
 end

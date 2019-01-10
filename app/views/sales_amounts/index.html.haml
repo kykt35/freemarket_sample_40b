@@ -1,0 +1,34 @@
+= render partial:"shared/pc-header"
+- breadcrumb :sales_amounts
+= render partial:"shared/bread-crumbs"
+.l-container.clearfix
+  .l-content.clearfix
+    %section
+      %h2.l-chapter-head 売上・振込申請
+      %nav.mypage-nav
+        %ul.mypage-nav-list
+          %li
+            =link_to root_path, class: "mypage-nav-list-item" do
+              = "現在の売上金"
+              .l-right
+                =render partial: "shared/current_users_sales_amount"
+          %li
+            =link_to "売上履歴",root_path,class: "mypage-nav-list-item "
+            = fa_icon 'angle-right', class: 'icon'
+          %li
+            =link_to "売上金の申請振込期限",root_path,class: "mypage-nav-list-item "
+            = fa_icon 'angle-right', class: 'icon'
+          %li
+            =link_to "申請して現金を受け取る", sales_amounts_path, class: "mypage-nav-list-item"
+            = fa_icon 'angle-right', class: 'icon'
+          %li
+            =link_to "振込申請履歴",root_path,class: "mypage-nav-list-item "
+            = fa_icon 'angle-right', class: 'icon'
+          %li
+            =link_to "振込申請スケジュール",root_path,class: "mypage-nav-list-item "
+            = fa_icon 'angle-right', class: 'icon'
+
+  =render partial:"users/side-bar"
+= render partial:"shared/app-banner"
+= render partial:"shared/global-footer"
+= render partial:"shared/footer-sell-btn"
