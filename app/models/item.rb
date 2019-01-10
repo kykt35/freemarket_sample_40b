@@ -20,6 +20,7 @@ class Item < ApplicationRecord
   validate :images_validate
   validates :images, length: { maximum: 10 }
 
+
   #いいねする
   def favorite(user)
     favorites.create(user_id: user.id)
@@ -31,6 +32,24 @@ class Item < ApplicationRecord
   #いいねしたか確認する
   def favorited?(user)
     favorites.find_by(user_id: user.id) if user.present?
+  end
+  #サイズの組み分け
+  def self.size_sort(category)
+    if category.id<=56
+      ["レディース/"+category.name + "のサイズ", category.id]
+    elsif category.id<=199
+      ["メンズ/"+ category.name + "のサイズ", category.id]
+    else
+      [category.name+"のサイズ",category.id]
+    end
+  end
+
+  def self.item_status_search(params,items)
+    stock_select_ids = params[:stock_select_id]
+    if stock_select_ids.present?
+      items = items.where(status: stock_select_ids)
+    end
+    return items, stock_select_ids
   end
 
   private
@@ -56,3 +75,4 @@ class Item < ApplicationRecord
     %w[image/jpg image/jpeg image/png].include?(blob.content_type)
   end
 end
+
