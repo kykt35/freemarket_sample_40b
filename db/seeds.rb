@@ -110,7 +110,11 @@ shippings.each do |s|
   ps = PostageSelectsShipping.where(postage_select_id: postage.id,shipping_id: shipping.id).first_or_initialize(postage_select_id: postage.id,shipping_id: shipping.id)
   ps.save
 end
-
+# 価格帯
+CSV.foreach('db/prices.csv') do |row|
+  price = ItemPrice.where(price_tag: row[0] ).first_or_initialize(price_tag: row[0], min_price: row[1], max_price: row[2])
+  price.save
+end
 
 #レディース　服
 lady_cloth_size = %w(XXS以下 XS(SS) S M L XL(LL) 2XL(3L) 3XL(4L) 4XL(5L)以上 FREE SIZE)
