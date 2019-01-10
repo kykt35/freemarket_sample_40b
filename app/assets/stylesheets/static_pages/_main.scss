@@ -17,52 +17,20 @@
   }
   .items-box {
     float: left;
-    margin: 0 0 20px 20px;
     width: calc(50% - 30px);
+    margin: 0 0 20px 20px;
     background-color: #fff;
     position: relative;
+    &-content {
+      margin: 0 auto;
+      width: 92%;
+    }
     &-photo {
       overflow: hidden;
       position: relative;
       img{
         width: 100%;
-        height: 220px;
         object-fit: cover;
-      }
-      .item-sold-out-badge{
-          padding: 0;
-          margin: 0;
-          background-repeat: no-repeat;
-          display: block;
-        .soldout-text{
-          margin: 0;
-          padding: 0;
-          top: 22px;
-          font-size: 26px;
-          display: block;
-          position: absolute;
-          left: 0;
-          z-index: 2;
-          color: #fff;
-          transform: rotate(-45deg);
-          letter-spacing: 2px;
-          font-weight: 600;
-        }
-         &:after{
-          border-top: 50px solid #ea352d;
-          border-right: 50px solid transparent;
-          border-bottom: 50px solid transparent;
-          border-left: 50px solid #ea352d;
-          display: block;
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 1;
-          width: 0;
-          height: 0;
-          border-style: solid;
-        }
       }
     }
       &-tag{
@@ -70,7 +38,6 @@
         font-size: 26px;
       }
     &-container {
-      width: 940px;
       margin: 0 auto;
     }
     &-body{

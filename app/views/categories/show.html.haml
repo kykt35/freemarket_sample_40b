@@ -1,5 +1,7 @@
+- breadcrumb :category, @category
 .default-container
   =render partial: "shared/pc-header"
+  = render partial:"shared/bread-crumbs"
   %main.categories-container
     .categories-content
       %ul.parts-nav.clearfix
@@ -11,7 +13,8 @@
         %h1.items-box-head
           #{@category.name}の商品一覧
         .items-box-content.clearfix.category-brand-list
-          =render partial: "items/item", collection: @category.all_items
+          =render partial: "items/item", collection: @items
+        = paginate @items, window: 2
   =render partial: "shared/app-banner"
   =render partial: "shared/global-footer"
   =render partial: "shared/footer-sell-btn"
