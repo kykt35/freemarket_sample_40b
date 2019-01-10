@@ -1,9 +1,9 @@
 .default-container
   =render "shared/pc-header"
+  - breadcrumb :items, @item
   =render "shared/bread-crumbs"
-
   %section.item-box-container.single-container-section
-    %h1.item-name 
+    %h1.item-name
       =@item.name
     %p.item-wording
       #{@item.name}は、48回の取引実績を持つ
@@ -12,15 +12,14 @@
       =link_to "#{@item.category.name}"
       の商品で、#{@item.prefecture.name}から#{@item.leadtime.text}で発送されます。
     .item-main-content.clearfix
-      .item-photo
-        -@item.images.each do |image|
-          =image_tag image,width: 300,hight:300
+      = render partial: "items/item_show_photo", locals: {item: @item}
+
       %table.item-detail-table
         %tbody
           %tr
             %th 出品者
             %td
-              =link_to "#{@item.seller.nickname}"
+              =link_to @item.seller.nickname
               .face
                 .item-user-ratings.l-left
                   %i.fas.fa-laugh.icon-good
@@ -35,7 +34,7 @@
             %th カテゴリー
             %td
               =link_to "#" do
-                .category 
+                .category
                   =@item.category.name
               =link_to "#" do
                 .item-detail-table-sub-category
@@ -52,38 +51,41 @@
                 =@item.brand.name
           %tr
             %th 商品の状態
-            %td 
+            %td
               =@item.item_condition.text
           %tr
             %th 配送料の負担
-            %td 
+            %td
               =@item.postage_select.text
           %tr
             %th 配送の方法
-            %td 
+            %td
               =@item.shipping.text
           %tr
             %th 配送元地域
-            %td=link_to "#{@item.prefecture.name}"
+            %td=link_to @item.prefecture.name
           %tr
             %th 発送日の目安
-            %td 
+            %td
               =@item.leadtime.text
     .item-price-box
-      %span.item-price-box-price ¥#{@item.price}
+      %span.item-price-box-price="¥"+@item.price.to_s(:delimited)
       %span.item-price-box-tax (税込)
       %span.item-price-box-shipping-fee 送料込み
-      - if user_signed_in? && current_user.id == @item.seller_id
-        =link_to "購入画面に進む", "", class: "item-buy-btn btn-default btn-red",style: "visibility:hidden;"
+
+      - if user_signed_in? && current_user.id == @item.seller_id || @item.status === "sold"
+        =link_to "購入できません", "#", class: "item-buy-btn btn-default btn-gray"
       - else
-        =link_to "購入画面に進む", "", class: "item-buy-btn btn-default btn-red"
+        =link_to "購入画面に進む", new_item_item_transaction_path(@item), class: "item-buy-btn btn-default btn-red"
+
+
     .item-description
       %p.item-description-inner
         =@item.description
       - if user_signed_in? && current_user.id == @item.seller_id
         .item-button-edit-delete
           .item-button-edit
-            =link_to "商品を編集する"
+            =link_to "商品を編集する", edit_item_path(@item)
           .item-button-or
             %span or
           .item-button-stop
@@ -107,14 +109,24 @@
                     =link_to '削除', "", method: :delete
       - else
         .item-button-container.clearfix
-          .item-button-left
-            %buttom.item-button.item-button-like
-              %i.far.fa-heart
-              %span いいね！
-              %span 1
-            =link_to "#", class: "item-button item-button-report clearfix" do
+          .item-button-left.clearfix
+            .favorite-button.l-left
+              =render partial: "favorites/favorite", locals: {item: @item}
+            #report-modal-open.item-button.item-button-report.clearfix
               %i.far.fa-flag
               %span 不適切な商品の報告
+            %section#report-modal-area.modal-area
+              .modal-bg
+              .modal-wrapper
+                .modal-contents
+                  .modal-bold 確認
+                  %p 不適切な商品を通報しますか？
+                %br.modal-final-answer
+                %ul.modal-button-box
+                  %li#report-modal-close.modal-button
+                    =link_to 'キャンセル', ""
+                  %li.modal-button.modal-button-ok
+                    =link_to 'はい'
           .item-button-right
             =link_to "#" do
               %i.fas.fa-lock
@@ -143,7 +155,6 @@
                     .message-delete
                       = link_to item_comment_path(@item,comment),method: :delete do
                         %i.far.fa-trash-alt
-
         - else
           - @comments.each do |comment|
             %li.clearfix
@@ -157,13 +168,13 @@
                     = fa_icon 'cog', class: 'icon'
                     %span 1時間前
 
-      %form.item-detail-comment-form
-        %p
-          相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      = form_tag("/items/#{@item.id}/comments", method: :post) do
-        %textarea.textarea-default{cols: "30", name: "text", placeholder: "コメントする", rows: "2"}
-        %button.comment-submit.btn-default.btn-gray
-          %span コメントする
+        %form.item-detail-comment-form
+          %p
+            相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        = form_tag("/items/#{@item.id}/comments", method: :post) do
+          %textarea.textarea-default{cols: "30", name: "text", placeholder: "コメントする", rows: "2"}
+          %button.comment-submit.btn-default.btn-gray
+            %span コメントする
   %ul.nav-item-link-prev-next.clearfix
     %li.nav-item-link.nav-item-link-prev.l-left
       =link_to "#" do

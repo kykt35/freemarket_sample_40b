@@ -10,12 +10,24 @@ require "csv"
 
 #category table initial data
 CSV.foreach('db/categories.csv') do |row|
-  parent = Category.where(name: row[0], ancestry: nil).first_or_initialize(name: row[0])
+  parent = Category.where(name: row[0].lstrip  , ancestry: nil).first_or_initialize(name: row[0].lstrip  )
   parent.save
-  child = parent.children.where(name: row[1]).first_or_initialize(name: row[1])
+  child = parent.children.where(name: row[1].lstrip  ).first_or_initialize(name: row[1].lstrip  )
   child.save
-  grandson =child.children.where(name: row[2]).first_or_initialize(name: row[2])
+  grandson =child.children.where(name: row[2].lstrip  ).first_or_initialize(name: row[2].lstrip  )
   grandson.save
+end
+
+has_brand_categories = ["レディース", "メンズ", "ベビー・キッズ", "インテリア・住まい・小物", "コスメ・香水・美容", "家電・スマホ・カメラ", "スポーツ・レジャー"]
+has_brand_categories.each do |cate|
+  parent = Category.find_by(name: cate)
+    parent.update(hasBrand: true)
+    parent.children.each do |child|
+      child.update(hasBrand: true)
+      child.children.each do |grand_child|
+        grand_child.update(hasBrand: true)
+    end
+  end
 end
 
 #item_condition table data
@@ -27,13 +39,13 @@ end
 
 #size table data
 #服
-clothes_size = %w(S M L FREE SIZE XXS以下 XS(SS) 2XL(3L) 3XL(4L) 4XL(5L)以上)
+clothes_size = %w(S M L FREE SIZE XXS以下 XS(SS) XL(LL) 2XL(3L) 3XL(4L) 4XL(5L)以上)
 clothes_size.each do |size|
   size = Size.where(name: size).first_or_initialize(name: size)
   size.save
 end
 #靴
-shoes_size = %w(20cm以下 21cm 21.5cm 22.5cm 23cm 23.5cm 24cm 24.5cm 25.5cm 26cm 26.5cm 27cm 27.5cm 28cm 28.5cm 29cm 29.5cm 30cm 30.5cm 31cm以上 27.5cm以上)
+shoes_size = %w(20cm以下 20.5cm 21cm 21.5cm 22cm 22.5cm 23cm 23.5cm 24cm 24.5cm 25cm 25.5cm 26cm 26.5cm 27cm 27.5cm 28cm 28.5cm 29cm 29.5cm 30cm 30.5cm 31cm以上 27.5cm以上 23.5cm以下)
 shoes_size.each do |size|
   size = Size.where(name: size).first_or_initialize(name: size)
   size.save
@@ -44,7 +56,11 @@ child_size.each do |size|
   size = Size.where(name: size).first_or_initialize(name: size)
   size.save
 end
-
+child_shoes = %w(10.5cm以下 11cm・11.5cm 12cm・12.5cm 13cm・13.5cm 14cm・14.5cm 15cm・15.5cm 16cm・16.5cm 16.5cm以上)
+child_size.each do |size|
+  size = Size.where(name: size).first_or_initialize(name: size)
+  size.save
+end
 #Shippings table
 shippings = %w(未定 らくらくメルカリ便 ゆうメール レターパック 普通郵便(定形、定形外) クロネコヤマト ゆうパック クリックポスト ゆうパケット)
 shippings.each do |ship|
@@ -94,4 +110,45 @@ shippings.each do |s|
   ps = PostageSelectsShipping.where(postage_select_id: postage.id,shipping_id: shipping.id).first_or_initialize(postage_select_id: postage.id,shipping_id: shipping.id)
   ps.save
 end
+
+
+#レディース　服
+lady_cloth_size = %w(XXS以下 XS(SS) S M L XL(LL) 2XL(3L) 3XL(4L) 4XL(5L)以上 FREE SIZE)
+clothes = ["トップス", "ジャケット/アウター", "パンツ", "スカート", "ワンピース"]
+clothes.each do |cloth|
+  category = Category.find_by(name: cloth, ancestry: 1)
+  lady_cloth_size.each do |s|
+    size = Size.find_by(name: s)
+    CategoriesSize.find_or_create_by(category_id: category.id,size_id: size.id)
+  end
+end
+
+# レディース　靴
+lady_shoes_size = %w(20cm以下 20.5cm 21cm 21.5cm 22cm 22.5cm 23cm 23.5cm 24cm 24.5cm 25cm 25.5cm 26cm 26.5cm 27cm 27.5cm以上)
+category = Category.find_by(name: "靴", ancestry: 1)
+lady_shoes_size.each do |s|
+  size = Size.find_by(name: s)
+  CategoriesSize.find_or_create_by(category_id: category.id,size_id: size.id)
+end
+
+
+#メンズ　服
+men_cloth_size = %w(XXS以下 XS(SS) S M L XL(LL) 2XL(3L) 3XL(4L) 4XL(5L)以上 FREE SIZE)
+clothes = ["トップス", "ジャケット/アウター", "パンツ", "スーツ"]
+clothes.each do |cloth|
+  category = Category.find_by(name: cloth, ancestry: 138)
+  men_cloth_size.each do |s|
+    size = Size.find_by(name: s)
+    CategoriesSize.find_or_create_by(category_id: category.id,size_id: size.id)
+  end
+end
+
+# メンズ　靴
+men_shoes_size = %w(23.5cm以下 24cm 24.5cm 25cm 25.5cm 26cm 26.5cm 27cm 27.5cm 28cm 28.5cm 29cm 29.5cm 30cm 30.5cm 31cm以上)
+category = Category.find_by(name: "靴", ancestry: 138)
+men_shoes_size.each do |s|
+  size = Size.find_by(name: s)
+  CategoriesSize.find_or_create_by(category_id: category.id,size_id: size.id)
+end
+
 

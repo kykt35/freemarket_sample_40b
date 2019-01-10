@@ -26,8 +26,9 @@ $(document).on('turbolinks:load', function() {
     reader.readAsDataURL(imageFile);
   }
 
-  function uploadImage(imageFile){ /* コールバック関数を受け取っている */ /* ここから非同期で画像を表示する処理 */
-    var formData = new FormData(this);
+
+  function uploadImage(imageFile){
+    var formData = new FormData();
     formData.append('image', imageFile);
     $.ajax({
       type: "POST",
@@ -56,8 +57,8 @@ $(document).on('turbolinks:load', function() {
   });
 /* ここまでは非同期で画像を表示する処理 */
 
-/* ここからは削除機能ではない！笑 */
-  $(document).on("click", ".sell-upload-delete", function (e) {
+
+  $("#sell-item-container").on("click", ".sell-upload-delete", function (e) {
     e.preventDefault();
     $(this).parents('.sell-upload-item').remove();
     var upload_item = $('.sell-upload-item');
@@ -70,106 +71,91 @@ $(document).on('turbolinks:load', function() {
   });
 
  
-/* ここからは画像編集機能 */
+/* ここからは画像編集 */
   $(document).on("click", ".sell-upload-edit", function (e) {
     e.preventDefault();
+    var image = $(this).parent().parent().find('img')[0]
     $('#modalArea').fadeIn();
+    draw(image.src);
   });
-  $('#closeModal , #modalBg').click(function(){
+    $('#closeModal , #modalBg').click(function(){
     $('#modalArea').fadeOut();
   });
 
-   onload = function() {
-  draw();
-};
-function draw() {
-  var canvas = document.getElementById('c1');
-  if ( ! canvas || ! canvas.getContext ) { return false; }
-  var ctx = canvas.getContext('2d');
-  /* Imageオブジェクトを生成 */
-  var img = new Image();
-  img.src = "/images/sample.jpg?";
-  img.onload = function() {
+  $('#photo_change').on('change',function(e){
+    var file = e.target.files[0];
+    var fileReader = new FileReader();
+    fileReader.onload = function() {
+      var dataUri = this.result;
+      draw(dataUri);
+    };
+    fileReader.readAsDataURL(file);
+  });
+
+  function draw(imageSrc) {
+    var canvas = document.getElementById('c1');
+    var ctx = canvas.getContext('2d');
+    /* Imageオブジェクトを生成 */
+    var img = new Image();
+    img.onload = function() {
+      ctx.drawImage(img, 0, 0);
+    }
+    img.src = imageSrc;
+
+    const slider = document.getElementById('zoom-slider');
+
+    // スライダーが動いたら拡大・縮小して再描画する
+    slider.addEventListener('input', e => {
+    // 一旦クリア 
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // 倍率変更
+    const scale = e.target.value;
+    ctx.scale(scale, scale);
+    // 再描画
     ctx.drawImage(img, 0, 0);
-}
+    // 変換マトリクスを元に戻す
+    ctx.scale(1 / scale, 1 / scale);
+      })
 
-const slider = document.getElementById('zoom-slider');
-
-// スライダーが動いたら拡大・縮小して再描画する
-slider.addEventListener('input', e => {
-  // 一旦クリア 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  // 倍率変更
-  const scale = e.target.value;
-  ctx.scale(scale, scale);
-  // 再描画
-  ctx.drawImage(img, 0, 0);
-  // 変換マトリクスを元に戻す
-  ctx.scale(1 / scale, 1 / scale);
-    })
-
-  let isDragging = false;
-// ドラッグ開始位置
-let start = {
-  x: 0,
-  y: 0
-};
-// ドラッグ中の位置
-let diff = {
-  x: 0,
-  y: 0
-};
-// ドラッグ終了後の位置
-let end = {
-  x: 0,
-  y: 0
-}
-const redraw = () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(img, diff.x, diff.y)
-};
-canvas.addEventListener('mousedown', event => {
-  isDragging = true;
-  start.x = event.clientX;
-  start.y = event.clientY;
+    let isDragging = false;
+    // ドラッグ開始位置
+    let start = {
+      x: 0,
+      y: 0
+    };
+    // ドラッグ中の位置
+    let diff = {
+      x: 0,
+      y: 0
+    };
+    // ドラッグ終了後の位置
+    let end = {
+      x: 0,
+      y: 0
+    }
+    const redraw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, diff.x, diff.y)
+    };
+    canvas.addEventListener('mousedown', event => {
+      isDragging = true;
+      start.x = event.clientX;
+      start.y = event.clientY;
+    });
+    canvas.addEventListener('mousemove', event => {
+      if (isDragging) {
+        diff.x = (event.clientX - start.x) + end.x;
+        diff.y = (event.clientY - start.y) + end.y;
+        redraw();
+      }
+    });
+    canvas.addEventListener('mouseup', event => {
+      isDragging = false;
+      end.x = diff.x;
+      end.y = diff.y;
+    });
+  };
 });
-canvas.addEventListener('mousemove', event => {
-  if (isDragging) {
-    diff.x = (event.clientX - start.x) + end.x;
-    diff.y = (event.clientY - start.y) + end.y;
-    redraw();
-  }
-});
-canvas.addEventListener('mouseup', event => {
-  isDragging = false;
-  end.x = diff.x;
-  end.y = diff.y;
-});
-  
-  }
-});
-// const canvas = document.createElement('canvas');
-// const ctx = canvas.getContext('2d');
-// // document.getElementById('c1').appendChild(canvas);
-
-// const img = new Image();
-// img.src = '/images/sample.jpg';
-
-// img.onload = () => {
-//   // Canvasを画像のサイズに合わせる
-//   canvas.height = img.height;
-//   canvas.width  = img.width;
-//   console.log(ctx.drawImage(img, 0, 0));
-//   console.log(img.src);
-
-//   // Canvasに描画する
-//   ctx.drawImage(img, 0, 0);
-
-// };
-
-// img.onerror = () => {
-//   console.log('画像の読み込み失敗');
-// };
 
 
 

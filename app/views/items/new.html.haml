@@ -28,18 +28,19 @@
                         %li=error
                 %section#modalArea.modalArea
                   #modalBg.modalBg
-                  .modalWrapper
+                  .modalWrappers
                     .modalContents
                       .modal-bold 写真を切りとる
-                      =label :images, "", for: "item_images" do
-                        %span{style: "cursor: pointer;"} 写真を変更する
+                    =label :images, "", for: "photo_change" do
+                      %span{style: "cursor: pointer;"} 写真を変更する
+                      = file_field "photo","change",style: "display: none;"
                       %i.fas.fa-camera
                     .sell-crop-editor
                       %canvas{id: "c1",width: 400,height:300, style: "cursor: grab;"}
                       .sell-crop-range
                         %i.fas.fa-camera.small-camera
                         %input.input-range-default{id: "zoom-slider",type: "range",step:"0.01",min: "1",max:"2",name:"scale"}
-                        %i.fas.fa-camera
+                        %i.fas.fa-camera.big-camera
                     .clearfix
                       %li#closeModal.cansel-button
                         =link_to 'キャンセル',method: :post
@@ -181,4 +182,5 @@
                   に同意したことになります。
               = f.submit '出品する' , class: "sell-btn-box-btn btn-default btn-red"
               =link_to "もどる", "#", class:"return-btn btn-default btn-gray"
+      =render partial: "item_form", locals: {submit_value: "出品する"}
 =render "shared/single-footer"
