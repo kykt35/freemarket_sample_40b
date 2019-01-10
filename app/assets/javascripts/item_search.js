@@ -44,7 +44,7 @@ $(document).on("change",'#search_item_l_category_id',function(e){
       }
     })
     .fail(function(){
-      console.log("fail");
+      alert("fail");
     })
   }
 })
@@ -86,7 +86,7 @@ $(document).on("change", "#search_item_m_category_id", function (e) {
       }
     })
     .fail(function(){
-      console.log("fail");
+      alert("fail");
     })
   }
 });
@@ -127,7 +127,7 @@ $(document).on("change", "#category_size",function(e){
       })
     })
     .fail(function(){
-      console.log("fail");
+      alert("fail");
     })
   }
 })
@@ -149,12 +149,11 @@ $(document).on("change", "#price_tag", function (e){
       timeout: 60000
     })
     .done(function(price_tag){
-      console.log(price_tag)
       $('#min_price').val(price_tag.min_price)
       $('#max_price').val(price_tag.max_price)
     })
     .fail(function(){
-      console.log("fail");
+      alert("fail");
     })
   }
 });
@@ -172,7 +171,6 @@ $(document).on("change", "#price_tag", function (e){
 // サイズ
   $(document).on("click", "#size_all", function (){
   var checked = $("#size_all").prop("checked")
-  console.log(checked)
   if (checked==true) {
     $(".size-check-btn").prop("checked", true)
   }else{
@@ -182,7 +180,6 @@ $(document).on("change", "#price_tag", function (e){
 // 商品状態
   $(document).on("click", "#condition_all", function (){
   var checked = $("#condition_all").prop("checked")
-  console.log(checked)
   if (checked==true) {
     $(".condition-check-btn").prop("checked", true)
   }else{
