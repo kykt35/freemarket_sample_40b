@@ -90,11 +90,53 @@ $(document).on("change", "#search_item_m_category_id", function (e) {
     })
   }
 });
+// サイズセレクトでチェックボックス追加
+$(document).on("change", "#category_size",function(e){
+  e.preventDefault();
+  var category_size_id = $("#category_size option:selected").val()
+  var url = window.location.pathname
+  if(category_size_id ==""){
+    $("#size-checkbox-area").empty();
+  } else {
+    $.ajax({
+      type: "GET",
+      url: url,
+      data: {category_size_id: category_size_id},
+      dataType: 'json',
+      timeout: 60000
+    })
+    .done(function(category_size_ids){
+      $("#size-checkbox-area").empty();
+      function buildSizeHtml(size){
+        html =`<div class="checkbox-default">
+                <label>
+                  <input id="size_id_${size.id}" class="check-btn size-check-btn" type="checkbox" value=${size.id} name="size_id[]">
+                  <p class="checkbox-label">${size.name}</p>
+                </label>
+              </div>`
+        return html
+      }
+      $("#size-checkbox-area").append(`<div class="checkbox-default">
+                                        <label>
+                                          <input class="check-btn size_check-btn" id="size_all" type="checkbox">
+                                          <p class="checkbox-label">すべて</p>
+                                        </label>
+                                      </div>`);
+      category_size_ids.forEach(function(category_size_id){
+        $("#size-checkbox-area").append(buildSizeHtml(category_size_id));
+      })
+    })
+    .fail(function(){
+      console.log("fail");
+    })
+  }
+})
 // 値段セレクトボックス選択で、numberfiledに代入
 $(document).on("change", "#price_tag", function (e){
   e.preventDefault();
   var price_tag_id = $('#price_tag option:selected').val()
-  var url = window.location.pathname
+ var url = window.location.pathname
+
   if (price_tag_id == ""){
     $('#min_price').val("");
     $('#max_price').val("");
@@ -127,6 +169,16 @@ $(document).on("change", "#price_tag", function (e){
   }
 });
 // すべてをチェックすると全選択/全解除
+// サイズ
+  $(document).on("click", "#size_all", function (){
+  var checked = $("#size_all").prop("checked")
+  console.log(checked)
+  if (checked==true) {
+    $(".size-check-btn").prop("checked", true)
+  }else{
+    $(".size-check-btn").prop("checked", false);
+  }
+});
 // 商品状態
   $(document).on("click", "#condition_all", function (){
   var checked = $("#condition_all").prop("checked")
