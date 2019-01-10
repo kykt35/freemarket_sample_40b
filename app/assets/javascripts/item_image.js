@@ -189,7 +189,7 @@ $(document).on('turbolinks:load', function() {
     }
     img.src = imageSrc;
 
-    const slider = document.getElementById('zoom-slider');
+    const slider = $('#zoom-slider')[0];
 
     // スライダーが動いたら拡大・縮小して再描画する
     slider.addEventListener('input', e => {
