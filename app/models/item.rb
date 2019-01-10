@@ -32,6 +32,16 @@ class Item < ApplicationRecord
   def favorited?(user)
     favorites.find_by(user_id: user.id) if user.present?
   end
+  #サイズの組み分け
+  def self.size_sort(category)
+    if category.id<=56
+      ["レディース/"+category.name + "のサイズ", category.id]
+    elsif category.id<=199
+      ["メンズ/"+ category.name + "のサイズ", category.id]
+    else
+      [category.name+"のサイズ",category.id]
+    end
+  end
 
   private
 
