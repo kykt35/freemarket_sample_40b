@@ -1,0 +1,1 @@
+= "¥ " + (current_user.sales_amounts.sum(:price).to_i - current_user.item_transactions.sum(:point).to_i).to_s(:delimited)

@@ -18,6 +18,7 @@ class CategoriesController < ApplicationController
     end
   end
   def show
-    @category = Category.find(params[:id])
+    @category = Category.includes(items: [:favorites, images_attachments: [:blob]]).find(params[:id])
+    @items = Kaminari.paginate_array(@category.all_items.sort_by{|a| a[:updated_at]}.reverse).page(params[:page]).per(20)
   end
 end
