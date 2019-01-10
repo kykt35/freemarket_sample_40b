@@ -1,0 +1,15 @@
+- breadcrumb :categories
+.default-container
+  =render partial: "shared/pc-header"
+  = render partial:"shared/bread-crumbs"
+  %main.categories-container
+    .category-index-header
+      %h2 カテゴリ一覧
+    .category-list-nav.clearfix
+      -parents = @categories.find_all{|n| n[:ancestry]==nil}
+      = render partial: "category_list_bav", collection: parents, as: "parent"
+    .category-list-box
+      = render partial: "category_listbox_parent", collection: parents, as: "parent"
+  =render partial: "shared/app-banner"
+  =render partial: "shared/global-footer"
+  =render partial: "shared/footer-sell-btn"

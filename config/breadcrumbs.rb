@@ -8,17 +8,12 @@ crumb :mypage do
 end
 
 crumb :identification do
-  link "住所変更", mypage_identification_path
+  link "本人情報", mypage_identification_path
   parent :mypage
 end
 
 crumb :card do
-  link "支払い方法", mypage_card_path
-  parent :mypage
-end
-
-crumb :profile do
-  link "プロフィール", mypage_profile_path
+  link "支払い方法", credits_path
   parent :mypage
 end
 
@@ -30,6 +25,40 @@ end
 crumb :logout do
   link "ログアウト",  users_logout_path
   parent :mypage
+end
+
+crumb :sales_amounts do
+  link "売上・振込申請", sales_amounts_path
+  parent :mypage
+end
+
+crumb :favorite do
+  link "いいね！一覧",  mypage_favorite_path
+  parent :mypage
+end
+
+crumb :categories do
+  link "カテゴリ一覧",  categories_path
+  parent :root
+end
+
+crumb :category do |category|
+  link category.name, category_path(category)
+  if category.parent
+    parent category.parent
+  else
+    parent :categories
+  end
+end
+
+crumb :search do |keyword|
+  link keyword, items_search_path(q: keyword)
+  parent :root
+end
+
+crumb :item do |item|
+  link item.name, item_path(item)
+  parent :root
 end
 
 # crumb :projects do

@@ -1,0 +1,76 @@
+%header.confirmation-header
+  =render partial: "shared/single-header"
+%main.confirmation-main
+  = form_with url: item_item_transactions_path(@item.id), local: true, class: "main-content" do |f|
+    %section.item-box-container.single-container-section
+      - if current_user && current_user.credits.present?
+        %section.main-contents__item-header
+          %p 購入を確定しますか？
+        %section.main-contents__item-info
+          .item-header
+            =image_tag @item.images[0],class: "is-higher-width lazyloaded", height: 150
+            %p.image-title
+              = @item.name
+          .item-pay-form
+            .item-pay-form__price
+              .item-price
+                %p ¥ #{@item.price}
+                %input{type: "hidden", value: @item.price}
+                .delivery-price
+                  = @item.postage_select.text
+            .item-pay-form__point
+              - if current_user.sales_amounts.present? && current_user.sales_amounts.sum(:price) - current_user.item_transactions.sum(:point) > 0
+                #exist-sales-amount
+                  = "売上金が#{"¥" + (current_user.sales_amounts.sum(:price) - current_user.item_transactions.sum(:point)).to_s(:delimited)}あります"
+                  %input{type: "hidden", value: current_user.sales_amounts.sum(:price) - current_user.item_transactions.sum(:point)}
+                = f.label :point, "売上金を使われる場合は入力してください", id: "notice-sales-amount"
+                = f.number_field :point, id: "sales-price-form", class: "input-default",placeholder: "使う分だけ売上金を入力してください"
+              - else
+                .none 売上金はありません
+            .item-pay-form__sum
+              %p.sum-headword 支払い金額
+              %p#sum-price ¥ #{@item.price}
+            = f.submit "購入する", id: "submit-pay"
+
+      - else
+        %section.main-contents__item-header
+          %p クレジットカード登録が必要です。
+        %section.main-contents__item-info
+          .item-header
+            =image_tag @item.images[0],class: "is-higher-width lazyloaded", height: 150
+            %p.image-title
+              = @item.name
+          .item-pay-form
+            .item-pay-form__price
+              .item-price
+                = "¥" + @item.price.to_s
+              .delivery-price
+                = @item.postage_select.text
+            .item-pay-form__point
+              #exist-sales-amount
+                = "売上金が#{"¥ " + current_user.sales_amounts.sum(:price).to_s(:delimited)}あります"
+            .item-pay-form__sum
+              %p.sum-headword 支払い金額
+              %p.sum-price
+                = @item.price
+            #submit-pay 購入できません
+        %section.main-contents__delivery-info
+          %p.header-address 配送先
+          .contents-address
+            %p 〒123-4567
+            %p 大阪府大阪市1-2-345
+            %p メルカリ太郎
+          .contents-change
+            =link_to root_path do
+              =fa_icon("angle-right")
+          .clearfix
+        %section.main-contents__pay-info
+          %p.header-card 支払方法
+          .contents-change
+            =link_to new_credit_path,method: :get do
+              ="クレジットカードを登録する"
+              =fa_icon("angle-right")
+          .clearfix
+
+%footer.confirmation-footer
+  =render partial: "shared/single-footer"

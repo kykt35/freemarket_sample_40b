@@ -19,12 +19,13 @@
       @include main_contents_same();
       .item-header{
         .item-image{
-          height: 40%;
-          width: 40%;
+          height: 150px;
+          width: 20%;
         }
         .image-title{
           @include bold_small_font();
           padding-top: 3%;
+
         }
       }
       .item-pay-form{
@@ -41,6 +42,7 @@
         }
         &__point{
           @include main_contents_same;
+            margin: 10px 0 30px;
           .none{
             padding: 5%;
             font-size: $smallWordSize;
@@ -48,7 +50,26 @@
             border-style: solid;
             border-width: 1px;
           }
-        }
+          #exist-sales-amount{
+            padding: 5%;
+            margin: 0 0 30px;
+            font-size: 15px;
+            letter-spacing: 4px;
+            border-color: #c0c0c0;
+            border-style: solid;
+            border-width: 1px;
+            background-color: #708090;
+            color: #fff;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }/*#exist-sales-amount*/
+            #notice-sales-amount{
+                font-size: 14px;
+                font-weight: bold;
+            }
+        }/*point*/
         &__sum{
           @include main_contents_same;
           height: 2vw;
@@ -56,12 +77,12 @@
             @include bold_large_font;
             float: left;
           }
-          .sum-price{
+          #sum-price{
             @include bold_large_font;
             float: right;
           }
         }
-        input#submit-pay{
+        #submit-pay{
           @include main_contents_same;
           @include bold_small_font;
           padding: 5%;
@@ -71,6 +92,7 @@
           color: #f5f5f5;
           margin-top: 5%;
           margin-bottom: 5%;
+          box-sizing: border-box;
         }
       }
     }
