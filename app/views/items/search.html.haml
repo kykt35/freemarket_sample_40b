@@ -1,9 +1,8 @@
-- breadcrumb :search, @value
 .default-container
   =render partial: "shared/pc-header"
   =render partial: "shared/bread-crumbs"
   .search-container
-    = form_with url: items_seach_path, method: :get, local: true, id: "search-form" do |f|
+    = form_with url: items_search_path, method: :get, local: true, id: "search-form" do |f|
       .l-left.search-area
         .select-order
           .form-group
@@ -11,136 +10,134 @@
               =f.select :order,[["価格の安い順","price"],["価格の高い順","price_desc"],["出品の古い順","created_at"],["出品の新しい順","created_at_desc"],["いいね！の多い順"," "]],{include_blank: "並び替え", selected: @select },{class: "select-default"}
               %i.fa.fa-angle-down
         .select-detail
-          %span 詳細検索
+          %p.select-head 詳細検索
           .sell-form-box
-            = form_with url: items_seach_path, method: :get, local: true do |f|
-
-              .form-group.form-group-keyword
-                =f.label :search do
-                  %i.fas.fa-plus
-                  %span キーワードで検索する
+            .form-group.form-group-keyword
+              =f.label :search do
+                %i.fas.fa-plus
+                %span キーワードで検索する
+              .select-wrap
+                = f.text_field :search, class: "input-default", value: @value
+            .form-group.form-group-category
+              =f.label :l_category_id do
+                %i.fas.fa-list-ul
+                %span カテゴリーで検索する
+              .select-wrap
+                = f.collection_select :search_item_l_category_id, Category.where(ancestry: nil), :id, :name, {include_blank: "---",selected: @search_l}, {class: 'select-default'}
+                %i.fa.fa-angle-down
+              -if @search_l.present?
                 .select-wrap
-                  = f.text_field :search, class: "input-default", value: @value
-              .form-group.form-group-category
-                =f.label :l_category_id do
-                  %i.fas.fa-list-ul
-                  %span カテゴリーで検索する
-                .select-wrap
-                  = f.collection_select :search_item_l_category_id, Category.where(ancestry: nil), :id, :name, {include_blank: "---",selected: @search_l}, {class: 'select-default'}
+                  = f.collection_select :search_item_m_category_id, Category.where(ancestry: @search_l), :id, :name, {include_blank: "---",selected: @search_m}, {class: 'select-default'}
                   %i.fa.fa-angle-down
-                -if @search_l.present?
-                  .select-wrap
-                    = f.collection_select :search_item_m_category_id, Category.where(ancestry: @search_l), :id, :name, {include_blank: "---",selected: @search_m}, {class: 'select-default'}
-                    %i.fa.fa-angle-down
-                  .select-wrap
-                    = f.collection_select :search_item_category_id, Category.where(ancestry: @search_l +"/"+ @search_m ), :id, :name, {include_blank: "---",selected: @search}, {class: 'select-default'}
-                    %i.fa.fa-angle-down
-              .form-group.form-group-brand
-                =f.label :brand do
-                  %i.fas.fa-tag
-                  %span ブランド名で検索する
                 .select-wrap
-                  = f.text_field :brand, class: "input-default",placeholder:"例）シャネル",value: @brand_name
-              .form-group.form-group-size
-                =f.label :size do
-                  %i.fas.fa-expand
-                  %span サイズを指定する
-                .select-wrap
-                  =f.select :category_size, Category.where(id: @size_categories_ids).map{|category| Item.size_sort(category)}, {include_blank: "---",selected: @category_size}, {class: 'select-default'}
+                  = f.collection_select :search_item_category_id, Category.where(ancestry: @search_l +"/"+ @search_m ), :id, :name, {include_blank: "---",selected: @search}, {class: 'select-default'}
                   %i.fa.fa-angle-down
-                .checkbox-area#size-checkbox-area
-                  -if @category_size.present?
+            .form-group.form-group-brand
+              =f.label :brand do
+                %i.fas.fa-tag
+                %span ブランド名で検索する
+              .select-wrap
+                = f.text_field :brand, class: "input-default",placeholder:"例）シャネル",value: @brand_name
+            .form-group.form-group-size
+              =f.label :size do
+                %i.fas.fa-expand
+                %span サイズを指定する
+              .select-wrap
+                =f.select :category_size, Category.where(id: @size_categories_ids).map{|category| Item.size_sort(category)}, {include_blank: "---",selected: @category_size}, {class: 'select-default'}
+                %i.fa.fa-angle-down
+              .checkbox-area#size-checkbox-area
+                -if @category_size.present?
+                  .checkbox-default
+                    %label
+                      %input{type:"checkbox",class: "check-btn size_check-btn",id:"size_all"}
+                      %p.checkbox-label すべて
+                  - Size.where(id: @category_sizes_ids).each do |size|
                     .checkbox-default
                       %label
-                        %input{type:"checkbox",class: "check-btn size_check-btn",id:"size_all"}
-                        %p.checkbox-label すべて
-                    - Size.where(id: @category_sizes_ids).each do |size|
-                      .checkbox-default
-                        %label
-                          -if @size_ids.present?&&@size_ids.include?("#{size.id}")
-                            = f.check_box "size_id[]", {id: "size_id_#{size.id}", class: "check-btn size-check-btn" , checked: true}, size.id, false
-                          -else
-                            = f.check_box "size_id[]", {id: "size_id_#{size.id}", class: "check-btn size-check-btn"}, size.id, false
-                          %p.checkbox-label=size.name
-                .clearfix
-              .form-group.form-group-price
-                =f.label :price do
-                  %i.fas.fa-coins
-                  %span 価格
-                .select-wrap
-                  = f.collection_select :price_tag, ItemPrice.all, :id, :price_tag, {include_blank: "---",selected: @price_tag}, {class: 'select-default'}
-                  %i.fa.fa-angle-down
-                  .price-limits
-                    = f.number_field :min_price, class: "input-default inline",id: "min_price", placeholder: "¥Min",value: @min
-                    %p.inline ~
-                    = f.number_field :max_price, class: "input-default inline",id: "max_price", placeholder: "¥Max",value: @max
+                        -if @size_ids.present?&&@size_ids.include?("#{size.id}")
+                          = f.check_box "size_id[]", {id: "size_id_#{size.id}", class: "check-btn size-check-btn" , checked: true}, size.id, false
+                        -else
+                          = f.check_box "size_id[]", {id: "size_id_#{size.id}", class: "check-btn size-check-btn"}, size.id, false
+                        %p.checkbox-label=size.name
+              .clearfix
+            .form-group.form-group-price
+              =f.label :price do
+                %i.fas.fa-coins
+                %span 価格
+              .select-wrap
+                = f.collection_select :price_tag, ItemPrice.all, :id, :price_tag, {include_blank: "---",selected: @price_tag}, {class: 'select-default'}
+                %i.fa.fa-angle-down
+                .price-limits
+                  = f.number_field :min_price, class: "input-default inline",id: "min_price", placeholder: "¥Min",value: @min
+                  %p.inline ~
+                  = f.number_field :max_price, class: "input-default inline",id: "max_price", placeholder: "¥Max",value: @max
 
 
 
-              .form-group.form-group-item_condition
-                =f.label :item_condition_id do
-                  %i.fas.fa-star
-                  %span 商品状態
-                .select-wrap
-                  .checkbox-area
+            .form-group.form-group-item_condition
+              =f.label :item_condition_id do
+                %i.fas.fa-star
+                %span 商品状態
+              .select-wrap
+                .checkbox-area
+                  .checkbox-default
+                    %label
+                      %input{type:"checkbox",class: "check-btn",id:"condition_all"}
+                      %p.checkbox-label すべて
+                  - ItemCondition.all.each do |item_condition|
                     .checkbox-default
                       %label
-                        %input{type:"checkbox",class: "check-btn",id:"condition_all"}
-                        %p.checkbox-label すべて
-                    - ItemCondition.all.each do |item_condition|
-                      .checkbox-default
-                        %label
-                          -if @item_condition_ids.present?&&@item_condition_ids.include?("#{item_condition.id}")
-                            = f.check_box "item_condition_id[]", {id: "item-condition_id_#{item_condition.id}", class: "check-btn condition-check-btn" , checked: true}, item_condition.id, false
-                          -else
-                            = f.check_box "item_condition_id[]", {id: "item-condition_id_#{item_condition.id}", class: "check-btn condition-check-btn"}, item_condition.id, false
-                          %p.checkbox-label=item_condition.text
-                    .clearfix
+                        -if @item_condition_ids.present?&&@item_condition_ids.include?("#{item_condition.id}")
+                          = f.check_box "item_condition_id[]", {id: "item-condition_id_#{item_condition.id}", class: "check-btn condition-check-btn" , checked: true}, item_condition.id, false
+                        -else
+                          = f.check_box "item_condition_id[]", {id: "item-condition_id_#{item_condition.id}", class: "check-btn condition-check-btn"}, item_condition.id, false
+                        %p.checkbox-label=item_condition.text
+                  .clearfix
 
-              .form-group.form-group-postage_select
-                =f.label :postage_select_id do
-                  %i.fas.fa-truck
-                  %span 配送料の負担
-                .select-wrap
-                  .checkbox-area
+            .form-group.form-group-postage_select
+              =f.label :postage_select_id do
+                %i.fas.fa-truck
+                %span 配送料の負担
+              .select-wrap
+                .checkbox-area
+                  .checkbox-default
+                    %label
+                      %input{type:"checkbox",class: "check-btn",id:"postage_select_all"}
+                      %p.checkbox-label すべて
+                  - PostageSelect.all.each do |postage_select|
                     .checkbox-default
                       %label
-                        %input{type:"checkbox",class: "check-btn",id:"postage_select_all"}
-                        %p.checkbox-label すべて
-                    - PostageSelect.all.each do |postage_select|
-                      .checkbox-default
-                        %label
-                          -if @postage_select_ids.present?&&@postage_select_ids.include?("#{postage_select.id}")
-                            = f.check_box "postage_select_id[]", {id: "postage_select_id_#{postage_select.id}", class: "check-btn postage-check-btn", checked: true}, postage_select.id, false
-                          -else
-                            = f.check_box "postage_select_id[]", {id: "postage_select_id_#{postage_select.id}", class: "check-btn postage-check-btn"}, postage_select.id, false
-                          %p.checkbox-label=postage_select.text
-                    .clearfix
+                        -if @postage_select_ids.present?&&@postage_select_ids.include?("#{postage_select.id}")
+                          = f.check_box "postage_select_id[]", {id: "postage_select_id_#{postage_select.id}", class: "check-btn postage-check-btn", checked: true}, postage_select.id, false
+                        -else
+                          = f.check_box "postage_select_id[]", {id: "postage_select_id_#{postage_select.id}", class: "check-btn postage-check-btn"}, postage_select.id, false
+                        %p.checkbox-label=postage_select.text
+                  .clearfix
 
-              .form-group.form-group_stock
-                =f.label :stock_select_id do
-                  %i.fas.fa-shopping-cart
-                  %span 在庫状況
-                .select-wrap
-                  .checkbox-area
+            .form-group.form-group_stock
+              =f.label :stock_select_id do
+                %i.fas.fa-shopping-cart
+                %span 在庫状況
+              .select-wrap
+                .checkbox-area
+                  .checkbox-default
+                    %label
+                      %input{type:"checkbox",class: "check-btn",id:"stock_all"}
+                      %p.checkbox-label すべて
+                  - @status.each.with_index(0) do |status,i|
                     .checkbox-default
                       %label
-                        %input{type:"checkbox",class: "check-btn",id:"stock_all"}
-                        %p.checkbox-label すべて
-                    - @status.each.with_index(0) do |status,i|
-                      .checkbox-default
-                        %label
-                          -if @stock_select_ids.present?&&@stock_select_ids.include?("#{i}")
-                            = f.check_box "stock_select_id[]", {id: "stock_select_id_#{i}", class: "check-btn stock-check-btn", checked: true}, i, false
-                          -else
-                            = f.check_box "stock_select_id[]", {id: "stock_select_id_#{i}", class: "check-btn stock-check-btn"}, i, false
-                          %p.checkbox-label=status
-                    .clearfix
+                        -if @stock_select_ids.present?&&@stock_select_ids.include?("#{i}")
+                          = f.check_box "stock_select_id[]", {id: "stock_select_id_#{i}", class: "check-btn stock-check-btn", checked: true}, i, false
+                        -else
+                          = f.check_box "stock_select_id[]", {id: "stock_select_id_#{i}", class: "check-btn stock-check-btn"}, i, false
+                        %p.checkbox-label=status
+                  .clearfix
 
 
-              .form-group.form-group-btn
-                =f.submit "リセット",class: "btn-default btn-gray inline",type: :reset
-                =f.submit "完了",class: "btn-default btn-red inline",type: :submit
+            .form-group.form-group-btn
+              =f.submit "リセット",class: "btn-default btn-gray inline",type: :reset
+              =f.submit "完了",class: "btn-default btn-red inline",type: :submit
 
 
 
