@@ -180,7 +180,7 @@ $(document).on('turbolinks:load', function() {
   });
 
   function draw(imageSrc) {
-    var canvas = document.getElementById('c1');
+    var canvas = $('#c1')[0];
     var ctx = canvas.getContext('2d');
     /* Imageオブジェクトを生成 */
     var img = new Image();
@@ -243,10 +243,3 @@ $(document).on('turbolinks:load', function() {
     });
   };
 });
-
-
-
-
-
-
-
