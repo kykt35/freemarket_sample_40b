@@ -1,0 +1,40 @@
+.contents-bg
+  %header.confirmation-header
+    =render partial: "shared/single-header"
+  %main.confirmation-main
+    %section.item-box-container.single-container-section
+      %section.main-contents__item-header
+        %p 購入ありがとうございました！
+      %section.main-contents__item-info
+        .item-header
+          =image_tag @item.images[0],class: "is-higher-width lazyloaded", height: 150
+          .item-sold-out-badge
+            .soldout-text SOLD
+          %p.image-title
+            = @item.name
+        .item-pay-form
+          .item-pay-form__price
+            .item-price
+              %p
+                = "¥" + @item.price.to_s(:delimited)
+              .delivery-price
+                = @item.postage_select.text
+          .item-pay-form__sum
+            %p.sum-headword 支払い金額
+            %p#sum-price
+              = "¥" + (@item.price - @item_transaction.point).to_s(:delimited)
+            %p.sum-headword 使用ポイント
+            %p#sum-used-point
+              = "¥" + @item_transaction.point.to_s(:delimited)
+      %section.main-contents__link-to
+        #transaction-link
+          %br/
+          %br/
+          %p
+            =link_to "購入した商品の詳細にいく", item_path(@item)
+            %br/
+            %br/
+            =link_to "商品を続けて購入する", root_path
+
+  %footer.confirmation-footer
+    =render partial: "shared/single-footer"
