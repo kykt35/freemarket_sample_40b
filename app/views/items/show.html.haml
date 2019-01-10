@@ -73,11 +73,10 @@
       %span.item-price-box-tax (税込)
       %span.item-price-box-shipping-fee 送料込み
 
-      - if user_signed_in? && current_user.id == @item.seller_id || @item.status === "sold"
-        =link_to "購入できません", "#", class: "item-buy-btn btn-default btn-gray"
-      - else
+      - if user_signed_in? && current_user.id != @item.seller_id && @item.status == "listing"
         =link_to "購入画面に進む", new_item_item_transaction_path(@item), class: "item-buy-btn btn-default btn-red"
-
+      - else
+        =link_to "購入できません", "#", class: "item-buy-btn btn-default btn-gray"
 
     .item-description
       %p.item-description-inner
