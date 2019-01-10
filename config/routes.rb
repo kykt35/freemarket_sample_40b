@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#index'
   get 'items/search', to: 'items#search'
+  get 'items/search_material', to: 'items#get_search_material'
   get 'mypage' => 'users#mypage'
   get 'mypage/profile' => 'users#profile'
   get 'mypage/identification', to: 'users#identification'

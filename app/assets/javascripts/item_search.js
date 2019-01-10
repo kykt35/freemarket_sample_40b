@@ -94,13 +94,12 @@ $(document).on("change", "#search_item_m_category_id", function (e) {
 $(document).on("change", "#category_size",function(e){
   e.preventDefault();
   var category_size_id = $("#category_size option:selected").val()
-  var url = window.location.pathname
   if(category_size_id ==""){
     $("#size-checkbox-area").empty();
   } else {
     $.ajax({
       type: "GET",
-      url: url,
+      url: "/items/search_material",
       data: {category_size_id: category_size_id},
       dataType: 'json',
       timeout: 60000
@@ -135,7 +134,6 @@ $(document).on("change", "#category_size",function(e){
 $(document).on("change", "#price_tag", function (e){
   e.preventDefault();
   var price_tag_id = $('#price_tag option:selected').val()
- var url = window.location.pathname
 
   if (price_tag_id == ""){
     $('#min_price').val("");
@@ -143,7 +141,7 @@ $(document).on("change", "#price_tag", function (e){
   }else {
     $.ajax({
       type: "GET",
-      url: url,
+      url: "/items/search_material",
       data: {price_tag_id: price_tag_id},
       dataType: 'json',
       timeout: 60000
