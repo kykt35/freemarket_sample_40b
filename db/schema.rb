@@ -89,6 +89,12 @@ ActiveRecord::Schema.define(version: 2019_01_08_055419) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "item_prices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "price_tag"
+    t.integer "min_price"
+    t.integer "max_price"
+  end
+
   create_table "item_transactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "item_id"

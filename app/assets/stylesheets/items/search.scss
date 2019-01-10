@@ -11,8 +11,11 @@
       margin-top: 40px;
       width: 280px;
       background-color: $siro;
-      span{
+      .select-head{
         font-weight: 600;
+        line-height: 30px;
+        font-size: 18px;
+        padding-bottom: 16px;
       }
       .fas{
         color:$header-arrow;
