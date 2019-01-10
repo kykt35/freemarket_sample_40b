@@ -43,13 +43,16 @@
           .item-pay-form
             .item-pay-form__price
               .item-price
-                = "¥" + @item.price.to_s
+                = "¥" + @item.price.to_s(:delimited)
               .delivery-price
                 = @item.postage_select.text
             .item-pay-form__point
-              #exist-sales-amount
-                = "売上金が#{"¥ " + current_user.sales_amounts.sum(:price).to_s(:delimited)}あります"
-            #submit-pay 購入できません
+              -if current_user.sales_amounts.present? && current_user.sales_amounts.sum(:price) - current_user.item_transactions.sum(:point) > 0
+                #only-sales-amount
+                  = "売上金が#{"¥ " + current_user.sales_amounts.sum(:price).to_s(:delimited)}あります"
+              - else
+                .none 売上金はありません
+            #cannnot-submit-for-paying 購入できません
         %section.main-contents__delivery-info
           %p.header-address 配送先
           .contents-address
