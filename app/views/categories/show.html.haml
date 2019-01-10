@@ -14,7 +14,7 @@
           #{@category.name}の商品一覧
         .items-box-content.clearfix.category-brand-list
           =render partial: "items/item", collection: @items
-        = paginate @items
+        = paginate @items, window: 2
   =render partial: "shared/app-banner"
   =render partial: "shared/global-footer"
   =render partial: "shared/footer-sell-btn"
