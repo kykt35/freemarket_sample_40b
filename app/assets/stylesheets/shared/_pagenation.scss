@@ -1,0 +1,33 @@
+.pagination {
+  position: relative;
+  text-align: center;
+  margin: 40px 0 0;
+}
+.pager-prev {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.pager-next {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.pager-cell {
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  background: #fff;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  line-height: 42px;
+  a {
+    display: block;
+    color: #333;
+  }
+  &.active {
+    color: #fff;
+    background: $mRed;
+  }
+}
