@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'users/logout', to: 'users#logout'
   get 'users/registration_card' => 'users#registration_card'
   resources :items, only: [:new, :show, :create, :destroy, :edit, :update] do
-    resources :item_transactions, only: [:new, :create]
+    resources :item_transactions, only: [:new, :create, :show]
     resources :comments, only: [:create , :destroy]
     resources :favorites, only: [:create, :destroy]
   end
