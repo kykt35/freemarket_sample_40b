@@ -39,8 +39,47 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.where('name LIKE(?)', "%#{params[:search]}%")
+    # formのビューに必要なインスタンス変数
+    @size_categories_ids = CategoriesSize.group(:category_id).having('count(*) >= 2').map{|sc| sc.category_id}
+    @price_tag = params[:price_tag]
+    @status = ["販売中","売り切れ"]
+    #並べ替え
+    @select = params[:order]
+    if @select.present?
+      order = params[:order].sub(/_desc/," "+"DESC")
+    end
+    #キーワードで検索
     @value = params[:search]
+    @items = Item.where('name LIKE(?)', "%#{params[:search]}%").order(order)
+    # カテゴリーで検索
+    @items, @search_l, @search_m, @search = Category.item_search(params,@items)
+    # ブランド名で検索
+    @items, @brand_name = Brand.item_search(params,@items)
+    # サイズで検索
+    @items, @category_size, @size_ids, @category_sizes_ids = Size.item_search(params,@items)
+    # 値段で検索
+    @items, @min, @max = ItemPrice.item_search(params,@items)
+    # 商品状態
+    @items, @item_condition_ids = ItemCondition.item_search(params,@items)
+    # 配送料金
+    @items, @postage_select_ids = PostageSelect.item_search(params,@items)
+    # 在庫
+    @items, @stock_select_ids = Item.item_status_search(params,@items)
+  end
+
+  def get_search_material
+    respond_to do |format|
+      format.html
+      if params[:price_tag_id].present?
+        format.json{
+          @price_tag  = ItemPrice.find(params[:price_tag_id])
+        }
+      elsif params[:category_size_id].present?
+        format.json{
+          @category_sizes_ids = CategoriesSize.where(category_id: params[:category_size_id])
+        }
+      end
+    end
   end
 
   def set_item

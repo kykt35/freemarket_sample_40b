@@ -1,0 +1,108 @@
+.contents-bg {
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height:100%;
+}
+.contents-bg::before{
+  background-color: rgba(0,0,0,0.5);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: ' ';
+   z-index: 0;
+}
+  #sum-used-point{
+    @include bold_large_font;
+    float: right;
+  }
+
+  .confirmation-header{
+    width: 100vw;
+    position: relative;
+  }
+  .confirmation-main{
+    width: 100%;
+    position: relative;
+    .main-contents{
+      width: 60%;
+      margin: 0 auto;
+      background-color: #fff;
+      &__item-header{
+        @include box_style();
+        padding: 5%;
+        font-size: 2vw;
+        font-weight: 600;
+        text-align: center;
+        position: relative;
+      }
+
+      &__item-info{
+        @include box_style();
+        @include main_contents_same();
+        .item-header{
+          position: relative;
+          width: fit-content;
+          margin: 0 auto;
+          .item-image{
+            height: 150px;
+            width: 20%;
+          }
+          .item-sold-out-badge{
+            padding: 0;
+            margin: 0;
+            background-repeat: no-repeat;
+            display: block;
+          .soldout-text{
+            margin: 0;
+            padding: 0;
+            top: 22px;
+            font-size: 16px;
+            display: block;
+            position: absolute;
+            left: 0;
+            z-index: 2;
+            color: #fff;
+            transform: rotate(-45deg);
+            letter-spacing: 2px;
+            font-weight: 600;
+          }
+          &:after{
+            border-top: 40px solid #ea352d;
+            border-right: 40px solid transparent;
+            border-bottom: 40px solid transparent;
+            border-left: 40px solid #ea352d;
+            display: block;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 0;
+            height: 0;
+            border-style: solid;
+          }
+        }
+      }
+        .image-title{
+          @include bold_small_font();
+          padding-top: 3%;
+        }
+      }
+    }
+      &:after{
+      position: absolute;
+      z-index: 1;
+    }
+  }
+
+  #transaction-link{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+
