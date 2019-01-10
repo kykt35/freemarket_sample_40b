@@ -34,7 +34,7 @@
                     =label :images, "", for: "photo_change" do
                       %span{style: "cursor: pointer;"} 写真を変更する
                       = file_field "photo","change",style: "display: none;"
-                      %i.fas.fa-camera
+                      %i.fas.fa-camera.cut-camera
                     .sell-crop-editor
                       %canvas{id: "c1",width: 400,height:300, style: "cursor: grab;"}
                       .sell-crop-range
@@ -43,7 +43,7 @@
                         %i.fas.fa-camera.big-camera
                     .clearfix
                       %li#closeModal.cansel-button
-                        =link_to 'キャンセル',method: :post
+                        =link_to 'キャンセル',"",class: "canselButton"
                       %li.ok-button
                         =link_to '完了', ""
 
