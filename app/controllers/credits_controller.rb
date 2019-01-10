@@ -22,7 +22,7 @@ class CreditsController < ApplicationController
   def destroy
     credit = current_user.credits.first
     credit.destroy if user_signed_in? && current_user.credits.present?
-    flash.now[:alert] = 'カードが削除されました。'
+    flash.now[:success] = 'カードが削除されました。'
     redirect_to credits_path
   end
 
