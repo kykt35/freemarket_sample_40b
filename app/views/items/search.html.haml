@@ -127,7 +127,7 @@
                       %label
                         %input{type:"checkbox",class: "check-btn",id:"stock_all"}
                         %p.checkbox-label すべて
-                    - @status.each.with_index(1) do |status,i|
+                    - @status.each.with_index(0) do |status,i|
                       .checkbox-default
                         %label
                           -if @stock_select_ids.present?&&@stock_select_ids.include?("#{i}")

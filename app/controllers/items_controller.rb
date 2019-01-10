@@ -98,7 +98,7 @@ class ItemsController < ApplicationController
     @status = ["販売中","売り切れ"]
     @stock_select_ids = params[:stock_select_id]
     if @stock_select_ids.present?
-      # @items = @items.where(status: @stock_select_ids)
+      @items = @items.where(status: @stock_select_ids)
     end
     #jsonの設定
     respond_to do |format|
