@@ -4,34 +4,33 @@
     %h2.pickup-head.text-center ピックアップカテゴリー
     %section.items-box-container.clearfix
       %h3.text-center
-        %a{:href => "/jp/category/1/"}
+        %a{:href => "/categories/1"}
           レディース 新着アイテム
       .items-box-content.clearfix
         = render partial: "items/item", collection: @items
       .view-all
-        %a{:href => "/jp/category/1/"} すべての商品を見る
+        %a{:href => "/categories/1"} すべての商品を見る
     %section.items-box-container.clearfix
       %h3.text-center
-        %a{:href => "/jp/category/2/"}
+        %a{:href => "/categories/138"}
           メンズ 新着アイテム
       .items-box-content.clearfix
         = render partial: "items/item", collection: @items
       .view-all
-        %a{:href => "/jp/category/1/"} すべての商品を見る
+        %a{:href => "/categories/138"} すべての商品を見る
     %section.items-box-container.clearfix
       %h3.text-center
-        %a{:href => "/jp/category/3/"}
+        %a{:href => "/categories/258"}
           ベビー・キッズ 新着アイテム
       .items-box-content.clearfix
         = render partial: "items/item", collection: @items
       .view-all
-        %a{:href => "/jp/category/1/"} すべての商品を見る
+        %a{:href => "/categories/258"} すべての商品を見る
     %section.items-box-container.clearfix
       %h3.text-center
-        %a{:href => "/jp/category/6/"}
-          コスメ・香水・美容 新着アイテム
+        %a{:href => "categories/574"}
+          おもちゃ・ホビー・グッズ 新着アイテム
       .items-box-content.clearfix
         = render partial: "items/item", collection: @items
       .view-all
-        %a{:href => "/jp/category/1/"} すべての商品を見る
-
+        %a{:href => "categories/574"} すべての商品を見る
