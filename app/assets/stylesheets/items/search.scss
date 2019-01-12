@@ -1,7 +1,9 @@
 .search-container{
-  padding: 40px 200px;
+  max-width: 100%;
+  padding: 4% 5%;
   .search-area{
-    width: 280px;
+    width: 28%;
+    max-width:280px;
     .select-order{
       background-color: $siro;
     }
@@ -9,7 +11,6 @@
       padding: 16px;
       box-sizing: border-box;
       margin-top: 40px;
-      width: 280px;
       background-color: $siro;
       .select-head{
         font-weight: 600;
@@ -41,7 +42,7 @@
     }
   }
   .result-area{
-      width: 700px;
+      width: 70%;
     &__header{
       font-size: 22px;
       line-height: 1.4;
@@ -51,7 +52,7 @@
       .items-box {
         float: left;
         margin: 0 15px 15px 0;
-        width: 160px;
+        min-width: 160px;
         background-color: $siro;
         &-photo {
           position: relative;
