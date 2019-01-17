@@ -177,7 +177,7 @@ select {
   margin: 0;
   padding: 0;
   display: block;
-  background-color: #fff;
+  // background-color: #fff;
 }
 
 .form-group {
@@ -267,6 +267,98 @@ select {
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   line-height: 1.5;
+}
+.listing-tabs {
+  border: 0;
+  background: #eee;
+  font-size: 0px;
+  li {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+
+    width: 33.3%;
+    &.active{
+      background-color: white;
+      border-top: 2px solid #ea352d;
+    }
+  }
+  a {
+    position: relative;
+    display: block;
+    color: #333;
+    font-size: 16px;
+    line-height: 72px;
+    font-weight: bold;
+  }
+}
+.listing-item-count {
+  vertical-align: 2px;
+  margin: 0 6px 0 0;
+  i {
+    vertical-align: middle;
+    color: #ccc;
+  }
+  span {
+    vertical-align: middle;
+    margin: 0 0 0 2px;
+    font-size: 16px;
+    color: #888;
+  }
+}
+.mypage-item-status{
+  display: inline-block;
+  margin: 8px 0 0 0;
+  padding: 5px 6px;
+  border-radius: 2px;
+  font-size: 12px;
+  color: #fff;
+  font-weight: bold;
+  &.listing{
+    background: #0099e8;
+  }
+  &.sold{
+    background: #888;
+  }
+}
+.tab-content .none-content {
+  padding: 160px 0 60px;
+  background-repeat: no-repeat;
+  background-position: center 40px;
+  background-size: 78px 85px;
+  text-align: center;
+  font-size: 16px;
+  color: #ccc;
+}
+.purchace-tabs {
+  border: 0;
+  background: #eee;
+  font-size: 0px;
+  li {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    width: 50%;
+    &.active{
+      background-color: white;
+      border-top: 2px solid #ea352d;
+    }
+  }
+  a {
+    position: relative;
+    display: block;
+    color: #333;
+    font-size: 16px;
+    line-height: 72px;
+    font-weight: bold;
+  }
+}
+.mypage-tab-head {
+  padding: 0 4%;
+  background: #fafafa;
+  font-size: 16px;
+  line-height: 72px;
+  font-weight: bold;
 }
 .sold-out-box{
   position: relative;
