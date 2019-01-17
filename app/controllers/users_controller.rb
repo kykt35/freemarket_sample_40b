@@ -28,4 +28,10 @@ class UsersController < ApplicationController
     @favorites = current_user.favorites
   end
 
+  def purchace
+  end
+
+  def purchaced
+    @item_transactions = ItemTransaction.where(user: current_user).reverse_order.page(params[:page]).per(4)
+  end
 end
