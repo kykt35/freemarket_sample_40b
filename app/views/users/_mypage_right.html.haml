@@ -33,8 +33,16 @@
       %input#tab-past-transaction{type: "radio",name: "tab_btn2"}
       %label.tab_btn2{for: "tab-past-transaction"}過去の取引
       .tab_pages#transaction-contents
-        .none-content
-          %p 取引中の商品がありません
+        %ul.mypage-item-list
+          -if @item_transactions_during.present?
+            = render partial: "item_transaction", collection: @item_transactions_during
+          -else
+            .none-content{style: "background-image: url(#{image_path 'logo-gray-icon.svg'})"}
+              %p 取引中の商品がありません
       .tab_pages#past-transaction-contents
-        .none-content
-          %p 過去に取引した商品がありません
+        %ul.mypage-item-list
+          -if @item_transactions_post.present?
+            = render partial: "item_transaction", collection: @item_transactions_post
+          -else
+            .none-content{style: "background-image: url(#{image_path 'logo-gray-icon.svg'})"}
+              %p 過去に取引した商品がありません

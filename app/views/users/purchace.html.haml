@@ -16,7 +16,7 @@
             = render partial: "item_transaction", collection: @item_transactions
           -else
             .none-content{style: "background-image: url(#{image_path 'logo-gray-icon.svg'})"}
-              %p 購入した商品がありません
+              %p 取引中の商品がありません
     = paginate @item_transactions, window: 2
   = render partial:"users/side-bar"
 = render partial:"shared/footer-sell-btn"
