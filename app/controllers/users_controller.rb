@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
 	def mypage
+    @item_transactions_during = ItemTransaction.where(user: current_user, status: 0..4).reverse_order.page(params[:page]).per(4)
+    @item_transactions_post = ItemTransaction.where(user: current_user, status: "finish").reverse_order.page(params[:page]).per(4)
 	end
 
 	def card
@@ -29,9 +31,10 @@ class UsersController < ApplicationController
   end
 
   def purchace
+    @item_transactions = ItemTransaction.where(user: current_user, status: 0..4).reverse_order.page(params[:page]).per(4)
   end
 
   def purchaced
-    @item_transactions = ItemTransaction.where(user: current_user).reverse_order.page(params[:page]).per(4)
+    @item_transactions = ItemTransaction.where(user: current_user, status: "finish").reverse_order.page(params[:page]).per(4)
   end
 end
