@@ -1,0 +1,24 @@
+%li
+  =link_to item_path(item), class: "mypage-item-link" do
+    %figure
+      =image_tag item.images.first.variant(resize: "48x48")
+    .mypage-item-body
+      .mypage-item-text=item.name
+      .mypage-item-icon
+        %span.listing-item-count
+          %i.far.fa-heart
+          %span=item.favorites.count
+        %span.listing-item-count
+          %i.far.fa-comment-alt
+          %span=item.comments.count
+        -case(item.status)
+          -when("listing") then
+            %span.mypage-item-status.listing
+              =item.status_i18n
+          -when("solid") then
+            %span.mypage-item-status.solid
+              =item.status_i18n
+          -when("in_progress") then
+            %span.mypage-item-status.in_progress
+              =item.status_i18n
+    %i.fa.fa-angle-right.icon
