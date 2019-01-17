@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'mypage/profile' => 'users#profile'
   get 'mypage/identification', to: 'users#identification'
   get 'mypage/favorite', to: 'users#favorite'
+  get 'mypage/purchace', to: 'users#purchace'
+  get 'mypage/purchaced', to: 'users#purchaced'
   get 'users/signup', to: 'users#signup'
   get 'users/logout', to: 'users#logout'
   get 'users/registration_card' => 'users#registration_card'
@@ -18,6 +20,9 @@ Rails.application.routes.draw do
     resources :item_transactions, only: [:new, :create, :show]
     resources :comments, only: [:create , :destroy]
     resources :favorites, only: [:create, :destroy]
+    collection do
+      post 'upload_image'
+    end
   end
   get 'mypage/identification', to: 'users#identification'
   resources :categories, only: [:index, :show] do
@@ -26,7 +31,13 @@ Rails.application.routes.draw do
     end
   end
   resources :postage_selects, only: [:index]
-  post 'items/upload_image', to: 'items#upload_image'
   resources :credits, path: 'mypage/card', only: [:new, :create, :index, :destroy]
   resources :sales_amounts, path: 'mypage/sales', only: [:index]
+  resources :listings, path: 'mypage/listings', only: [:index] do
+    collection do
+      get 'listing'
+      get 'in_progress'
+      get 'sold'
+    end
+  end
 end
