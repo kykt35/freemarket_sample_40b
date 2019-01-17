@@ -1,0 +1,7 @@
+%li
+  =link_to item_item_transaction_path(item_transaction.item,item_transaction), class: "mypage-item-link" do
+    %figure
+      =image_tag item_transaction.item.images.first.variant(resize: "48x48")
+    .mypage-item-body
+      .mypage-item-text=item_transaction.item.name
+    %i.fa.fa-angle-right.icon
