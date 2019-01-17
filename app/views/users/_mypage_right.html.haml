@@ -5,14 +5,14 @@
         =link_to root_path,method: :get do
           .none
             =image_tag("member_photo_noimage_thumb.png")
-          %p.user-name 
-            = link_to "メルカリ太郎", "#"
+          %p.user-name
+            = link_to current_user.nickname, "#"
         .under-content
           %span.counter-label 評価
           %span.counter 0
         .under-content
           %span.counter-label 出品数
-          %span.counter 0
+          %span.counter=current_user.items.count
     .content-user__tab
       %input#tab-info{type: "radio",name: "tab_btn1",checked: true}
       %label.tab_btn1{for: "tab-info"}お知らせ
