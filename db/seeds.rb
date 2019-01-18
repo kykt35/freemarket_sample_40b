@@ -7,6 +7,101 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 # coding: utf-8
 require "csv"
+#brandtable
+CSV.foreach("db/ladies_brand.csv") do |row|
+  brand = Brand.where(name: row[0]).first_or_initialize(name: row[0])
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 1, brand_id: brand.id)
+end
+CSV.foreach("db/mens_brand.csv") do |row|
+  brand = Brand.where(name: row[0]).first_or_initialize(name: row[0])
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 138, brand_id: brand.id)
+end
+CSV.foreach("db/child_brand.csv") do |row|
+  brand = Brand.where(name: row[0]).first_or_initialize(name: row[0])
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 258, brand_id: brand.id)
+end
+CSV.foreach("db/daily_goods_brand.csv") do |row|
+  brand = Brand.where(name: row[0]).first_or_initialize(name: row[0])
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 386, brand_id: brand.id)
+end
+CSV.foreach("db/tableware_brand.csv") do |row|
+  brand = Brand.where(name: row[0]).first_or_initialize(name: row[0])
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 386, brand_id: brand.id)
+  BrandsCategory.find_or_create_by(category_id: 387, brand_id: brand.id)
+end
+CSV.foreach("db/clock_brand.csv") do |row|
+  brand = Brand.where(name: row[0]).first_or_initialize(name: row[0])
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 1140, brand_id: brand.id)
+  BrandsCategory.find_or_create_by(category_id: 131, brand_id: brand.id)
+end
+CSV.foreach("db/perfume_brand.csv") do |row|
+  brand = Brand.where(name: row[0]).first_or_initialize(name: row[0])
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 681, brand_id: brand.id)
+end
+CSV.foreach("db/game_brand.csv") do |row|
+  brand = Brand.where(name: row[0]).first_or_initialize(name: row[0])
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 515, brand_id: brand.id)
+  BrandsCategory.find_or_create_by(category_id: 568, brand_id: brand.id)
+end
+CSV.foreach("db/sport_brand.csv") do |row|
+  brand = Brand.where(name: row[0]).first_or_initialize(name: row[0])
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 865, brand_id: brand.id)
+end
+CSV.foreach("db/phone_brand.csv") do |row|
+  brand = Brand.where(name: row[0]).first_or_initialize(name: row[0])
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 778, brand_id: brand.id)
+  BrandsCategory.find_or_create_by(category_id: 779, brand_id: brand.id)
+end
+bike_brands = %w(アライ オージーケーカブト カワサキ ショウエイ シンプソン スズキ ハーレーダビッドソン ビー・エム・ダブリュー ホンダ ヤマハ ユピテル)
+bike_brands.each do |b|
+  brand = Brand.where(name: b).first_or_initialize(name: b)
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 1081, brand_id: brand.id)
+end
+instrument_brands = %w(アイバニーズ イーエスピー ヴォックス エピフォン ギブソン ズーム ビーシーリッチ フェルナンデス フェンダー フェンダー・ジャパン フォトジェニック ボス マーシャル ヤマハ ローランド)
+instrument_brands.each do |b|
+  brand = Brand.where(name: b).first_or_initialize(name: b)
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 574, brand_id: brand.id)
+  BrandsCategory.find_or_create_by(category_id: 625, brand_id: brand.id)
+end
+CSV.foreach("db/car_parts_brand.csv") do |row|
+  brand = Brand.where(name: row[0]).first_or_initialize(name: row[0])
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 1081, brand_id: brand.id)
+  BrandsCategory.find_or_create_by(category_id: 1090, brand_id: brand.id)
+end
+food_brands = %w(アサヒビール 磯自 一ノ蔵 カミュ 菊姫 霧島酒造 キリンビール 久保田 越乃寒梅 サッポロビール 薩摩酒造 サントリー ザ・マッカラン 松竹梅 ジムビーム 十四代 ジョニーウォーカー 宝酒造 獺祭 チョーヤ梅酒 鍋 ニッカウヰスキー ネスレ 博水社 八海山 濵田酒造 バランタイン ヘネシー ホッピービバレッジ 本坊酒造 ランディ リンツ リンデマンス ルピシア)
+food_brands.each do |b|
+  brand = Brand.where(name: b).first_or_initialize(name: b)
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 1140, brand_id: brand.id)
+  BrandsCategory.find_or_create_by(category_id: 1152, brand_id: brand.id)
+end
+ja_car_brands = %w(いすゞ スズキ スバル ゼロスポーツ ダイハツ トミーカイラ トヨタ 日野自動車 ホンダ マツダ 光岡 三菱 ユーノス レクサス 日産 日本フォード)
+ja_car_brands.each do |b|
+  brand = Brand.where(name: b).first_or_initialize(name: b)
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 574, brand_id: brand.id)
+  BrandsCategory.find_or_create_by(category_id: 625, brand_id: brand.id)
+end
+CSV.foreach("db/world_car_brand.csv") do |row|
+  brand = Brand.where(name: row[0]).first_or_initialize(name: row[0])
+  brand.save
+  BrandsCategory.find_or_create_by(category_id: 1081, brand_id: brand.id)
+  BrandsCategory.find_or_create_by(category_id: 1084, brand_id: brand.id)
+end
+
 
 #category table initial data
 CSV.foreach('db/categories.csv') do |row|
