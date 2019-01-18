@@ -1,4 +1,5 @@
 class Brand < ApplicationRecord
+  has_many :categories, through: :categories_sizes
   def self.item_search(params,items)
     brands = params[:brand]
     if brands.present?
