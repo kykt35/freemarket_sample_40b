@@ -29,6 +29,7 @@ class ItemTransactionsController < ApplicationController
 
       if @item_transaction.save && @sales_amount.save
         @item_transaction.item.update_attribute(:status, 1)
+        @item_transaction.update_attribute(:status, "finish")
         redirect_to  item_item_transaction_path(@item, @item_transaction)
       else
           render :new
