@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 2019_01_17_113102) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "brands_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "brand_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_id"], name: "index_brands_categories_on_brand_id"
+    t.index ["category_id"], name: "index_brands_categories_on_category_id"
+  end
+
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -100,7 +109,7 @@ ActiveRecord::Schema.define(version: 2019_01_17_113102) do
     t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "point"
+    t.integer "point", default: 0
     t.integer "status", default: 0
     t.index ["item_id"], name: "index_item_transactions_on_item_id"
     t.index ["user_id"], name: "index_item_transactions_on_user_id"
@@ -218,6 +227,8 @@ ActiveRecord::Schema.define(version: 2019_01_17_113102) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "brands_categories", "brands"
+  add_foreign_key "brands_categories", "categories"
   add_foreign_key "categories_sizes", "categories"
   add_foreign_key "categories_sizes", "sizes"
   add_foreign_key "credits", "users"

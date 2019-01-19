@@ -62,6 +62,7 @@ class ItemsController < ApplicationController
     end
     #キーワードで検索
     @value = params[:search]
+    @items = Item.all
     @items = Item.where('name LIKE(?)', "%#{params[:search]}%").order(order)
     # カテゴリーで検索
     @items, @search_l, @search_m, @search = Category.item_search(params,@items)
@@ -77,6 +78,7 @@ class ItemsController < ApplicationController
     @items, @postage_select_ids = PostageSelect.item_search(params,@items)
     # 在庫
     @items, @stock_select_ids = Item.item_status_search(params,@items)
+    @items = @items.with_attached_images.includes(:favorites).page(params[:page]).per(20)
   end
 
   def get_search_material
@@ -89,6 +91,14 @@ class ItemsController < ApplicationController
       elsif params[:category_size_id].present?
         format.json{
           @category_sizes_ids = CategoriesSize.where(category_id: params[:category_size_id])
+        }
+      elsif params[:brand_category_id].present?
+        format.json{
+          @brands_categories_ids = BrandsCategory.includes(:brand).where(category_id: params[:brand_category_id])
+        }
+      elsif params[:brand_category_id].blank?&&params[:brand_name].present?
+        format.json{
+          @brands = Brand.where('name LIKE(?)', "#{params[:brand_name]}%")
         }
       end
     end
