@@ -1,7 +1,7 @@
 .default-container
   =render partial: "shared/pc-header"
   =render partial: "shared/bread-crumbs"
-  .search-container
+  .search-container.clearfix
     = form_with url: items_search_path, method: :get, local: true, id: "search-form" do |f|
       .l-left.search-area
         .select-order
@@ -60,7 +60,6 @@
                         -else
                           = f.check_box "size_id[]", {id: "size_id_#{size.id}", class: "check-btn size-check-btn"}, size.id, false
                         %p.checkbox-label=size.name
-              .clearfix
             .form-group.form-group-price
               =f.label :price do
                 %i.fas.fa-coins
@@ -144,11 +143,10 @@
 
     .l-right.result-area
       %h2.result-area__header 検索結果
-      .result-area__contents
-        -@items.each do |item|
-          = render partial: "item", locals: { item: item }
-        -# = paginate(@items)後で kaminarriをインストール
-  .clearfix
+      .result-area__contents.clearfix
+        = render @items
+      .clearfix
+        = paginate @items
 
 
   =render partial: "shared/app-banner"
