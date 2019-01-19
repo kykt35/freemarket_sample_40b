@@ -94,3 +94,4 @@ gem "aws-sdk-s3", require: false
 gem 'payjp'
 gem 'rails-i18n'
 gem 'kaminari'
+gem 'enum_help'

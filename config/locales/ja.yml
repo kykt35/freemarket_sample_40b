@@ -16,3 +16,9 @@ ja:
         prefecture_id: 発送元の地域
         leadtime_id: 発送までの日数
         price: 価格
+  enums:
+    item:
+      status:
+        listing: 出品中
+        sold: 売却済
+        in_progress: 取引中
