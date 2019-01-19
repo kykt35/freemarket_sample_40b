@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2019_01_17_113102) do
     t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "point"
+    t.integer "point", default: 0
     t.integer "status", default: 0
     t.index ["item_id"], name: "index_item_transactions_on_item_id"
     t.index ["user_id"], name: "index_item_transactions_on_user_id"
