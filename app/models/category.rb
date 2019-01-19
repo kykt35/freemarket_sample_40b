@@ -3,6 +3,7 @@ class Category < ApplicationRecord
   has_many :items
   has_many :categories_sizes, dependent: :destroy
   has_many :sizes, through: :categories_sizes
+  has_many :brands, through: :brands_categories
   validates :name, presence: true
 
   def all_items

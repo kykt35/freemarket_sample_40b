@@ -90,6 +90,14 @@ class ItemsController < ApplicationController
         format.json{
           @category_sizes_ids = CategoriesSize.where(category_id: params[:category_size_id])
         }
+      elsif params[:brand_category_id].present?
+        format.json{
+          @brands_categories_ids = BrandsCategory.includes(:brand).where(category_id: params[:brand_category_id])
+        }
+      elsif params[:brand_category_id].blank?&&params[:brand_name].present?
+        format.json{
+          @brands = Brand.where('name LIKE(?)', "#{params[:brand_name]}%")
+        }
       end
     end
   end

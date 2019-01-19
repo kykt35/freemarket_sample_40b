@@ -10,3 +10,13 @@ if @category_sizes_ids.present?
     json.name category_sizes_id.size.name
   end
 end
+if @brands_categories_ids.present?
+  json.array! @brands_categories_ids do |brand_category_id|
+    json.name brand_category_id.brand.name
+  end
+end
+if @brands.present?
+  json.array! @brands do |brand|
+    json.name brand.name
+  end
+end
