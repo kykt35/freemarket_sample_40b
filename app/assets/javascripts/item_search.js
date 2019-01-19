@@ -212,7 +212,7 @@ $(document).on("keyup", "#brand", function (e){
   var brand_input = $('#brand').val()
   var brand_category_id = $('#search_item_l_category_id option:selected').val()
   if (brand_input =="") {
-    $("#brand_list").empty();
+    $("#search_brand_list").empty();
 // 大カテゴリ未選択で全てのブランドから検索
   }else{
     if (brand_category_id == "") {
@@ -224,10 +224,12 @@ $(document).on("keyup", "#brand", function (e){
         timeout: 60000
       })
       .done(function(brand_names){
-        $("#brand_list").empty();
-        brand_names.forEach(function(brand_name){
-          $("#brand_list").append(buildBrandHtml(brand_name));
-        })
+        $("#search_brand_list").empty();
+        if (brand_names.length >= 0) {
+          brand_names.forEach(function(brand_name){
+            $("#search_brand_list").append(buildBrandHtml(brand_name));
+          })
+        }
       })
       .fail(function(){
         alert("fail");
@@ -242,11 +244,11 @@ $(document).on("keyup", "#brand", function (e){
         timeout: 60000
       })
       .done(function(brand_categorys){
-        $("#brand_list").empty();
+        $("#search_brand_list").empty();
         var reg = '^'+brand_input
         brand_categorys.forEach(function(brand_category){
           if (brand_category.name.match(reg)){
-            $("#brand_list").append(buildBrandHtml(brand_category));
+            $("#search_brand_list").append(buildBrandHtml(brand_category));
           }
         })
       })
@@ -260,5 +262,5 @@ $(document).on("keyup", "#brand", function (e){
 $(document).on("click", ".brand-name", function (){
   var brand_name = $(this).text()
   $('#brand').val(brand_name)
-  $("#brand_list").empty();
+  $("#search_brand_list").empty();
 });

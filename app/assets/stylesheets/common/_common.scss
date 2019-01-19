@@ -400,3 +400,22 @@ select {
     }
   }
 }
+#search_brand_list{
+  overflow: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  max-height: 280px;
+  background-color: $siro;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,0.64);
+  .brand-name:hover{
+    background: #0099e8;
+    color: $siro;
+  }
+  .brand-name{
+    cursor: all-scroll;
+    padding: 16px 8px;
+    font-size: 14px;
+  }
+}
