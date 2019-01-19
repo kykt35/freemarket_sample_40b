@@ -2,7 +2,7 @@
   %nav.mypage-nav
     %ul.mypage-nav-list
       %li
-        =link_to "マイページ",root_path,class: "mypage-nav-list-item "
+        =link_to "マイページ",mypage_path,class: "mypage-nav-list-item "
         = fa_icon 'angle-right', class: 'icon'
       %li
         =link_to "お知らせ",root_path,class: "mypage-nav-list-item "
@@ -14,22 +14,22 @@
         =link_to "いいね！一覧",mypage_favorite_path,class: "mypage-nav-list-item "
         = fa_icon 'angle-right', class: 'icon'
       %li
-        =link_to "出品する",root_path,class: "mypage-nav-list-item "
+        =link_to "出品する",new_item_path,class: "mypage-nav-list-item "
         = fa_icon 'angle-right', class: 'icon'
       %li
-        =link_to "出品した商品-出品中",root_path,class: "mypage-nav-list-item "
+        =link_to "出品した商品-出品中",listing_listings_path,class: "mypage-nav-list-item "
         = fa_icon 'angle-right', class: 'icon'
       %li
-        =link_to "出品した商品-取引中",root_path,class: "mypage-nav-list-item "
+        =link_to "出品した商品-取引中",in_progress_listings_path,class: "mypage-nav-list-item "
         = fa_icon 'angle-right', class: 'icon'
       %li
-        =link_to "出品した商品-売却済",root_path,class: "mypage-nav-list-item "
+        =link_to "出品した商品-売却済",sold_listings_path,class: "mypage-nav-list-item "
         = fa_icon 'angle-right', class: 'icon'
       %li
-        =link_to "購入した商品-取引中",root_path,class: "mypage-nav-list-item "
+        =link_to "購入した商品-取引中",mypage_purchace_path,class: "mypage-nav-list-item "
         = fa_icon 'angle-right', class: 'icon'
       %li
-        =link_to "購入した商品-過去の取引",root_path,class: "mypage-nav-list-item "
+        =link_to "購入した商品-過去の取引",mypage_purchaced_path,class: "mypage-nav-list-item "
         = fa_icon 'angle-right', class: 'icon'
       %li
         =link_to "ニュース一覧",root_path,class: "mypage-nav-list-item "
@@ -72,4 +72,4 @@
           = fa_icon 'angle-right', class: 'icon'
         %li
           =link_to "ログアウト","/users/logout",class: "mypage-nav-list-item", id: "active"
-          = fa_icon 'angle-right', class: 'icon', id: "active"
+          = fa_icon 'angle-right', class: 'icon'

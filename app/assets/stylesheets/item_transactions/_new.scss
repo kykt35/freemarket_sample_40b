@@ -49,6 +49,10 @@
             border-color: #c0c0c0;
             border-style: solid;
             border-width: 1px;
+            background-color: #00FF00;
+            font-size: 15px;
+            font-weight: bold;
+            color: #fff;
           }
           #exist-sales-amount{
             padding: 5%;
@@ -65,6 +69,21 @@
             justify-content: center;
             align-items: center;
           }/*#exist-sales-amount*/
+          #only-sales-amount{
+            padding: 5%;
+            margin: 0 0 0px;
+            font-size: 15px;
+            letter-spacing: 2px;
+            border-color: #c0c0c0;
+            border-style: solid;
+            border-width: 1px;
+            background-color: #708090;
+            color: #fff;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
             #notice-sales-amount{
                 font-size: 14px;
                 font-weight: bold;
@@ -89,6 +108,18 @@
           width: 100%;
           border-style: none;
           background-color: #e62017;
+          color: #f5f5f5;
+          margin-top: 5%;
+          margin-bottom: 5%;
+          box-sizing: border-box;
+        }
+        #cannnot-submit-for-paying{
+          @include main_contents_same;
+          @include bold_small_font;
+          padding: 5%;
+          width: 100%;
+          border-style: none;
+          background-color: #0000FF;
           color: #f5f5f5;
           margin-top: 5%;
           margin-bottom: 5%;

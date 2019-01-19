@@ -5,6 +5,11 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new()
     #商品登録
+    @l_category = Category.where(ancestry: nil)
+    @item_condition = ItemCondition.all
+    @postage_select = PostageSelect.all
+    @prefecture = Prefecture.all
+    @leadtime = Leadtime.all
   end
 
   def create
@@ -17,6 +22,13 @@ class ItemsController < ApplicationController
         format.json
       end
     else
+      @l_category = Category.where(ancestry: nil)
+      @m_category = Category.find(@item.l_category_id).children if @item.l_category_id
+      @category = Category.find(@item.m_category_id).children if @item.m_category_id
+      @item_condition = ItemCondition.all
+      @postage_select = PostageSelect.all
+      @prefecture = Prefecture.all
+      @leadtime = Leadtime.all
       render :new
     end
   end

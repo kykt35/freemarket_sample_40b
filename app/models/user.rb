@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   has_many :credits, dependent: :destroy
   has_many :comments
-  has_many :items
+  has_many :items, foreign_key: :seller_id
   has_many :sns_credentials
   has_many :favorites, dependent: :destroy
   has_many :sales_amounts

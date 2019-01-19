@@ -1,0 +1,26 @@
+/ - breadcrumb :listing
+= render partial:"shared/pc-header"
+= render partial:"shared/bread-crumbs"
+.l-container.clearfix
+  .l-content
+    %section.mypage-tab-container
+      %h2.mypage-tab-head 出品した商品
+      %ul.listing-tabs
+        %li.active
+          %h3=link_to "出品中", listing_listings_path
+        %li
+          %h3=link_to "取引中", in_progress_listings_path
+        %li
+          %h3=link_to "売却済", sold_listings_path
+      .tab-content
+        %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
+          -if @items.present?
+            = render partial: "mypage_item", collection: @items, as: :item
+          -else
+            .none-content{style: "background-image: url(#{image_path 'logo-gray-icon.svg'})"}
+              %p 出品中の商品がありません
+    = paginate @items, window: 2
+  = render partial:"users/side-bar"
+= render partial:"shared/footer-sell-btn"
+= render partial:"shared/app-banner"
+= render partial:"shared/global-footer"

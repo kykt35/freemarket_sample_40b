@@ -2,5 +2,25 @@
   =render "shared/single-header"
   %main.single-main
     %section.single-container-section
+      %section#modalArea.modalArea
+        #modalBg.modalBg
+        .modalWrappers
+          .modalContents
+            .modal-bold 写真を切りとる
+          =label :images, "", for: "photo_change" do
+            %span{style: "cursor: pointer;",class: "change"} 写真を変更する
+            = file_field "photo","change",style: "display: none;"
+            %i.fas.fa-camera.cut-camera
+          .sell-crop-editor
+            %canvas{id: "c1",width: 400,height:300, style: "cursor: grab;"}
+            .sell-crop-range
+              %i.fas.fa-camera.small-camera
+              %input.input-range-default{id: "zoom-slider",type: "range",step:"0.01",min: "1",max:"2",name:"scale"}
+              %i.fas.fa-camera.big-camera
+          .clearfixs
+            %li#closeModal.cansel-button
+              =link_to 'キャンセル',"",class: "canselButton"
+            %li.ok-button
+              =link_to '完了', ""
       =render partial: "item_form", locals: {submit_value: "出品する"}
 =render "shared/single-footer"
