@@ -175,6 +175,7 @@ $(document).on('turbolinks:load', function() {
                 </label>
                 <div class="select-wrap">
                   <input class="input-default" id="item_brand" value="" placeholder="例）シャネル">
+                  <ul id="search_brand_list"></ul>
                 </div>
               </div>`
             $('.form-group-item_condition').before(formgroup);
@@ -189,7 +190,46 @@ $(document).on('turbolinks:load', function() {
       })
     }
   });
-
+  // ブランドインクリメンタルリサーチ
+  $(document).on("keyup", "#item_brand", function (e){
+    e.preventDefault();
+    function buildBrandHtml(brand){
+      html = `<li class= "brand-name">${brand.name}</li>`
+      return html
+    }
+    var brand_input = $('#item_brand').val()
+    var brand_category_id = $('#item_l_category_id option:selected').val()
+    if (brand_input =="") {
+      $("#search_brand_list").empty();
+  // 大カテゴリ選択している時、関連のブランドから検索
+      }else{
+        $.ajax({
+          type: "GET",
+          url: "/items/search_material",
+          data: {brand_category_id: brand_category_id},
+          dataType: 'json',
+          timeout: 60000
+        })
+        .done(function(brand_categorys){
+          $("#search_brand_list").empty();
+          var reg = '^'+brand_input
+          brand_categorys.forEach(function(brand_category){
+            if (brand_category.name.match(reg)){
+              $("#search_brand_list").append(buildBrandHtml(brand_category));
+            }
+          })
+        })
+        .fail(function(){
+          alert("fail");
+        })
+      }
+    })
+  // ブランド名クリックでフォームに入力
+  $(document).on("click", ".brand-name", function (){
+    var brand_name = $(this).text()
+    $('#item_brand').val(brand_name)
+    $("#search_brand_list").empty();
+  });
     // 配送料の負担選択で配送方法
   $(document).on("change", "#item_postage_select_id", function (e) {
     e.preventDefault();
